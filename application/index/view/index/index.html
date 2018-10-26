@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{cxuu:site name="site_title"}</title>
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+		<script type="text/javascript" src="/static/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.2.js"></script>
+		<script type="text/javascript" src="/static/layer/layer.js"></script>
+		<link href="/theme/css/main.css" rel="stylesheet" type="text/css">
+		<link href="/theme/css/index.css" rel="stylesheet" type="text/css">		
+    </head>
+<body>
+{include file='header'/}
+<div class="clear"></div>
+<div id="main_top">
+<div id="topinfo" >
+<div class="jzsjzl-l">
+<a href="/channel/18.html" target="_blank"><div class="sjzl">书记专栏</div></a>
+</div>
+<div class="notes"></div>
+<div class="jzsjzl-r">
+<a href="/channel/19.html" target="_blank"><div class="jzzl">局长专栏</div></a>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+
+<!--主内容开始-->		
+		
+<div id="main" >
+<div id="recommend" >
+<div class="firsttitle">
+	{cxuu:contentlist cid="4,11,12,13" position="a" limit="1" order="id desc" cacheid="1" cacheid="firsttitle"}
+	<a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,25}</a>
+	{/cxuu:contentlist}
+	
+<div class="topsearch">
+    <form class="navbar-form navbar-right" role="form" id="form1" name="form1"  method="" action="/index/search">
+      <span class="span1">
+      <input name="keywords" type="text" class="search-keyword" id="search-keyword"/>
+      </span>
+      <input type="submit" value="本站搜索" class="span2"/>
+    </form>
+</div>
+</div>
+
+  <div class="mleft">
+	   <div class="sectitle">
+			<div class="sect">
+			{cxuu:contentlist cid="4,5,11,12,13,18,19" position="b" limit="1" cacheid="sect"}
+			<a href="/content/{$vo.id}" target="_blank">{$vo.title}</a>
+			{/cxuu:contentlist} 
+			</div>
+		<div class="gonggaolist">
+		  <ul>
+			{cxuu:contentlist cid="4,5,11,12,13,14,15,16,17,18,19" limit="10" cacheid="gonggaolist"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,28}</a></li>
+			{/cxuu:contentlist}         
+		  </ul>
+		</div>
+	  </div>
+  </div>
+  <div class="rotation">
+      <div id="focusBox" class="focusBox">
+        <div class="hd">
+          <ul>
+            <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li>
+          </ul>
+        </div>
+        <div class="bd">
+          <ul>		
+            {cxuu:contentlist cid="4,5,11,12,13,18,19" pic="true" position="c" limit="5" order="id desc" cacheid="focusBox"}
+            <li>
+              <div class="pic"><a href="/content/{$vo.id}" target="_blank"><img src="{$vo.image}" /></a></div>
+              <div class="con"><a href="/content/{$vo.id}" target="_blank">{$vo.title}</a></div>
+            </li>
+           {/cxuu:contentlist}
+          </ul>
+        </div>
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
+      </div>
+      <script type="text/javascript">jQuery(".focusBox").slide( { mainCell:".bd ul",autoPlay:true, interTime:5000 } );</script> 
+    </div>
+</div>
+</div>
+
+<div class="clear" ></div>
+<!--重要文件-->
+<div id="contform-sec" >	
+	<div class="content-a" >
+			<a href="/index/Juleadermail" target="_blank"><div class="mail"></div></a>
+			<div class="title" >今日带班领导</div>
+			<div class="clear" ></div>
+			{cxuu:volist table="onduty" keyname="dutycat" value="2" status="1" limit="1" cacheid="onduty"}
+			<div class="onduty-name"><b>{$vo.name}</b></div>
+			<div class="onduty">{$vo.duty}</div>
+			<div class="onduty">呼号：{$vo.callsign}</div>
+			<div class="onduty">电话：{$vo.phone}</div>
+			{/cxuu:volist}
+	</div>
+	
+	<div class="content" >
+		<div class="title" ><div class="bar"></div><a href="/channel/5.html" target="_blank">重要文件</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="3" limit="9" empty="没有内容" cacheid="content1"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,22}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content" >
+		<div class="title" ><a href="/channel/8.html" target="_blank">通知通报</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="5" limit="9" empty="没有内容" cacheid="content2"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,22}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+</div>
+
+<div id="main" >
+<a href="http://10.189.1.9/upload/other/jcge2017" target="_blank"><div class="ad_banner" ></div></a>
+</div>
+<!--媒体聚焦-->
+<div id="contform-sec" >	
+	<div class="content-a" >
+	<a href="/channel/9.html" target="_blank"><div class="daily"></div></a>
+		<div class="list" >
+			{cxuu:contentlist cid="9" limit="9" empty="没有内容" cacheid="content3"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,12}</a></li>
+			{/cxuu:contentlist} 
+		</div>
+	</div>
+	
+	<div class="content" >
+		<div class="title" ><div class="bar"></div><a href="/channel/5.html" target="_blank">媒体聚焦</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="8" limit="9" empty="没有内容" cacheid="content4"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,22}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content" >
+		<div class="title" ><a href="/channel/8.html" target="_blank">政策法规</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="7" limit="9" empty="没有内容" cacheid="content5"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,22}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+</div>
+<div class="clear" ></div>
+
+<div class="index_piclist"  id="index_piclist">
+		<div class="bd">	
+		  <ul>
+		  {cxuu:contentlist cid="11,12,13" limit="9" pic="true" empty="没有内容" cacheid="content6"}
+		   <li>
+			  <div class="pic"><a href="/content/{$vo.id}" target="_blank"><img src="{$vo.image}" width="130" height="120" /></a></div>
+			  <div class="title"> <a href="/content/{$vo.id}" target="_blank" title="">{$vo.title|mbStr=0,13}</a></div>
+			</li>
+		  {/cxuu:contentlist}
+		  	 </ul>
+		  <div class="fn-clear"></div>
+		</div>
+    </div>
+	<script type="text/javascript">
+	jQuery(".index_piclist").slide({mainCell:".bd ul",autoPage:true,effect:"leftMarquee",autoPlay:true,vis:6,trigger:"click",interTime:50});
+	</script>
+<div class="clear" ></div>
+<!--山南警讯-->
+<div id="contform-thr">
+	<div class="formtitle" ></div>
+	<div class="content" >
+		<div class="title" ><a href="/channel/12.html" >部门动态</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="12" limit="9" empty="没有内容" cacheid="content7"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,20}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content" >
+		<div class="title" ><a href="/channel/13.html" >一线警务</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="13" limit="9" empty="没有内容" cacheid="content8"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,20}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content" >
+		<div class="title" ><a href="/channel/11.html" >县区动态</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="11" limit="9" empty="没有内容" cacheid="content9"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,20}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+</div>
+
+<div class="clear" ></div>
+<!--队伍建设-->
+<div id="contform-for">
+	<div class="formtitle" ></div> 
+	<div class="content-b" >
+		<div class="title" ><a href="/channel/14.html">党建工作</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="14" limit="9" empty="没有内容" cacheid="content10"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,13}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content-b" >
+		<div class="title" ><a href="/channel/15.html">纪检监察</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="15" limit="9" empty="没有内容" cacheid="content11"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,13}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content-b" >
+		<div class="title" ><a href="/channel/16.html">警务督察</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="16" limit="9" empty="没有内容" cacheid="content12"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,13}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+	<div class="content-b" >
+		<div class="title" ><a href="/channel/17.html">教育训练</a></div>
+		<div class="list" >
+			{cxuu:contentlist cid="17" limit="9" empty="没有内容" cacheid="content13"}
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,13}</a></li>
+			{/cxuu:contentlist}
+		</div>
+	</div>
+</div>
+<div class="clear" ></div>
+
+<div class="index_piclist piclist_b" id="index_piclist">
+		<div class="bd">	
+		  <ul>
+		  {cxuu:contentlist cid="14,15,16,17" limit="9" pic="true" empty="没有内容" cacheid="content14"}
+		   <li>
+			  <div class="pic"><a href="/content/{$vo.id}" target="_blank"><img src="{$vo.image}" width="130" height="120" /></a></div>
+			  <div class="title"> <a href="/content/{$vo.id}" target="_blank" title="">{$vo.title|mbStr=0,13}</a></div>
+			</li>
+		  {/cxuu:contentlist}
+		  	 </ul>
+		  <div class="fn-clear"></div>
+		</div>
+    </div>
+	<script type="text/javascript">
+	jQuery(".piclist_b").slide({mainCell:".bd ul",autoPage:true,effect:"leftMarquee",autoPlay:true,vis:6,trigger:"click",interTime:50});
+	</script>
+<div class="clear" ></div>
+
+<div id="contform-fiv">
+	<div class="content-a" >
+		<div class="list" >
+			<li><img src="/theme/spacialimg/sp_1.png" width="250" height="49"></li>
+			<li><img src="/theme/spacialimg/sp_2.png" width="250" height="49"></li>
+			<li><img src="/theme/spacialimg/sp_3.png" width="250" height="49"></li>
+			<li><img src="/theme/spacialimg/sp_4.png" width="250" height="49"></li>
+			<li><img src="/theme/spacialimg/sp_4.png" width="250" height="49"></li>
+			<li><img src="/theme/spacialimg/sp_4.png" width="250" height="49"></li>
+
+		</div>
+	</div>
+	<div class="content-b">
+		{include file='public/index_station'/}
+	</div>
+	<div class="content-c">
+		<a href="/channel/5.html"><div class="infosort" ></div></a>
+		<div class="list" >
+		功能正在开发中。。
+		</div>
+	</div>
+</div>
+{include file='public/index_url'/}
+		
+{include file='footer'/}
+
+</body>
+</html>

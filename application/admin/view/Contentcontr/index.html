@@ -1,0 +1,211 @@
+<div id="pagelist">
+    <h3 class="page-header">内容列表</h3>
+    <div class="row">		
+        <div class="col-sm-6"> 
+		{if getCxuuBaseAuth("Contentcontr_addedit")}
+            <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit/?cid={$channelId}')"><button type="button" class="btn btn-info">添加信息</button></a>
+        {/if}
+		</div>		
+        <div class="col-sm-6 text-right">            
+            <form class="form-inline" role="form" id="form1" name="form1"  method="" action="">
+				<div class="form-group">
+					<select class="form-control" name="status">
+                        <option value="">审核状态</option>
+                        <option value="1">已审核</option>
+                        <option value="0">未审核</option>                        
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="标题">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="content" class="form-control" placeholder="内容">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="cid">
+                        <option value="">所有栏目</option>
+                        {foreach $channeltree as $vo}
+                        <option value="{$vo.id}" {$channelId == $vo.id ? 'selected = selected':''} {$vo.attribute?"":'disabled="disabled"'}>
+						<!---->
+						{$vo.cname|raw}
+						</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <button type="button"  name="submit" class="btn btn-default btn-search">搜索</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width = 50><input type="checkbox" id="allAndNotAll" /></th>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>栏目</th>
+                    <th>审核</th>
+                    <th>部门</th>
+                    <th>发布人</th>
+                    <th>浏览</th>
+                    <th width = 60>录入</th>
+                    <th width = 60>修改</th>
+                    <th width = 120>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $list as $vo} 
+                <tr id="infotr{$vo.id}">
+                    <td><input name="items" type="checkbox" id="{$vo.id}"/></td>
+                    <td>{$vo.id}</td>
+                    <td><a href="/index/info/index/id/{$vo.id}" target="_blank">{$vo.title}</a>
+					{php} echo empty($vo['image']) ? '':  "<span class='label label-danger'>图</span>";{/php} 
+					{if ($vo['position_a'] == 1) } <span class='label label-danger'>头条</span>{/if}
+					{if ($vo['position_b'] == 1) } <span class='label label-danger'>小头条</span>{/if}
+					{if ($vo['position_c'] == 1) } <span class='label label-danger'>轮换</span>{/if}
+					{notempty name="$vo['urlname']"}<br><small><b style="color:red;">审核说明：</b>{$vo.urlname}</small>{/notempty}
+					</td>
+                    <td><a href="/index/infolist/index/channelval/{$vo.cid}" target="_blank">{$vo.channel.name}</a></td>
+                    <td>{if ($vo['status'] == 1) } 已审{else /} <span style="color: #CC5522;">未审</b>{/if}</td>
+                    <td width=90>{$vo.usergroupname}</td>
+                    <td>{$vo.publish}</td>
+                    <td>{$vo.hits}</td>
+                    <td>{$vo.created_date|date="m-d"}</td>
+                    <td>{$vo['edited_date']==0 ? "未修改" : $vo['edited_date']|date="m-d"}</td>
+                    <td class="text-right">
+                        <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit/?id={$vo.id}&cid={$vo.channel.id}')">
+                            <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                        </a>
+                        {if getCxuuBaseAuth("Contentcontr_Delete")}
+                        <a href="javascript:delinfo('{$vo.id}','{$vo.title}');" id="deluser" >
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                        {/if}
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        
+    </div>
+	
+	<div class="row">
+	{if getCxuuBaseAuth("Contentcontr_batchOperation")}			
+		<div class="col-sm-6 text-left batchOperation">
+                <div class="col-sm-4 selectlist">
+                    <select class="form-control" name="cid" id="movecid">
+                        {foreach $channeltree as $vo}
+                        <option value="{$vo.id}" {$channelId == $vo.id ? 'selected = selected':''} {$vo.attribute?"":'disabled="disabled"'}>
+						{$vo.cname|raw}
+						<!---->
+						</option>
+                        {/foreach}
+                    </select>
+                </div>
+				<div class="col-md-8">
+                <input type="button" onclick="javascript:batchOperation(1);" value="转移栏目" class="btn btn-primary btn-sm"/>
+				{if getCxuuBaseAuth("Contentcontr_Publish")}
+                <input type="button" onclick="javascript:batchOperation(2);" value="审核" class="btn btn-primary btn-sm"/>				
+                <input type="button" onclick="javascript:batchOperation(3);" value="取消审核" class="btn btn-primary btn-sm"/>
+				{/if}
+				{if getCxuuBaseAuth("Contentcontr_Delete")}
+                <input type="button" onclick="javascript:batchOperation(4);" value="批量删除" class="btn btn-primary btn-sm"/>
+				{/if}
+				</div>
+		</div>
+		{/if}
+		<div class="col-sm-6 text-right">
+		{$page|raw}<!--分页-->
+		</div>
+    </div>
+	
+	
+</div>
+
+<!--JS-->
+<script type="text/javascript">
+//选择
+    $("#allAndNotAll").click(function () {
+        var flag = this.checked;
+        $(":checkbox[name='items']").prop('checked', flag);
+    });
+
+    $(":checkbox[name='items']").click(function () {
+        $("#allAndNotAll").prop('checked',
+                $(":checkbox[name='items']").length == $(":checkbox[name='items']:checked").length);
+    });	
+	
+	
+//批量操作
+function batchOperation(status){
+	var ids=[];
+	$("input[name='items']:checked").each(function () {
+            ids.push($(this).attr("id"));
+        });
+    var contentIds = ids.join(",");
+	var cid= $("#movecid").val();
+	console.log(contentIds);
+	layer.confirm('确定要批量操作选中内容吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Contentcontr/batchOperation", {status: status, id:contentIds, cid:cid}, function (data) {
+                if (data.result == 1) {
+					layer.msg(data.msg);
+                    $("#main").load("/admin/contentcontr/?cid="+cid);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+}
+
+//删除信息
+    function delinfo(id, title) {
+        layer.confirm('确定要删除 ' + title + ' 信息吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Contentcontr/Delete/?id=" + id, {id: id}, function (data) {
+                //console.log(data.msg);
+                if (data.result == 1) {
+                    $("#infotr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+    
+
+
+
+//搜索信息
+    $(function () {
+        searchGet('/admin/contentcontr');
+    });
+//无刷新分页
+    $(function ()
+    {
+        //绑定pagination a  Click事件
+        // $(".pagination a").on("click", function() {
+        //Click另外一种绑定写法，两种写法的区别可以另外一篇文章《jquery on click绑定事件的区别》
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            //禁止A标签跳转
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            //使用jquery html 加载URL
+            $("#pagelist").html(result);
+        });
+    }
+</script>

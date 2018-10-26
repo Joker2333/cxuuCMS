@@ -1,0 +1,37 @@
+<h3 class="page-header">密码修改</h3>
+
+<form role="form" id="form1" name="form1" method="post" action="">
+    <div class="row">
+        <div class="field col-xs-9">
+            <label class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-3">
+                {$userinfo.username}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="field col-xs-9">
+            <label class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-3">
+                <input type="password" id="ps_f"  name="password_f"  class="form-control" value=""  data-validate="required:必填" placeholder="密码">
+            </div>
+        </div>
+    </div>	
+    <div class="row">
+        <div class="field col-xs-9">
+            <label class="col-sm-2 control-label">再次输入密码</label>
+            <div class="col-sm-3">
+                <input type="password" id="ps_s"  name="password"   class="form-control" value="" data-validate="required:必填" placeholder="再次输入密码">
+            </div>
+        </div>
+    </div>
+    <input  type="hidden" name="user_id" value="{$userinfo.user_id}" >
+    <button type="submit"  name="submit" class="btn btn-primary btn-sm">提交</button>
+</form>
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Adminusercontr/pwedit');
+    });
+</script>
+

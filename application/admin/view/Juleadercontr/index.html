@@ -1,0 +1,99 @@
+<div id="pagelist">
+<h3 class="page-header">领导列表</h3>
+{if getCxuuBaseAuth("Juleadercontr_addedit")}
+<div class="row">
+<div class="col-sm-6"> 
+    <a href="javascript:;" onclick="targetmain('/admin/Juleadercontr/addedit')"><button type="button" class="btn btn-info">添加局领导信息</button></a>
+</div>
+</div>
+{/if}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+				<th>排序</th>
+                <th>姓名</th>
+                <th>照片</th>
+                <th>职务</th>
+                <th>分管工作</th>
+                <th>电话</th>                
+                <th>是否显示</th>
+				<th>管理操作</th>
+
+            </tr>
+        </thead>
+        <tbody>	  
+            {foreach $list as $vo} 
+            <tr id="leadertr{$vo.id}">
+                <td width=50>{$vo.id}</td>
+				<td width=50>{$vo.sort}</td>
+                <td width=120>{$vo.name}</td>
+                <td width=80>{if empty($vo['image'])}无照片{else/}<div class="thumbnail"><img src="{$vo.image}" height=80 width=60></div>{/if}</td>
+                <td>{$vo.duty}</td>
+                <td>{$vo.division}</td>
+                <td>{$vo.phone}</td>                
+                <td>{if ($vo['status']!=1)}不显示{else/}<span class='label label-danger'>显示</span>{/if}</td>
+                <td width=120>
+				{if getCxuuBaseAuth("Jumailcontr_index")}
+					<a href="javascript:;" onclick="targetmain('/admin/Jumailcontr/?uid={$vo.id}')">
+                        <button type="button" class="btn btn-primary btn-sm">信件</button>
+                    </a>
+				{/if}
+				{if getCxuuBaseAuth("Juleadercontr_editAction")}
+                    <a href="javascript:;" onclick="targetmain('/admin/Juleadercontr/addedit/?id={$vo.id}')">
+                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                    </a>
+				{/if}
+				{if getCxuuBaseAuth("Juleadercontr_Del")}
+                    <!-- <a href="javascript:delleader('{$vo.id}','{$vo.name}');" id="delleader" >
+                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                    </a> -->
+				{/if}
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    {$page}<!--分页-->  
+</div>
+</div>
+
+<script>
+    function delleader(id, username) {
+        layer.confirm('确定要删除  ' + username + '  领导信息吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Juleadercontr/del/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#leadertr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+
+//无刷新分页 邓中华 20181009
+    $(function ()
+    {
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            $("#pagelist").html(result);
+        });
+    }
+</script>
+
+
+

@@ -1,0 +1,64 @@
+<div id="pagelist">
+    <h3 class="page-header">栏目列表</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>栏目</th>
+                    <th>栏目属性</th>
+                    <th>每页显示条数</th>
+                    <th>别名</th>
+                    <th>模板</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $list as $vo} 
+                <tr id="infotr{$vo.id}">
+                    <td>{$vo.id}</td>
+                    <td><a href="/index/infolist/index/?channelval={$vo.id}" target="_blank">{$vo.cname|raw}</a></td>
+                    <td>{$vo.attribute?'列表':'栏目页'}</td>
+                    <td>{$vo.DisplayNum}</td>
+                    <td>{$vo.urlname}</td>
+                    <td>{empty name="$vo['Template']"}默认模板{else/}{$vo['Template']}{/empty}</td>
+                    <td>{$vo.sort}</td>
+                    <td width=80>
+                        <a href="javascript:;" onclick="targetmain('/admin/Channelcontr/addEdit/?id={$vo.id}')">
+                            <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                        </a>
+                       <!--  <a href="javascript:del('{$vo.id}','{$vo.name}');" id="deluser" >
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a> -->
+
+                    </td>
+                </tr>
+                {/foreach}	
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function del(id, title) {
+        layer.confirm('确定要删除 ' + title + ' 栏目吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/channelcontr/Delete/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#infotr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+</script>
+
+
+
+

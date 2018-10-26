@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$info.title}-{cxuu:site name="site_title"}</title>
+    <meta name="keywords" content=" " />
+    <meta name="description" content=" " />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/theme/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/theme/css/content.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+{include file='header'/}
+<div id="content_topinfo" >
+  <div class="timeinfo2">
+		<strong><a href="/">首页</a> </strong> // 
+	    {foreach $channelpath as $vo}
+			<a href="/channel/{$vo.id}.html" >{$vo.name|raw}</a> /
+		{/foreach}
+	</div>
+  <div class="topsearch">
+    <form class="navbar-form navbar-right" role="form" id="form1" name="form1"  method="" action="/index/search">
+      <span class="span1">
+      <input name="keywords" type="text" class="search-keyword" id="search-keyword"/>
+      </span>
+      <input type="submit" value="本站搜索" class="span2"/>
+    </form>
+  </div> 
+</div>
+
+<div id="article_content_page">
+  <div id="page_content"> 
+    <!--== S 正文内容 -->
+    <div id="article_box">
+      <div id="article_title">{$info.title}</div>
+      <div id="article_info">
+	  <span>发布单位：{$info.usergroupname}</span>
+	  <span>拟稿：{$info.auther}</span>
+	  <span>审核：{$info.examine}</span>
+	  <span>发布：{$info.publish}</span>
+      <span>浏览：{$info.hits} 次<!-- 浏览views 次 --></span>
+	  <span>{$info.created_date|date="Y-m-d"}</span>
+	  </div>
+      <div class="article_content">
+        <p> <?php echo htmlspecialchars_decode($info['content']);?> </p>
+      </div>      
+      <div class="page"><span id="pe100_page_contentpage" class="pagecss"></span></div>
+
+    </div>
+    <!--== E 正文内容 --> 
+  </div>
+</div>
+{include file='footer'/}
+</body>
+</html>

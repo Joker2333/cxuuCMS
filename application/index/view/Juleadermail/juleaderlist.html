@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>局领导-{cxuu:site name="site_title"}</title>
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+		<link href="/theme/css/main.css" rel="stylesheet" type="text/css">
+		<link href="/theme/css/juldmail.css" rel="stylesheet" type="text/css">	
+    </head>
+<body>
+{include file='header'/}
+<div id="content_topinfo" >
+	<div class="timeinfo2">
+		<strong><a href="/">首页</a> </strong> 局领导
+	</div>
+<div class="topsearch">
+    <form class="navbar-form navbar-right" role="form" id="form1" name="form1"  method="" action="/index/search">
+      <span class="span1">
+      <input name="keywords" type="text" class="search-keyword" id="search-keyword"/>
+      </span>
+      <input type="submit" value="本站搜索" class="span2"/>
+    </form>
+  </div> 
+</div>
+
+<div id="main">
+ <div class="leader">
+          <ul>
+		  {foreach $list as $vo} 
+             <li> 
+              <div class="li_img"><img src="{$vo.image}"></div>			  
+              <div class="li_div">
+				  <div class="li_div_info">				  
+						<div class="li_text_name">{$vo.name}</div>
+						<div class="li_text">{$vo.duty}</div>
+						<div class="li_text_fg"><strong>业务分工：</strong>{$vo.division}</div>
+					</div>
+              <div class="li_text_url">                
+               <div class="cs2"> <a href="/index/jumailcontr/?uid={$vo.id}">已回</a></div>
+               <div class="cs1"><a href="/index/jumailcontr/writemail/?uid={$vo.id}">写信</a></div>
+              </div>
+              </div>
+            </li>
+			{/foreach}
+		</ul>
+
+</div>
+  <!--边栏-->
+
+  <div class="fn-clear"></div>
+</div>
+<!--END--> 
+<!--底部-->
+{include file='footer'/}
+<!--END-->
+
+</body>
+</html>

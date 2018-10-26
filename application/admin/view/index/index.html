@@ -1,0 +1,92 @@
+<!Doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>龙啸轩</title>
+        {include file='resource'/}
+    </head>
+    <body>
+        {include file='header'/}
+        <div class="container-fluid">
+            <div class="row">
+                <!--左栏菜单-->
+                <div id="lm" class="col-sm-3 col-md-2 sidebar"></div>
+                <!--内容-->
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <div id="main"  class="container-fluid"></div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+		//菜单控制
+            $("#main").load('/admin/index/home');
+            $("#lm").load('/admin/Menu/index');
+            function topmenu(act) {
+                switch (act) {
+                    case ("content"):
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/content");
+                        break;
+                    case ("admin"):
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/admin");
+                        break;
+                    case ("channel"):
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/channel");
+                        break;
+                    case ("setting"):
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/setting");
+                        break;
+					case ("application"):
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/application");
+                        break;
+                    default:
+                        $("#topmenu li").removeClass("active");
+                        $("#" + act + "").addClass("active");
+                        $("#lm").load("/admin/Menu/index");
+                }
+            }
+
+            //Ajax 加载内容页
+            function targetmain(url) {
+                $("#main").load(url);
+            }
+
+            //登出
+            function loginout() {
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/login/loginout",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.result == 1) {
+                            window.location.href = "/admin/login/";
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                });
+            }
+        </script>
+		<script language="javascript">
+        //防止页面后退
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+</script>
+    </body>
+</html>

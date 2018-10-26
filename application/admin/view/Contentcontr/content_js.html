@@ -1,0 +1,56 @@
+<script>
+     //获取第一张图片  修改编辑器获取方法 邓中华 20181011 
+    function get_one_pic() {
+        //var content = document.getElementById('summernote').value; 
+        var content = $('#summernote').summernote('code');
+        var imgreg = /<img.*?(?:>|\/>)/gi;
+        var srcreg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+        var arr = content.match(imgreg);
+        var src = arr[0].match(srcreg);
+        $("#image").val(src[1]);
+    }
+
+    //获取内容描述 修改编辑器获取方法 邓中华 20181011 
+    function get_description() {
+        var content = $('#summernote').summernote('code');
+        //content = content.substring(0, 10000);
+        content = content.replace(/\s+/g, " ")
+        content = content.replace(/[\r\n]/g, " ");
+        content = content.replace(/<\/?[^>]*>/g, '');
+        if (content.length > 250) {
+            content = content.substring(0, 250);
+        }
+        $("#description").val(content);
+    }
+	
+	//ajax上传图片
+    function sendFile($summernote, file) {
+        var formData = new FormData();
+        formData.append("file", file);
+        $.ajax({
+            url: '/admin/upload/uploadSummernote?upcontr='+'{$contr}',//
+            data: formData,
+            type: 'POST',
+            //如果提交data是FormData类型，那么下面三句一定需要加上
+            cache: false,  
+            contentType: false,
+            processData: false,
+			dataType: "json", 
+            success: function (data) {
+			console.log(data.url);
+              if(data.ext == 1){
+					$('#summernote').summernote('insertImage', data.url);  //直接插入路径就行，filename可选
+			  }else{
+ 					$('#summernote').summernote('createLink', {
+					  text: data.filename,
+					  //已改写 summernote.js
+					  url: data.url
+					});
+				}
+            },
+            error:function(){
+              alert("上传图片或附件失败！");
+            }
+        });
+    }
+</script>

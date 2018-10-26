@@ -1,0 +1,86 @@
+<div id="pagelist">
+    <h3 class="page-header">缓存管理</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>缓存名</th>
+                    <th>路径</th>
+                    <th>大小</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+			<tbody>
+                <tr>
+                    <td>Redis缓存</td>
+                    <td>内存缓存</td>
+                    <td></td>
+                    <td width=80>
+                        <a href="javascript:cacheclear('0','Redis缓存');">
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                    </td>
+                </tr>	
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>文件缓存</td>
+                    <td>./runtime/Cache/</td>
+                    <td>{$runtimeCachedirSize}KB</td>
+                    <td width=80>
+                        <a href="javascript:cacheclear('1','文件缓存');">
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                    </td>
+                </tr>	
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>程序缓存</td>
+                    <td>./runtime/temp/</td>
+                    <td>{$runtimeTempdirSize}KB</td>
+                    <td width=80>
+                        <a href="javascript:cacheclear('2','程序缓存');">
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                    </td>
+                </tr>	
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>日志文件</td>
+                    <td>./runtime/log/</td>
+                    <td>{$runtimeLogdirSize}KB</td>
+                    <td width=80>
+                        <a href="javascript:cacheclear('3','日志文件');">
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                    </td>
+                </tr>	
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<script>
+    function cacheclear(id, title) {
+        layer.confirm('确定要删除 ' + title + ' 吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Cachecontr/del/?id=" + id, {id: id}, function (data) {
+                //console.log(data.msg);
+                if (data.result == 1) {
+                    layer.msg(data.msg);
+                    $("#main").load("/admin/Cachecontr");
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+
+</script>

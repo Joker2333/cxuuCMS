@@ -1,0 +1,110 @@
+<div id="pagelist">
+<h3 class="page-header">{$constname}领导信件信息</h3>
+<form role="form"  class="form-horizontal" id="form1" name="form1" method="post" action="">
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <tbody>	  
+            <tr>
+                <td width="130">邮件ID</td>
+				<td>{$info.id}</td>
+            </tr>
+			<tr>
+                <td>收件领导</td>
+				<td><b>{$info.juleader.name}</b> {$info.juleader.duty}</td>
+            </tr>
+			<tr>
+                <td>邮件标题</td>
+				<td>{$info.title}</td>
+            </tr>
+			<tr>
+                <td>邮件类别</td>
+				<td>{$info.category}</td>
+            </tr>
+			<tr>
+                <td>写信人</td>
+				<td>{$info.writename}</td>
+            </tr>
+			<tr>
+                <td>写信人所在部门</td>
+				<td>{$info.department}</td>
+            </tr>
+			<tr>
+                <td>联系地址</td>
+				<td>{$info.addr}</td>
+            </tr>
+			<tr>
+                <td>联系电话</td>
+				<td>{$info.phone}</td>
+            </tr>
+			<tr>
+                <td>信件内容</td>
+				<td>{$info.content}</td>
+            </tr>
+			<tr>
+                <td>写信IP</td>
+				<td>{$info.ip}</td>
+            </tr>
+			<tr>
+                <td>写信时间</td>
+				<td>{$info.greatttime|date="Y-m-d"}</td>
+            </tr>
+			<tr>
+                <td>回复内容</td>
+				<td><textarea id="summernote" name="reply">{$info.reply|raw}</textarea></td>
+            </tr>
+			<tr>
+                <td>前台是否显示</td>
+				<td>
+				<label class="radio-inline">
+                <input type="radio" name="status" value="0" id="optionsRadios1" {$info.status ? "":"checked"}>不显示
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="status" value="1" id="optionsRadios1" {$info.status ? "checked":""}>显示
+				</label>
+				<!---->
+				</td>
+            </tr>
+			<tr>
+                <td><input  type="hidden" name="id" value="{$info.id}" ></td>
+				<td><button type="submit"  name="submit" class="btn btn-primary btn-md">{$constname}</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+</form>
+</div>
+<link href="/static/summernote/summernote.css" rel="stylesheet">
+<script src="/static/summernote/summernote.js"></script>
+<script src="/static/summernote/lang/summernote-zh-CN.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+var $summernote = $('#summernote').summernote({
+  height: 300,
+  popover:{},// set popover 禁用，否则BUG很烦
+  toolbar: [
+  ['Misc', ['codeview','undo','redo','fullscreen']],
+	['style', ['bold', 'italic', 'underline', 'clear']],
+    ['fontsize', ['fontsize','fontname']],
+    ['color', ['color']],
+	['height', ['height']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+	['Insert', ['link','table','hr','help']],
+  ],
+  fontNames:['Arial', '仿宋_GB2312', '仿宋', '黑体','微软雅黑', '宋体'],
+  minHeight: null,             // set minimum height of editor
+  maxHeight: null,             // set maximum height of editor
+  lang: 'zh-CN',
+  dialogsFade : true,// Add fade effect on dialogs
+  dialogsInBody : true,// Dialogs can be placed in body, not in
+  disableDragAndDrop : false,
+
+});
+    
+});
+</script>
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Jumailcontr/', '{$actionname}');
+    });
+</script>

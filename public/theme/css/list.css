@@ -1,0 +1,43 @@
+body {
+background:url("/theme/image/index/index_logo.jpg") no-repeat top center;
+background-color:#dedede;
+}
+
+/* 主内容 */
+.container{margin-top:10px;width:1200px;height:960px;background-color:#fff;}
+
+.channeltitle{float:left;width:1180px;height:60px;line-height:60px;font-size:22px;padding-left:20px;border-bottom:2px solid #0364dd;font-weight:bold;}
+.channeltitle .bar{float:left;width:20px;height:30px;line-height:30px;margin-top:15px;border-left:4px solid #0364dd;}
+
+.contentlist{float:left;margin-left:10px;margin-top:20px;width:780px;height:800px;padding:10px;}
+
+.contentlist .list{float:left;width:760px;margin-top:10px;}
+.contentlist .list li{float:left;width:760px;font-size:14px;list-style:none;height:35px;padding-left:20px;overflow:hidden;color:#2e2e2e;font-family:"微软雅黑","黑体";background:url("/theme/image/public/ico_list.jpg") no-repeat left -5px;}
+.contentlist .list li span{float:right;color:#939393;}
+.contentlist .list li a{color:#2e2e2e;}
+.contentlist .list li a:hover{color:#900;}
+
+.contentlist .hr{float:left;width:760px;height:20px;padding-left:25px;}
+.contentlist hr{float:left;width:740px;height:0px;border-top:1px dashed #cdcdcd;}
+
+
+.rightlist{float:right;margin-left:20px;width:360px;height:900px;background-color:#e7f5ff;}
+
+.rightlist .toptitle{float:left;width:340px;height:40px;line-height:40px;background-color:#a4d7ff;padding:10px;font-size:18px;}
+.rightlist .toptitle .bar{float:left;width:20px;height:40px;line-height:40px;border-left:4px solid #0364dd;}
+
+.rightlist .list{float:left;width:340px;margin-top:10px;}
+.rightlist .list li{float:left;width:340px;font-size:14px;list-style:none;height:30px;padding-left:10px;overflow:hidden;}
+.rightlist .list li span{float:right;}
+
+
+/**
+分页
+**/
+#pagination{float:left;margin-top:10px;width:760px;height:60px;}
+.pagination{width:760px;height:60px;}
+.pagination li{float:left;width:20px;height:20px;margin-left:5px;padding:5px;text-align:center;font-size:16px;font-family:"Arial";list-style:none;background-color:#4192de;}
+.pagination li a{color:#fff;}
+.pagination li a:hover{color:#002aff;}
+.pagination .disabled{float:left;width:20px;height:20px;font-size:16px;color:#fff;}
+.pagination .active{float:left;width:20px;height:20px;font-size:14px;background-color:#d0d0d0;color:#0364dd;}

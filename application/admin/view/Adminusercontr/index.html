@@ -1,0 +1,85 @@
+<div id="pagelist">
+<h3 class="page-header">用户列表</h3>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>管理组</th>
+                <th>姓名</th>
+                <th>昵称</th>
+                <th>最后登录时间</th>
+                <th>最后登录IP</th>
+                <th>管理操作</th>
+
+            </tr>
+        </thead>
+        <tbody>	  
+            {foreach $list as $vo} 
+            <tr id="usertr{$vo.user_id}">
+                <td>{$vo.user_id}</td>
+                <td>{$vo.admingroup.groupname}</td>
+                <td>{$vo.username}</td>
+                <td>{$vo.nicename}</td>
+                <td>{$vo.last_login_time}</td>
+                <td>{$vo.last_login_ip}</td>
+                <td width=120>
+                    <a href="javascript:;" onclick="targetmain('/admin/adminusercontr/addedit/?id={$vo.user_id}')">
+                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                    </a>
+
+                    <!-- <a href="javascript:deluser('{$vo.user_id}','{$vo.username}');" id="deluser" >
+                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                    </a> -->
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    {$page}<!--分页-->  
+</div>
+</div>
+
+<script>
+    function deluser(id, username) {
+        layer.confirm('确定要删除  ' + username + '  用户吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/adminusercontr/del/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#usertr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+
+//无刷新分页
+    $(function ()
+    {
+        //绑定pagination a  Click事件
+        // $(".pagination a").on("click", function() {
+        //Click另外一种绑定写法，两种写法的区别可以另外一篇文章《jquery on click绑定事件的区别》
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            //禁止A标签跳转
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            //使用jquery html 加载URL
+            $("#pagelist").html(result);
+        });
+    }
+</script>
+
+
+

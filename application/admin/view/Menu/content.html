@@ -1,0 +1,26 @@
+    <div id="leftmenua">
+        <h3>
+            <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/index')"><button type="button" class="btn btn-info">全部列表</button></a>
+			
+            {if getCxuuBaseAuth("Contentcontr_addedit")}
+			<a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit')"><button type="button" class="btn btn-info">添加信息</button></a>
+			{/if}
+        </h3>
+        <div id="treeview"></div>
+    </div>
+<script type="text/javascript">
+//栏目列表树
+    $(function () {
+        $.getJSON('/admin/channelcontr/getJsTree', {}, function (data) {
+            //console.log('getJsTree', data);
+            var options = {
+                bootstrap2: false,
+                showTags: true,
+                enableLinks: true,
+                levels: 5,
+                data: data
+            };
+            $('#treeview').treeview(options);
+        });
+    });
+</script>

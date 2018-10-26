@@ -1,0 +1,62 @@
+<div id="pagelist">
+<h3 class="page-header">用户组列表</h3>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>管理组名</th>
+                <th>用户组状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>	  
+            {foreach $list as $vo} 
+            <tr id="grouprtr{$vo.group_id}">
+                <td>{$vo.group_id}</td>
+                <td>{$vo.groupname}</td>
+                <td>{if $vo['status']==1}启用{else}禁用{/if}</td>
+                <td width=480>
+                    <a href="javascript:;" onclick="targetmain('/admin/admingroupcontr/addedit/id/?id={$vo.group_id}')">
+                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                    </a>
+                    <a href="javascript:;" onclick="targetmain('/admin/admingroupcontr/baseauth/id/?id={$vo.group_id}')">
+                        <button type="button" class="btn btn-primary btn-sm">操作权限</button>
+                    </a>
+                    <a href="javascript:;" onclick="targetmain('/admin/admingroupcontr/channelauth/id/?id={$vo.group_id}')">
+                        <button type="button" class="btn btn-primary btn-sm">栏目权限</button>
+                    </a>
+                    <!-- <a href="javascript:del('{$vo.group_id}','{$vo.groupname}');" id="deluser" >
+                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                    </a> -->
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    {$page}<!--分页-->  
+</div>
+</div>
+<script>
+    function del(id, title) {
+
+        layer.confirm('确定要删除 ' + title + ' 管理组吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/admingroupcontr/del/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#grouprtr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+</script>
+
+
+

@@ -1,0 +1,64 @@
+body {
+background:url("/theme/image/index/index_logo.jpg") no-repeat top center;
+background-color:#dedede;
+}
+
+
+/*内容*/
+.leader {margin-top:0px;float:left;width:1120px;padding:40px;background:#fff;}
+.leader ul {padding:5px;list-style:none;float:left;}
+.leader ul li {list-style:none;	width:480px;float:left;background-color:#f3fafe;padding:5px;margin:auto;margin:20px; height:220px;}
+.leader ul li img{width:135px;height:180px;margin:auto;}
+
+.leader ul li .li_div{margin:auto; float:right; width:300px; height:200px; font-size:16px;padding-left:20px;}
+.leader ul li .li_div_info{margin:auto; float:right; height:150px; font-size:16px;}
+.leader ul li .li_img{width:160px;height:220px;margin:auto;float:left;}
+.leader ul li .li_img img{width:160px;height:220px;}
+.leader ul li .li_text{width:300px; float:left;line-height:30px;text-align:left;font-size:16px;}
+.leader ul li .li_text_fg{width:300px; float:left;line-height:30px;text-align:left;font-size:14px; height:80px;}
+.leader ul li .li_text_name{width:300px;float:left;line-height:40px;height:40px;text-align:left;font-size:24px;	font-weight:bold;  color:#d00; font-family:"黑体";}
+.leader ul li .li_text_url{width:200px;float:right;height:35px;line-height:35px;text-align:left;font-size:16px; margin-top:4px; padding-bottom:4px; padding-left:40px;}
+.leader ul li .li_text_url .cs1{ float:right;width:80px;float:left;margin-left:20px;height:35px;background-color:#d2d2d2;text-align:center;}
+.leader ul li .li_text_url .cs2{ float:right;width:80px;float:left;height:35px;background-color:#d2d2d2;text-align:center;}
+.leader ul li .li_text_url .cs1:hover,.leader ul li .li_text_url .cs2:hover{background-color:#1E9FFF;}
+
+
+/*回信*/
+.ldmail-title {text-align:left;padding:20px;font-size:22px;font-weight:bold;font-family:"黑体";line-height:30px;height:30px;width:1160px;background:#fff;}
+
+.maillist {padding:20px;background:#fff;}
+.maillist .list {margin-bottom:40px;background:#e6f5ff;padding:10px;}
+.maillist .list .content { font-size:14px; line-height:30px; padding-bottom:10px; }
+.maillist .list .content .reply {border:1px solid #ddd; line-height:30px; padding-left:5px; padding-right:5px; margin-top:10px; background-color:#f4f4f4;color:red;}
+.maillist .list .info{color:#666; line-height:25px;}
+
+
+.maillist .formsub { padding:10px;}
+.maillist .formsub h5 { line-height:30px; font-size:14px; font-weight:bold}
+.maillist .formsub .guest_post { padding-top:10px;}
+.maillist .formsub .guest_post .guest_post_hr {float:left; line-height:50px; height:50px;font-size:16px;width:1100px;}
+.maillist .formsub .guest_post .guest_post_hr_code {float:left; line-height:50px; height:80px;font-size:16px;width:1100px;}
+.maillist .formsub .guest_post .guest_post_content_hr {float:left; line-height:50px; height:280px;font-size:16px;width:1100px;}
+.maillist .formsub .text{ line-height:30px; height:30px;font-size:16px;width:100px;float:left;}
+.maillist .formsub .guest_post .guest_post_hr .input{ font-size:16px;float:left;width:300px;}
+.maillist .formsub .guest_post .select{ font-size:16px;float:left;width:100px;height:30px;line-height:30px;margin-top:10px;margin-left:10px;}
+
+.maillist .formsub  .input2{ font-size:16px;float:left;width:800px;height:60px;}
+.maillist .formsub  .code{float:left;width:800px;height:80px;}
+.maillist .formsub  .code .input3{float:left;width:260px;height:60px;}
+.maillist .formsub  .code .input4{ font-size:16px;float:left;width:260px;height:60px;}
+.maillist .formsub .guest_post .guest_post_text { border:1px solid #ccc;margin-left:10px; line-height:35px; height:35px;}
+.maillist .formsub .guest_post .guest_post_content { border:1px solid #ccc; margin-left:10px; height:240px; width:100%; margin-top:10px;}
+.maillist .formsub .subdiv {float:left; margin-top:10px;width:800px;}
+.maillist .formsub .subdiv .button { border:1px solid #ddd; width:150px; line-height:40px; height:40px; vertical-align: top;background:#1a7df8;font-size:18px;font-weight:bold;}
+
+/**
+分页
+**/
+#pagination{float:left;margin-top:10px;width:760px;height:60px;}
+.pagination{width:760px;height:60px;}
+.pagination li{float:left;width:20px;height:20px;margin-left:5px;padding:5px;text-align:center;font-size:16px;font-family:"Arial";list-style:none;background-color:#4192de;}
+.pagination li a{color:#fff;}
+.pagination li a:hover{color:#002aff;}
+.pagination .disabled{float:left;width:20px;height:20px;font-size:16px;color:#fff;}
+.pagination .active{float:left;width:20px;height:20px;font-size:14px;background-color:#d0d0d0;color:#0364dd;}

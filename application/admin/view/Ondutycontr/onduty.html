@@ -1,0 +1,96 @@
+<div id="pagelist">
+<h3 class="page-header">{$constname}值班员信息</h3>
+<form role="form"  class="form-horizontal" id="form1" name="form1" method="post" action="">
+	<div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">排序</label>
+            <div class="col-sm-1">
+                <input type="text" name="sort" class="form-control" value="{$info.sort}" placeholder="填数字">
+            </div>
+        </div>
+    </div>	
+    <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">值班类别</label>
+            <div class="col-sm-2">
+			<select class="form-control" name="dutycat">
+                        <option value="1" {$info['dutycat'] == 1 ? 'selected = selected':''}}>市公安局</option>
+                        <option value="2" {$info['dutycat'] == 2 ? 'selected = selected':''}}>维稳指挥部</option>
+						<!---->
+            </select>
+			
+            </div><small>前台调用 value=1 为市公安局 value=2 为维稳指挥部</small>
+        </div>
+    </div>	
+    <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">值班员</label>
+            <div class="col-sm-2">
+                <input type="text" name="name" class="form-control" value="{$info.name}" data-validate="required:必填" placeholder="值班员姓名">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">职务</label>
+            <div class="col-sm-4">
+                <input type="text" name="duty" class="form-control" value="{$info.duty}" placeholder="职务">
+            </div>
+        </div>
+    </div>	
+    <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">手台呼号</label>
+            <div class="col-sm-3">
+                <input type="text" name="callsign"  class="form-control" value="{$info.callsign}"  placeholder="手台呼号">
+            </div>
+        </div>
+    </div>	
+   
+    <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">电话</label>
+            <div class="col-sm-2">
+                <input type="text" name="phone" class="form-control" value="{$info.phone}" placeholder="电话">
+            </div>
+        </div>
+    </div>	
+	<div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">备注</label>
+            <div class="col-sm-6">
+                <input type="text" name="note" class="form-control" value="{$info.note}" placeholder="备注">
+            </div>
+        </div>
+    </div>	
+    
+   <div class="form-group">
+        <div class="col-xs-9">
+            <label class="col-sm-3 control-label contenttab">前台显示</label>
+            <div class="col-sm-3">
+			<label class="radio-inline">
+                <input type="radio" name="status" value="0" id="optionsRadios1" {$info.status ? "":"checked"}>不显示
+			</label>
+			<label class="radio-inline">
+                <input type="radio" name="status" value="1" id="optionsRadios1" {$info.status ? "checked":""}>显示
+			</label>
+				<!---->
+            </div>
+        </div>
+    </div>	
+	<div class="form-group">
+        <div class="col-xs-9">
+            <div class="col-sm-3">
+                <input  type="hidden" name="id" value="{$info.id}" >
+				<button type="submit"  name="submit" class="btn btn-primary btn-md">{$constname}</button>
+            </div>
+        </div>
+    </div>
+    
+</form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Ondutycontr/', '{$actionname}');
+    });
+</script>

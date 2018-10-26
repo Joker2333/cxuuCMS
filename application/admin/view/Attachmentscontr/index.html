@@ -1,0 +1,87 @@
+<div id="pagelist">
+    <h3 class="page-header">附件管理</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>附件原始名</th>
+					<th>图片预览</th>
+                    <th>附件路径</th>                    
+                    <th>所属控制器</th>
+                    <th>上传时间</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $attlist as $vo} 
+                <tr id="atttr{$vo.id}">
+                    <td>{$vo.id}</td>
+                    <td>{$vo.filename}</td>
+					<td width=80><div class="thumbnail"><img src="{$vo.fileurl}" height=60 width=80></div></td>
+                    <td><?php
+                    if(file_exists(".".$vo['fileurl'])){
+                      echo "文件存在 ";
+                    }
+                    ?>
+                    
+                    {$vo.fileurl}
+                    </td>
+                    
+                    <td>{$vo.controller}</td>
+                    <td>{$vo.updatetime}</td>
+                    <td  width=80>
+                       {if getCxuuBaseAuth("Attachmentscontr_del")}
+					   <a href="javascript:delatt('{$vo.id}','{$vo.filename}');" id="deluser" >
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+						{/if}
+                    </td>
+                </tr>
+                {/foreach}		
+            </tbody>
+        </table>
+         {$page|raw}<!--分页-->
+    </div>
+
+</div>
+<script>
+    function delatt(id, title) {
+        layer.confirm('确定要删除 ' + title + ' 文件吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Attachmentscontr/del/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#atttr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+//无刷新分页
+    $(function ()
+    {
+        //绑定pagination a  Click事件
+        // $(".pagination a").on("click", function() {
+        //Click另外一种绑定写法，两种写法的区别可以另外一篇文章《jquery on click绑定事件的区别》
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            //禁止A标签跳转
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            //使用jquery html 加载URL
+            $("#pagelist").html(result);
+        });
+    }
+</script>

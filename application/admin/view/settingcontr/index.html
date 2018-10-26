@@ -1,0 +1,83 @@
+<div id="pagelist">
+<h3 class="page-header">系统设置</h3>
+<form role="form" id="form1" name="form1" method="post" enctype="multipart/form-data"  action="#">
+    <div class="form-group">
+        <div class="row">
+            <!-- 容器       -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">网站标题</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_title" class="form-control" value="{$setting.site_title}" placeholder="网站标题" required>
+                </div>
+                <span class="help-block"><small>site_title</small></span>
+            </div>
+        </div>	
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">网站网址</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_url" class="form-control" value="{$setting.site_url}" placeholder="网站网址" required>
+                </div>
+                <span class="help-block"><small>site_url</small></span>
+            </div>
+        </div>	
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">网站关键字</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_keywords" class="form-control" value="{$setting.site_keywords}" placeholder="网站关键字" required>
+                </div>
+                <span class="help-block"><small>site_keywords</small></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">网站描述</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_description" class="form-control" value="{$setting.site_description}" placeholder="网站描述" required>
+                </div>
+                <span class="help-block"><small>site_description</small></span>
+            </div>
+        </div>	
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">网站邮箱</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_email" class="form-control" value="{$setting.site_email}" placeholder="网站描述" required>
+                </div>
+                <span class="help-block"><small>site_email</small></span>
+            </div>
+        </div>	
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">声明信息</label>
+                <div class="col-sm-4">
+                    <input type="text" name="site_copyright" class="form-control" value="{$setting.site_copyright}" placeholder="声明信息" required>
+                </div>
+                <span class="help-block"><small>site_copyright</small></span>
+            </div>
+        </div>	
+        
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">上传大小限制</label>
+                <div class="col-sm-4">
+                    <input type="text" name="upload_size" class="form-control" value="{$setting.upload_size}" placeholder="上传大小限制" required>
+                </div>
+                <span class="help-block"><small>upload_size    字节大小 如2M 等于2097152</small></span>
+            </div>
+        </div>	
+
+        <div class="row">
+            <div class="form-group">
+                <button type="submit" name="submit" class="btn btn-primary btn-sm">提交</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<script type="text/javascript">
+    $(function () {
+          ajaxPost('/admin/Settingcontr');
+    });
+</script>

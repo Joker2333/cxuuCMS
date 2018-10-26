@@ -1,0 +1,57 @@
+<div id="pagelist">
+    <h3 class="page-header">管理日志</h3>
+    <h5>数据只保留5000条</h5>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>日志ID</th>
+                    <th>用户名</th>
+                    <th>登录时间</th>
+                    <th>登录IP</th>
+                    <th>操作模块</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $list as $vo} 
+                <tr id="infotr{$vo.log_id}">
+                    <td>{$vo.log_id}</td>
+                    <td>{$vo.username}</td>
+                    <td>{php}echo format_time($vo['time'],2){/php}</td>
+                    <td>{$vo.ip}</td>
+                    <td>{$vo.app}</td>
+                    <td>{$vo.content}</td>
+
+
+                </tr>
+                {/foreach}		
+            </tbody>
+        </table>
+         {$page|raw}<!--分页-->
+    </div>
+
+</div>
+<script>
+//无刷新分页
+    $(function ()
+    {
+        //绑定pagination a  Click事件
+        // $(".pagination a").on("click", function() {
+        //Click另外一种绑定写法，两种写法的区别可以另外一篇文章《jquery on click绑定事件的区别》
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            //禁止A标签跳转
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            //使用jquery html 加载URL
+            $("#pagelist").html(result);
+        });
+    }
+</script>

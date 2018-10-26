@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./">山南市公安局网站管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul id="topmenu" class="nav navbar-nav">
+                <li id="index" class="active"><a href="javascript:;" onclick="topmenu('index')">常用功能</a></li>
+                {if getCxuuBaseAuth("Menu_contentMenu")}
+                <li id="content"><a href="javascript:;" onclick="topmenu('content')">内容管理</a></li>
+                {/if}
+                {if getCxuuBaseAuth("Menu_channelMenu")}
+                <li id="channel"><a href="javascript:;" onclick="topmenu('channel')">栏目管理</a></li>
+                {/if}
+                {if getCxuuBaseAuth("Menu_adminMenu")}
+                <li id="admin"><a href="javascript:;" onclick="topmenu('admin')">用户管理</a></li>
+                {/if}
+                {if getCxuuBaseAuth("Menu_settingMenu")}
+                <li id="setting"><a href="javascript:;" onclick="topmenu('setting')">系统管理</a></li>
+                {/if}
+				{if getCxuuBaseAuth("Menu_applicationMenu")}
+                <li id="application"><a href="javascript:;" onclick="topmenu('application')">应用功能</a></li>
+                {/if}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/" target="_blank">网站主页</a></li>
+                <li><a href="/admin/">后台主页</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录操作 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {if getCxuuBaseAuth("Adminusercontr_pw")}
+						<li><a href="javascript:;" onclick="targetmain('/admin/Adminusercontr/pw')">修改密码</a></li>
+						{/if}
+                        <li><a href="javascript:;" onclick="loginout();">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

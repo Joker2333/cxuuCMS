@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>龙啸轩</title>
+    <meta name="keywords" content=" " />
+	<meta name="description" content=" " />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+{include file='header'/}
+
+<div class="container hidden-sm hidden-xs">
+	<ol class="breadcrumb">
+	  <li><a href="__ROOT__/">首页</a></li>
+	  <li>用户</li>
+	</ol>
+</div>
+<div class="container">
+
+      <div class="row">
+	  {volist name="user" id="vo" offset="0" length='10'} 
+		<div class="col-lg-6 col-sm-12">  
+			<blockquote class="bg-info">
+			  <p><h4>{$vo.name}</h4><h4>{$vo.power}</h4></p>
+			  <footer><cite title="Source Title">{$vo.info}</cite></footer>
+			</blockquote> 
+        </div>
+		{/volist}
+      </div>
+      <hr class="featurette-divider">
+{$page|raw}
+ </div>
+
+{include file='footer'/}
+<script src="/static/js/jquery-1.11.3.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<h3 class="page-header">栏目{$constname}</h3>
+<form role="form" id="form1" name="form1" method="post"  action="/admin/channel/edit">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <label class="col-sm-2">上级栏目</label>
+                <div class="col-xs-4 col-md-3 selectlist">
+                    <select class="form-control"  name="pid">    
+                        <option value="0">==顶级栏目==</option>
+                        {foreach $channeltree as $vo}
+                        <option value="{$vo.id}" {$pid ==$vo.id ? 'selected = selected':''}>{$vo.cname|raw}</option><!---->
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x9">
+                <div class="col-xs-12 col-md-8">              
+                    <label class="col-sm-2">栏目属性</label>
+                    <div class="col-xs-6 col-md-4">
+					<label class="radio-inline">
+						<input type="radio" name="attribute" value="1" id="optionsRadios2" {$info.attribute ? "checked":""}>列表
+					</label>
+					<label class="radio-inline">
+                        <input type="radio" name="attribute" value="0" id="optionsRadios2" {$info.attribute ? "":"checked"}>栏目                        
+                    </label>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x9">
+                <div class="col-xs-12 col-md-8">
+                    <label class="col-sm-2">栏目名称</label>	
+                    <div class="col-xs-6 col-md-4">
+                        <input  type="text" name="name" class="form-control" size="20" value="{$info.name}" placeholder="栏目名称" data-validate="required:必填" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x9">
+                <div class="col-xs-12 col-md-8">
+                    <label class="col-sm-2">栏目别名</label>	
+                    <div class="col-xs-6 col-md-4">
+                        <input  type="text" name="urlname" class="form-control" size="20" value="{$info.urlname}" placeholder="栏目别名" >
+                    </div>
+                    <small>栏目的英文名称，只能使用英文，供前台调用</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x3">
+                <div class="col-xs-12 col-md-8">	
+                    <label class="col-sm-2">栏目关键词</label>
+                    <div class="col-xs-6 col-md-4">
+                        <input  type="text" name="keywords" class="form-control" size="20" value="{$info.keywords}" placeholder="栏目关键词">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x3">
+                <div class="col-xs-12 col-md-8">	
+                    <label class="col-sm-2">栏目描述</label>
+                    <div class="col-xs-6 col-md-4">
+                        <textarea class="form-control" rows="3" name="description">{$info.description}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x3">
+                <div class="col-xs-12 col-md-8">	
+                    <label class="col-sm-2">每页条数</label>	
+                    <div class="col-xs-6 col-md-4">
+                        <input  type="text" name="DisplayNum" class="form-control" size="20" value="{empty name="$info['DisplayNum']"}20{else /}{$info.DisplayNum}{/empty}" placeholder="栏目信息" data-validate="required:必填" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x3">
+                <div class="col-xs-12 col-md-8">	                    
+                    <label class="col-sm-2">前台模板</label>
+                    <div class="col-xs-4 col-md-2">
+                        <input  type="text" name="Template" class="form-control" size="20" value="{empty name="$info['Template']"}list{else /}{$info.Template}{/empty}" placeholder="前台模板">
+                    </div>
+					<small>对应前台模板 Infolist目录  不加.html类型 可以为空</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group x3">
+                <div class="col-xs-12 col-md-8">	
+                    <label class="col-sm-2">栏目排序</label>	
+                    <div class="col-xs-2 col-md-1">
+                        <input  type="text" name="sort" class="form-control" size="20" value="{empty name="$info['sort']"}0{else /}{$info.sort}{/empty}" placeholder="排序">
+                    </div>
+                    <small>本级越小值为最前</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <input type="hidden" name="id" value="{$info.id}">
+        <button type="submit"  name="submit" class="btn btn-primary btn-md">{$constname}</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Channelcontr/','{$actionname}');
+    });
+</script>
+

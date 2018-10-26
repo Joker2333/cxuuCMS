@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>局领导信箱-{cxuu:site name="site_title"}</title>
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+		<link href="/theme/css/main.css" rel="stylesheet" type="text/css">
+		<link href="/theme/css/juldmail.css" rel="stylesheet" type="text/css">	
+    </head>
+<body>
+{include file='header'/}
+
+<div id="main">
+<div class="ldmail-title">{$ldname}同志的回信：</div>
+</div>
+
+<div id="main">
+<div class="maillist"> 
+  {foreach $list as $vo} 
+  <div class="list">
+    <div class="content">
+	信件编号：{$vo.id} 
+	<br>
+	{$vo.content|raw} 
+	<div class="info">写信时间:{$vo.greatttime|date="Y-m-d"}</div>
+	{notempty name="$vo['reply']"}
+	<div class="reply">
+	{$ldname}同志回复：<?php echo htmlspecialchars_decode($vo['reply']);?>
+	<br>
+	回复时间：{$vo.replytime|date="Y-m-d"}
+	</div>
+	{else/}
+	<div class="reply">无回复</div>
+	{/notempty}
+    </div>
+  </div>
+{/foreach}
+  <div class="pagenum">
+    {$page}
+    </div>
+</div>
+</div>
+<!--END--> 
+<!--底部-->
+{include file='footer'/}
+<!--END-->
+
+</body>
+</html>

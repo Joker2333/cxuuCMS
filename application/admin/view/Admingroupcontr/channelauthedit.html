@@ -1,0 +1,36 @@
+<div id="pagelist">
+<h3 class="page-header">用户组栏目权限分配</h3>
+<h4 class="page-header">ID：</h4>
+<form role="form" id="form1" name="form1" method="post" action="">
+    <div class="row">
+        <div class="col-sm-12 col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>系统</h4>
+                </div>
+                <div class="panel-body">
+                    <blockquote>
+                        <p>主菜单</p>
+                    </blockquote>
+				{foreach $list as $vo} 
+                    <div class="checkbox input-md">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="channelauth[]"  value="{$vo.id}" <?php if(@in_array($vo['id'],$info)){ echo "checked"; } ?>> 
+							{$vo.cname|raw}
+                        </label>
+                    </div>
+                    {/foreach}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$getid}">
+    <button type="submit"  name="submit" class="btn btn-primary btn-lg">提交</button>
+</form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Admingroupcontr/channelAuthAction/?groupid={$getid}');
+    });
+</script>

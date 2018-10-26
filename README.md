@@ -1,2 +1,8 @@
-# cxuuCMS
-php cms stytem
+基于ThinkPHP 5.1 开发的通用型CMS管理系统
+
+===============
+
+最大程序采用框架特性，最少量写自己的代码实现各项功能。 后台采用单页全AJAX加载机制。
+
+
+使用Redis 缓存  管理软件treeNMS-1.7.3

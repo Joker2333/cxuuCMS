@@ -1,0 +1,39 @@
+CREATE TABLE `cxuu_content` (
+  `id` int(20) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `position_a` int(2) DEFAULT NULL,
+  `position_b` int(2) DEFAULT NULL,
+  `position_c` int(2) DEFAULT NULL,
+  `urlname` varchar(50) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `copyfrom` varchar(50) DEFAULT NULL COMMENT '',
+  `keywords` varchar(300) DEFAULT 'NULL' COMMENT '',
+  `description` varchar(500) DEFAULT 'NULL' COMMENT '',
+  `auther` varchar(11) DEFAULT 'NULL',
+  `content` text DEFAULT NULL,
+  `hits` int(11) NOT NULL DEFAULT 1,
+  `created_date` int(11) DEFAULT NULL,
+  `edited_date` int(11) DEFAULT NULL,
+  `user_id` int(5) NOT NULL,
+  `status` int(1) DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+1.dhdhh
+
+
+
+<div id="content_topinfo" >
+  <div class="notes">
+		
+  </div>
+  <div class="topsearch">
+    <form class="navbar-form navbar-right" role="form" id="form1" name="form1"  method="" action="/index/search">
+      <span class="span1">
+      <input name="keywords" type="text" class="search-keyword" id="search-keyword"/>
+      </span>
+      <input type="submit" value="本站搜索" class="span2"/>
+    </form>
+  </div> 
+</div>

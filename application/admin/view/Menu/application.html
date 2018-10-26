@@ -1,0 +1,12 @@
+    <ul id="leftmenud" class="nav nav-sidebar">
+        <li class="active"><a href="#"><h4>应用功能</h4></a></li>
+		{if getCxuuBaseAuth("Juleadercontr_index")}
+        <li><a href="javascript:;" onclick="targetmain('/admin/Juleadercontr')"><span class="glyphicon glyphicon-blackboard"></span>局领导信息</a></li>
+		{/if}
+		{if getCxuuBaseAuth("Jumailcontr_index")}
+        <li><a href="javascript:;" onclick="targetmain('/admin/Jumailcontr')"><span class="glyphicon glyphicon-folder-open"></span>领导邮箱</a></li>
+		{/if}
+		{if getCxuuBaseAuth("Ondutycontr_index")}
+        <li><a href="javascript:;" onclick="targetmain('/admin/Ondutycontr')"><span class="glyphicon glyphicon-th-large"></span>值班安排</a></li>
+		{/if}
+    </ul>
