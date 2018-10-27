@@ -94,12 +94,15 @@ class Cxuu extends Taglib {
 			$parseStr .= 'if(Cache::get("Contentlist'.$cacheid.'")):$_result = Cache::get("Contentlist'.$cacheid.'");';//缓存数据
 			$parseStr .= 'else: ';
 			$parseStr .= '$_result=' . $name . ';';
-			$parseStr .= 'Cache::set("Contentlist'.$cacheid.'", $_result, 500);endif;';//缓存数据500秒
+			$parseStr .= 'Cache::set("Contentlist'.$cacheid.'", $_result, 600);endif;';//缓存数据600秒
 		}else{
 			$parseStr .= '$_result=' . $name . ';';
 		}/*增加缓存规则 END*/
 		
         $name = '$_result';
+       // print_r($name);
+/*        $contentId= '$name[\'id\']';
+        $name['url'] = "/content/'.$contentId.'.html";*/
         $parseStr .= 'if(is_array(' . $name . ') || ' . $name . ' instanceof \think\Collection || ' . $name . ' instanceof \think\Paginator): $' . $key . ' = 0;';
 		$parseStr .= ' $__LIST__ = ' . $name . ';';
         $parseStr .= 'if( count($__LIST__)==0 ) : echo "' . $empty . '" ;';
@@ -161,13 +164,13 @@ class Cxuu extends Taglib {
 			$parseStr .= 'if(Cache::get("volist'.$cacheid.'")):$_result = Cache::get("volist'.$cacheid.'");';//缓存数据
 			$parseStr .= 'else: ';
 			$parseStr .= '$_result=' . $name . ';';
-			$parseStr .= 'Cache::set("volist'.$cacheid.'", $_result, 500);endif;';//缓存数据500秒
+			$parseStr .= 'Cache::set("volist'.$cacheid.'", $_result, 600);endif;';//缓存数据600秒
 		}else{
 			$parseStr .= '$_result=' . $name . ';';
 		}/*增加缓存规则 END*/
 
         $name = '$_result';
-        
+
         $parseStr .= 'if(is_array(' . $name . ') || ' . $name . ' instanceof \think\Collection || ' . $name . ' instanceof \think\Paginator): $' . $key . ' = 0;';
 		$parseStr .= ' $__LIST__ = ' . $name . ';';
         $parseStr .= 'if( count($__LIST__)==0 ) : echo "' . $empty . '" ;';

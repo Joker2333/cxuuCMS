@@ -3,7 +3,8 @@
 /**
  * 定义获取COOKIE值
  * * */
-function getCxuuCookie() {
+function getCxuuCookie()
+{
     $userinfo = unserialize(decrypt(Cookie::get('cxuu_admin_user')));
     return $userinfo;
 }
@@ -11,7 +12,8 @@ function getCxuuCookie() {
 /**
  * 定义获取COOKIE  userId
  * * */
-function getCxuuUserId() {
+function getCxuuUserId()
+{
     $userinfo = getCxuuCookie();
     $userId = $userinfo['user_id'];
     return $userId;
@@ -20,7 +22,8 @@ function getCxuuUserId() {
 /**
  * 定义获取COOKIE  group_id
  * * */
-function getCxuuGroupId() {
+function getCxuuGroupId()
+{
     $userinfo = getCxuuCookie();
     $GroupId = $userinfo['group_id'];
     return $GroupId;
@@ -29,7 +32,8 @@ function getCxuuGroupId() {
 /**
  * 获取用户栏目权限
  * * */
-function getCxuuChannelAuth() {
+function getCxuuChannelAuth()
+{
     $userinfo = getCxuuCookie();
     $userChannelAuth = $userinfo['channel_purview'];
     return $userChannelAuth;
@@ -38,18 +42,19 @@ function getCxuuChannelAuth() {
 /**
  * 用户操作权限检查
  * * */
-function getCxuuBaseAuth($auth) {
-    $userinfo = getCxuuCookie();	
-	if($userinfo['group_id'] == 1){
-		//超级管理员不受限制
-		$userAuth = 1;		
-	}else{
-		$userBaseAuth = $userinfo['base_purview'];
-/* 		foreach ($userBaseAuth as &$item) {
-            $item = strtolower($item); //递归转换成小写
-        } */
-		in_array($auth, $userBaseAuth) ? $userAuth = 1 : $userAuth = 0;
-	}
+function getCxuuBaseAuth($auth)
+{
+    $userinfo = getCxuuCookie();
+    if ($userinfo['group_id'] == 1) {
+        //超级管理员不受限制
+        $userAuth = 1;
+    } else {
+        $userBaseAuth = $userinfo['base_purview'];
+        /* 		foreach ($userBaseAuth as &$item) {
+                    $item = strtolower($item); //递归转换成小写
+                } */
+        in_array($auth, $userBaseAuth) ? $userAuth = 1 : $userAuth = 0;
+    }
     return $userAuth;
 }
 
@@ -59,7 +64,8 @@ function getCxuuBaseAuth($auth) {
  * $result bool  0  1
  * $url    string
  * * */
-function ajax_Jsonreport($msg, $result, $url = null) {
+function ajax_Jsonreport($msg, $result, $url = null)
+{
     return json_encode(array('msg' => $msg, 'result' => $result, 'url' => $url));
 }
 
@@ -67,27 +73,30 @@ function ajax_Jsonreport($msg, $result, $url = null) {
 /**
  * 生成唯一数字
  */
-function unique_number() {
+function unique_number()
+{
     return date('Ymd') . substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
 }
 
 /**
  * 生成随机字符串
  */
-function random_str() {
+function random_str()
+{
     $year_code = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
     $order_sn = $year_code[intval(date('Y')) - 2010] .
-            strtoupper(dechex(date('m'))) . date('d') .
-            substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('d', rand(0, 99));
+        strtoupper(dechex(date('m'))) . date('d') .
+        substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('d', rand(0, 99));
     return $order_sn;
 }
 
 /**
  * 删除指定路径文件
- * @param string $file 
+ * @param string $file
  * @return int
  */
-function del_file($file) {
+function del_file($file)
+{
     if (!file_exists($file)) {
         return 0; //文件不存在
     }
@@ -96,7 +105,7 @@ function del_file($file) {
     } else {
         return 1; ///"文件删除不成功，请检查权限"
     }
-    
+
 //            switch (del_file("." . $delfilename)) {
 //            case 0 :
 //                return ajax_Jsonreport("要删除的文件不存在",0);
@@ -116,7 +125,8 @@ function del_file($file) {
  * @param string $dir 路径
  */
 //递归方式
-function read_dir($dir) {
+function read_dir($dir)
+{
     $files = array();
     $dir_list = scandir($dir);
     foreach ($dir_list as $file) {
@@ -136,7 +146,8 @@ function read_dir($dir) {
  * @param string $directoty 路径
  * @return int
  */
-function dir_size($directoty) {
+function dir_size($directoty)
+{
     $dir_size = 0;
     if ($dir_handle = @opendir($directoty)) {
         while ($filename = readdir($dir_handle)) {
@@ -153,12 +164,14 @@ function dir_size($directoty) {
     }
     return ($dir_size);
 }
+
 /**
  * 遍历删除目录和目录下所有文件
  * @param string $dir 路径
  * @return bool
  */
-function del_dir($dir) {
+function del_dir($dir)
+{
     if (!is_dir($dir)) {
         return false;
     }
@@ -174,12 +187,14 @@ function del_dir($dir) {
     }
     return true;
 }
+
 /**
  * 字符串转布尔
  * @param string $directoty 路径
  * @return bool
  */
-function string_to_bool($val) {
+function string_to_bool($val)
+{
     switch ($val) {
         case 'true':
             return true;
@@ -198,10 +213,11 @@ function string_to_bool($val) {
  * 获取IP  暂无使用
  * @return string 字符串类型的返回结果
  */
-function getIp(){
-    if (@$_SERVER['HTTP_CLIENT_IP'] && $_SERVER['HTTP_CLIENT_IP']!='unknown') {
+function getIp()
+{
+    if (@$_SERVER['HTTP_CLIENT_IP'] && $_SERVER['HTTP_CLIENT_IP'] != 'unknown') {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (@$_SERVER['HTTP_X_FORWARDED_FOR'] && $_SERVER['HTTP_X_FORWARDED_FOR']!='unknown') {
+    } elseif (@$_SERVER['HTTP_X_FORWARDED_FOR'] && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     } else {
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -215,7 +231,8 @@ function getIp(){
  * @param string $key 密钥
  * @return string 返回加密结果
  */
-function encrypt($txt, $key = 'cxuu_dzh') {
+function encrypt($txt, $key = 'cxuu_dzh')
+{
     if (empty($txt))
         return $txt;
     if (empty($key))
@@ -259,7 +276,8 @@ function encrypt($txt, $key = 'cxuu_dzh') {
  * @param string $key 密匙
  * @return string 字符串类型的返回结果
  */
-function decrypt($txt, $key = 'cxuu_dzh', $ttl = 0) {
+function decrypt($txt, $key = 'cxuu_dzh', $ttl = 0)
+{
     if (empty($txt))
         return $txt;
     if (empty($key))

@@ -7,7 +7,6 @@ class Menu extends \think\Controller {
     // protected $middleware = ['Auth'];
 
     public function index() {
-
         return $this->fetch();
     }
 

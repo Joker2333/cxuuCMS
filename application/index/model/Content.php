@@ -16,9 +16,9 @@ class Content extends Model {
         return $this->hasOne('channel', 'id', 'cid');
     }
 	
-	public function ContentContents()
+	public function Comment()
     {
-        return $this->hasOne('ContentContent','aid','id');
+        return $this->hasOne('Comment','aid','id');
     }
 
 }

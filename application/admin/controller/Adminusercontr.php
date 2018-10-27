@@ -1,17 +1,20 @@
 <?php
 /***
-* 龙啸轩网站管理系统 作者：邓中华 20181009
-***/
+ * 龙啸轩网站管理系统 作者：邓中华 20181009
+ ***/
+
 namespace app\admin\controller;
 
 use app\admin\model\Admin;
 use app\admin\model\Admingroup;
 
-class Adminusercontr extends \think\Controller {
+class Adminusercontr extends \think\Controller
+{
 
     protected $middleware = ['Auth']; //中间件权限管理
 
-    public function index() {
+    public function index()
+    {
         $list = Admin::order('user_id ASC')->paginate(10);
         $page = $list->render();
         $this->assign('list', $list);
@@ -19,7 +22,8 @@ class Adminusercontr extends \think\Controller {
         return $this->fetch();
     }
 
-    public function addedit() {
+    public function addedit()
+    {
         $getid = $this->request->get('id');
         $groupname = Admingroup::all();
         $this->assign('groupname', $groupname);
@@ -38,7 +42,8 @@ class Adminusercontr extends \think\Controller {
         }
     }
 
-    public function addAction() {//新增用户方法
+    public function addAction()
+    {//新增用户方法
         $addpost = $this->request->post();
         $validate = new \app\admin\validate\Admin;
 
@@ -57,14 +62,15 @@ class Adminusercontr extends \think\Controller {
         $addpost['password'] = md5($addpost['password']);
         $add = new Admin; // 实例化 Content模型       
         if ($add->save($addpost)) {
-            return ajax_Jsonreport("添加成功", 1,"/admin/Adminusercontr");
+            return ajax_Jsonreport("添加成功", 1, "/admin/Adminusercontr");
         } else {
             return ajax_Jsonreport("添加失败", 0);
 
         }
     }
 
-    public function editAction() {
+    public function editAction()
+    {
         $editpost = $this->request->post();
         new \app\admin\validate\Admin;
         if (!empty($editpost['password']) || !empty($editpost['password_f'])) {
@@ -76,7 +82,7 @@ class Adminusercontr extends \think\Controller {
 
         $result = $this->validate($editpost, 'app\admin\validate\admin.sceneEdit'); //场景验证
         if (true !== $result) {
-           return ajax_Jsonreport($result, 0);
+            return ajax_Jsonreport($result, 0);
         }
 
         $save = new Admin;
@@ -89,35 +95,38 @@ class Adminusercontr extends \think\Controller {
         }
 
         if ($saved) {
-            return ajax_Jsonreport("修改成功", 1,"/admin/Adminusercontr");
+            return ajax_Jsonreport("修改成功", 1, "/admin/Adminusercontr");
         }
         return ajax_Jsonreport("修改用户失败", 0);
     }
 
-    public function pw() {
+    public function pw()
+    {
         $userinfo = getCxuuCookie();
         $this->assign('userinfo', $userinfo);
         return $this->fetch('pwedit');
     }
 
-    public function pwedit() {
+    public function pwedit()
+    {
         $editpost = $this->request->post();
         new \app\admin\validate\Admin;
         $result = $this->validate($editpost, 'app\admin\validate\admin.scenepwEdit'); //场景验证
         if (true !== $result) {
-            return ajax_Jsonreport($result, 0);            
+            return ajax_Jsonreport($result, 0);
         }
         $data = [
             'password' => md5($editpost['password']),
         ];
         $update = new Admin;
         if ($update->allowField(['password'])->save($data, ['user_id' => $editpost['user_id']])) {
-            return ajax_Jsonreport("修改成功", 1,"/admin/Adminusercontr");
+            return ajax_Jsonreport("修改成功", 1, "/admin/Adminusercontr");
         }
         return ajax_Jsonreport("修改失败", 0);
     }
 
-    public function del() {
+    public function del()
+    {
         $getid = $this->request->param('id');
         $del = Admin::destroy($getid);
         if ($del) {

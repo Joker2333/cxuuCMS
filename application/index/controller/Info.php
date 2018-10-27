@@ -3,7 +3,7 @@
 namespace app\index\controller;
 
 use app\index\model\Content;
-//use app\index\model\ContentContent;
+//use app\index\model\Comment;
 use app\index\model\Channel;
 use think\facade\Cache;
 
@@ -19,15 +19,14 @@ class Info extends \think\Controller {
              return error404();
         }
 		
-		if (Cache::get("findoncontent".$id)) {
-			$cache = cache("findoncontent".$id);
+		if (Cache::get("findOnContent".$id)) {
+			$cache = cache("findOnContent".$id);
 		} else {
 			$cache = Content::where('id', $id)->where('status',1)->find();
-			//dump($cache = Content::hasWhere('ContentContent',['aid'=>$id])->select());
-			Cache::set("findoncontent".$id, $cache,20);
+			Cache::set("findOnContent".$id, $cache,20);
 		}
        
-        Content::where('id', $id)->setInc('hits'); //阅读量递增
+        Content::where('id', $id)->field('hits')->setInc('hits'); //阅读量递增
 		
 		$channelpath = Channel::getUrlTree($cache['cid']);
 		$this->assign('channelpath', $channelpath);//获取栏目 树

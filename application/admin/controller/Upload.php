@@ -6,7 +6,8 @@ use app\admin\model\Attachments;
 use Request;
 use app\admin\model\Settings;
 
-class Upload extends \think\Controller {
+class Upload extends \think\Controller
+{
 
     protected $middleware = ['Auth'];
     static private $ext_arr = array(
@@ -24,24 +25,26 @@ class Upload extends \think\Controller {
      *   $filename = $_FILES[$postFile]['name'];
      */
 
-    public function upload($file, $filename) {
+    public function upload($file, $filename)
+    {
         $siteSettings = new Settings();
         $siteInfo = $siteSettings->getSiteSetting();
+        $upload_size = $siteInfo['upload_size'] * 1024;
         $temp_arr = explode(".", $filename);
         $file_ext = strtolower(trim(array_pop($temp_arr))); //获取上传文件的 尾缀
         if (in_array($file_ext, self::$ext_arr['image'])) {
             $upname = self::$uploadsname . 'image/';
-            $info = $file->validate(['size' => $siteInfo['upload_size'], 'ext' => self::$ext_arr['image']])->move($upname);
-			$extimg = 1;
+            $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['image']])->move($upname);
+            $extimg = 1;
         } elseif (in_array($file_ext, self::$ext_arr['media'])) {
             $upname = self::$uploadsname . 'media/';
-            $info = $file->validate(['size' => $siteInfo['upload_size'], 'ext' => self::$ext_arr['media']])->move($upname);
+            $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['media']])->move($upname);
         } elseif (in_array($file_ext, self::$ext_arr['officefile'])) {
             $upname = self::$uploadsname . 'officefile/';
-            $info = $file->validate(['size' => $siteInfo['upload_size'], 'ext' => self::$ext_arr['officefile']])->move($upname);
+            $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['officefile']])->move($upname);
         } elseif (in_array($file_ext, self::$ext_arr['otherfile'])) {
             $upname = self::$uploadsname . 'otherfile/';
-            $info = $file->validate(['size' => $siteInfo['upload_size'], 'ext' => self::$ext_arr['otherfile']])->move($upname);
+            $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['otherfile']])->move($upname);
         }
 
         if ($info) {
@@ -70,13 +73,14 @@ class Upload extends \think\Controller {
             return false;
         }
     }
-	
+
 
     /*
      * webuploader 插件 上传方法
      *  */
 
-    public function uploadWebuploader() {
+    public function uploadWebuploader()
+    {
         $file = request()->file("image");
         $filename = $_FILES['image']['name'];
         $url = $this->upload($file, $filename);
@@ -91,7 +95,8 @@ class Upload extends \think\Controller {
      * kindeditor  编辑器使用上传方法
      *  */
 
-    public function uploadKindeditor() {
+    public function uploadKindeditor()
+    {
         $file = request()->file("imgFile");
         $filename = $_FILES['imgFile']['name'];
         $url = $this->upload($file, $filename);
@@ -105,20 +110,21 @@ class Upload extends \think\Controller {
             exit;
         }
     }
-	
-	/*
+
+    /*
      * summernote  编辑器使用上传方法
      *  */
 
-    public function uploadSummernote() {
-        $file = request()->file("file");        
-		$filename = $_FILES['file']['name'];
-		$url = $this->upload($file, $filename);
-		if ($url) {
-			echo json_encode(array('url' => $url['url'],'ext'=>$url['ext'],'filename'=>$url['filename']));
-			} else {
-			echo "上传错误";
-		}
+    public function uploadSummernote()
+    {
+        $file = request()->file("file");
+        $filename = $_FILES['file']['name'];
+        $url = $this->upload($file, $filename);
+        if ($url) {
+            echo json_encode(array('url' => $url['url'], 'ext' => $url['ext'], 'filename' => $url['filename']));
+        } else {
+            echo "上传错误";
+        }
     }
 
 

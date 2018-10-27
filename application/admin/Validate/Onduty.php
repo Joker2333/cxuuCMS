@@ -1,14 +1,16 @@
 <?php
 /***
-* 龙啸轩网站管理系统 
-* 作者：邓中华 20181010
-* 用户提交验证
-***/
+ * 龙啸轩网站管理系统
+ * 作者：邓中华 20181010
+ * 用户提交验证
+ ***/
+
 namespace app\admin\validate;
 
 use think\Validate;
 
-class Onduty extends Validate {
+class Onduty extends Validate
+{
 
     protected $rule = [
         'name' => 'require|max:50|min:2',
@@ -20,7 +22,5 @@ class Onduty extends Validate {
         'username.min' => '值班员姓名最多不能小于2个字符',
         'nicename.min' => '值班员职务不能小于2个字',
     ];
-
-    
 
 }

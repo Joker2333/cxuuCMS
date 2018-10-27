@@ -7,7 +7,7 @@ use app\admin\model\Channel;
 
 class Contentcontr extends \think\Controller {
 
-    protected $middleware = ['Auth'];    
+    protected $middleware = ['Auth'];
 
     public function index() {
         $searchInfo = $this->request->param();
@@ -15,12 +15,10 @@ class Contentcontr extends \think\Controller {
         $channelId = $searchInfo['cid'];
 		$status = $searchInfo['status'];
         $title = $searchInfo['title'];
-        $content = $searchInfo['content']; 
-		$userinfo = getCxuuCookie();		
-        $userId = $userinfo['user_id'];
+        $content = $searchInfo['content'];
         $query = [];
-		if($userinfo['group_id'] != 1){
-			array_push($query, ['user_id', '=', $userId]);
+		if(getCxuuGroupId() != 1){
+			array_push($query, ['user_id', '=', getCxuuUserId()]);
 		}
         if (!empty($status)) {
             array_push($query, ['status', '=', $status]);
@@ -37,6 +35,7 @@ class Contentcontr extends \think\Controller {
         //根据条件列表
         $list = Content::where($query)
                 ->order('id', 'desc')
+                ->field('content',true)
 				//->where('image','=', 'not null')
                 ->paginate(20, false, ['query' => $searchInfo]);
         $page = $list->render();
@@ -49,7 +48,7 @@ class Contentcontr extends \think\Controller {
     }
 
     public function addedit() {
-        $getInfo = $this->request->param();		
+        $getInfo = $this->request->param();
         $channellist = Channel::select();
         $channeltree = Channel::getCTree();
 		$userinfo = getCxuuCookie();
@@ -93,7 +92,7 @@ class Contentcontr extends \think\Controller {
 		$userinfo = getCxuuCookie();// 实例化 用户信息模型
         $addpost['user_id'] = $userinfo['user_id'];
         $addpost['usergroupname'] = $userinfo['groupname'];
-        $add = new Content; 
+        $add = new Content;
         if ($add->save($addpost)) {
             return ajax_Jsonreport("添加成功", 1, "/admin/contentcontr");
         } else {
@@ -115,7 +114,7 @@ class Contentcontr extends \think\Controller {
 			if(empty($editpost['position_c'])){
 				$editpost['position_c'] = 0;
 			}
-				
+
             //$editpost['user_id'] = '';
             $user = new Content;
             // save方法第二个参数为更新条件
@@ -142,7 +141,7 @@ class Contentcontr extends \think\Controller {
             return ajax_Jsonreport("删除失败或没有权限", 0);
         }
     }
-	
+
 	//批量操作
     public function batchOperation() {
         $content = $this->request->param();

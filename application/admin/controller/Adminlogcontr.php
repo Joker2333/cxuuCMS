@@ -1,11 +1,14 @@
 <?php
+
 namespace app\admin\controller;
 
 use app\admin\model\AdminLog;
 
-class Adminlogcontr extends \think\Controller {
+class Adminlogcontr extends \think\Controller
+{
 
-    public function index() {
+    public function index()
+    {
 
         $list = AdminLog::order('log_id', 'desc')->paginate(20);
 
