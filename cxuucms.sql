@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2018-10-27 22:35:46
+-- 生成日期： 2018-10-28 13:44:48
 -- 服务器版本： 10.2.18-MariaDB
 -- PHP 版本： 7.2.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `cxuu_admin` (
 --
 
 INSERT INTO `cxuu_admin` (`user_id`, `group_id`, `username`, `password`, `nicename`, `email`, `stauts`, `level`, `reg_time`, `last_login_time`, `last_login_ip`) VALUES
-(1, 1, 'cbkhwx', 'e77d78e3d7e2c581440dc451aff5b165', '邓中华', '111@aa.ee', 1, 0, 0, 1540537599, '127.0.0.1'),
+(1, 1, 'cbkhwx', 'e77d78e3d7e2c581440dc451aff5b165', '邓中华', '111@aa.ee', 1, 0, 0, 1540652307, '127.0.0.1'),
 (2, 1, 'shannan', '0659c7992e268962384eb17fafe88364', '山南公安总帐号', 'aa@aa.aa', 1, 0, 0, 1539567696, '89.30.0.3'),
 (3, 3, 'admin2', '96e79218965eb72c92a549dd5a330112', '汪琴', 'aa@aa.com', 1, NULL, NULL, 1540563613, '127.0.0.1'),
 (4, 5, 'test1', '96e79218965eb72c92a549dd5a330112', '张三', '11@qq.com', 1, NULL, NULL, 1539451963, '89.10.19.30');
@@ -106,7 +106,8 @@ INSERT INTO `cxuu_admin_log` (`log_id`, `username`, `time`, `ip`, `app`, `conten
 (2, 'admin', 1538897025, '89.10.19.30', '/Admin/Login/loginAction', '登录操作'),
 (49, 'cbkhwx', 1540533333, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
 (50, 'cbkhwx', 1540537599, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(51, 'admin2', 1540563614, '127.0.0.1', '/Admin/Login/loginAction', '登录操作');
+(51, 'admin2', 1540563614, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
+(52, 'cbkhwx', 1540652307, '127.0.0.1', '/Admin/Login/loginAction', '登录操作');
 
 -- --------------------------------------------------------
 
@@ -214,11 +215,11 @@ CREATE TABLE `cxuu_content` (
   `auther` varchar(11) DEFAULT '''NULL''',
   `description` varchar(500) DEFAULT 'NULL' COMMENT '描述',
   `content` mediumtext DEFAULT NULL,
-  `hits` int(11) NOT NULL DEFAULT 1,
   `created_date` int(11) DEFAULT NULL,
   `edited_date` int(11) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   `usergroupname` varchar(50) DEFAULT NULL COMMENT '用户组名',
+  `hits` int(50) DEFAULT NULL,
   `status` tinyint(2) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -226,9 +227,12 @@ CREATE TABLE `cxuu_content` (
 -- 转存表中的数据 `cxuu_content`
 --
 
-INSERT INTO `cxuu_content` (`id`, `cid`, `title`, `position_a`, `position_b`, `position_c`, `urlname`, `image`, `examine`, `publish`, `auther`, `description`, `content`, `hits`, `created_date`, `edited_date`, `user_id`, `usergroupname`, `status`) VALUES
-(1, 4, '公安局组织参加公安厅电视电话会议', 1, 1, 1, '', '/uploads/image/20181026/9bebab18223bb9e43d94de62aeea4e6d.jpg', '123', '32', 'bgs', '', '&lt;div style=&quot;text-align: center; text-indent: 42.6666679382324px;&quot;&gt;&lt;img src=&quot;/uploads/image/20181026/9bebab18223bb9e43d94de62aeea4e6d.jpg&quot; style=&quot;width: 1063px;&quot;&gt;&lt;font face=&quot;宋体&quot;&gt;&lt;span style=&quot;line-height: 40px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;st1:chsdate year=&quot;2018&quot; month=&quot;10&quot; day=&quot;6&quot; islunardate=&quot;False&quot; isrocdate=&quot;False&quot; w:st=&quot;on&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;10&lt;/span&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;月&lt;span lang=&quot;EN-US&quot;&gt;6&lt;/span&gt;日&lt;/span&gt;&lt;/st1:chsdate&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;，公安厅召开全区公安机关电视电话会议，市委常委、政法委书记、公安局党委书记龚兵及在家局班子成员洛桑坚参、张玉涛、纵兆君出席山南分会场会议。&lt;span lang=&quot;EN-US&quot;&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;在家副调研员及局直各部门主要负责人（副科以上民警）&lt;span lang=&quot;EN-US&quot;&gt;,&lt;/span&gt;在山南分会场参加会议，会议开至县级公安机关和已开通视频会议系统的公安派出所。&lt;span lang=&quot;EN-US&quot;&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify; margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;会后，龚兵同志就会议内容进行了安排部署。&lt;/span&gt;&lt;/p&gt;', 103, 1539161603, 1540567798, 2, NULL, 1),
-(2, 19, 'ddddddddddddddddddddd', 0, 0, 0, '', '', '123', '32', '124', '', '&lt;p&gt;111&lt;/p&gt;', 3, 1540567360, 1540567906, 1, '超级管理员', 1);
+INSERT INTO `cxuu_content` (`id`, `cid`, `title`, `position_a`, `position_b`, `position_c`, `urlname`, `image`, `examine`, `publish`, `auther`, `description`, `content`, `created_date`, `edited_date`, `user_id`, `usergroupname`, `hits`, `status`) VALUES
+(1, 4, '公安局组织参加公安厅电视电话会议', 1, 1, 1, '', '/uploads/image/20181026/9bebab18223bb9e43d94de62aeea4e6d.jpg', '123', '32', 'bgs', '', '&lt;div style=&quot;text-align: center; text-indent: 42.6666679382324px;&quot;&gt;&lt;img src=&quot;/uploads/image/20181026/9bebab18223bb9e43d94de62aeea4e6d.jpg&quot; style=&quot;width: 1063px;&quot;&gt;&lt;font face=&quot;宋体&quot;&gt;&lt;span style=&quot;line-height: 40px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;st1:chsdate year=&quot;2018&quot; month=&quot;10&quot; day=&quot;6&quot; islunardate=&quot;False&quot; isrocdate=&quot;False&quot; w:st=&quot;on&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;10&lt;/span&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;月&lt;span lang=&quot;EN-US&quot;&gt;6&lt;/span&gt;日&lt;/span&gt;&lt;/st1:chsdate&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;，公安厅召开全区公安机关电视电话会议，市委常委、政法委书记、公安局党委书记龚兵及在家局班子成员洛桑坚参、张玉涛、纵兆君出席山南分会场会议。&lt;span lang=&quot;EN-US&quot;&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;在家副调研员及局直各部门主要负责人（副科以上民警）&lt;span lang=&quot;EN-US&quot;&gt;,&lt;/span&gt;在山南分会场参加会议，会议开至县级公安机关和已开通视频会议系统的公安派出所。&lt;span lang=&quot;EN-US&quot;&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align: justify; margin: 0cm 0cm 0pt; font-family: 宋体; line-height: 30pt; text-indent: 32pt;&quot;&gt;&lt;span style=&quot;font-family: 仿宋_GB2312; font-size: 16pt;&quot;&gt;会后，龚兵同志就会议内容进行了安排部署。&lt;/span&gt;&lt;/p&gt;', 1539161603, 1540567798, 2, NULL, NULL, 1),
+(2, 19, 'ddddddddddddddddddddd', 0, 0, 0, '', '', '123', '32', '124', '', '&lt;p&gt;111&lt;/p&gt;', 1540567360, 1540567906, 1, '超级管理员', NULL, 1),
+(3, 19, '134', NULL, NULL, NULL, '', '', '1421', '124', '124', '', '&lt;p&gt;12412&lt;/p&gt;', 1540652900, NULL, 1, '超级管理员', NULL, 1),
+(4, 12, '2134214', 0, 0, 0, '', '', '124', '124', '124', '', '&lt;p&gt;24214&lt;/p&gt;', 1540653949, 1540656176, 1, '超级管理员', NULL, 0),
+(5, 18, '111', 0, 0, 0, '', '', '1241', '124', '214', '', '&lt;p&gt;1242214&lt;/p&gt;', 1540656192, 1540656332, 1, '超级管理员', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -293,6 +297,31 @@ INSERT INTO `cxuu_jumail` (`id`, `uid`, `category`, `title`, `writename`, `depar
 (7, 2, '建议', '涨工资的请示', '陈希', '指挥中心', '13889009375', '指挥中心', '9月17日上午，市公安局组织相关部门前往白日街口参加“9.16平安山南宣传日”集中宣传活动。市委常委、政法委书记、市公安局党委书记龚兵亲临现场指导参观宣传活动，市公安局党委委员、副局长杨世斌陪同。龚兵同志强调一要强化政治攻势，大力宣传“扫黑除恶 打非治乱”专项斗争工作；二要充分利用板报、标语等形式广泛宣传，发动所有人积极参与行动；三要警钟长鸣，加大摸排力度。', '&lt;p&gt;好的建议可以执行！！&lt;/p&gt;', '89.10.19.30', 1, '1539446477', '1539446787'),
 (8, 2, '建议', '涨工资的请示', '陈希', '前端测试', '13889009375', '指挥中心', '9月17日上午，市公安局组织相关部门前往白日街口参加“9.16平安山南宣传日”集中宣传活动。市委常委、政法委书记、市公安局党委书记龚兵亲临现场指导参观宣传活动，市公安局党委委员、副局长杨世斌陪同。龚兵同志强调一要强化政治攻势，大力宣传“扫黑除恶 打非治乱”专项斗争工作；二要充分利用板报、标语等形式广泛宣传，发动所有人积极参与行动；三要警钟长鸣，加大摸排力度。', NULL, '89.10.19.30', NULL, '1539446595', NULL),
 (9, 3, '建议', '11', '111', '111', '11', '11', '1111', NULL, '127.0.0.1', NULL, '1540537578', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cxuu_notice`
+--
+
+CREATE TABLE `cxuu_notice` (
+  `id` int(100) NOT NULL COMMENT 'ID',
+  `did` int(100) NOT NULL COMMENT '判断位置调用ID',
+  `title` varchar(100) DEFAULT NULL,
+  `content` text DEFAULT NULL COMMENT '内容',
+  `publisher` varchar(20) DEFAULT NULL COMMENT '发布人',
+  `created_date` int(20) DEFAULT NULL,
+  `status` tinyint(2) DEFAULT NULL COMMENT '是否显示'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容点击数量';
+
+--
+-- 转存表中的数据 `cxuu_notice`
+--
+
+INSERT INTO `cxuu_notice` (`id`, `did`, `title`, `content`, `publisher`, `created_date`, `status`) VALUES
+(1, 2, 'ddddddddddddddddddddd', '122', '', NULL, 1),
+(2, 2, '2341241412', '&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;调用 value=1 前台 value=2 后台&lt;/span&gt;', '22', NULL, 1),
+(3, 2, '测试公告', '&lt;p&gt;测试公告&lt;br&gt;&lt;/p&gt;', '测试', 1540703769, 1);
 
 -- --------------------------------------------------------
 
@@ -425,6 +454,12 @@ ALTER TABLE `cxuu_jumail`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 表的索引 `cxuu_notice`
+--
+ALTER TABLE `cxuu_notice`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 表的索引 `cxuu_onduty`
 --
 ALTER TABLE `cxuu_onduty`
@@ -462,7 +497,7 @@ ALTER TABLE `cxuu_admin_group`
 -- 使用表AUTO_INCREMENT `cxuu_admin_log`
 --
 ALTER TABLE `cxuu_admin_log`
-  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_attachments`
@@ -480,7 +515,7 @@ ALTER TABLE `cxuu_channel`
 -- 使用表AUTO_INCREMENT `cxuu_content`
 --
 ALTER TABLE `cxuu_content`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_juleader`
@@ -493,6 +528,12 @@ ALTER TABLE `cxuu_juleader`
 --
 ALTER TABLE `cxuu_jumail`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- 使用表AUTO_INCREMENT `cxuu_notice`
+--
+ALTER TABLE `cxuu_notice`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_onduty`

@@ -34,10 +34,18 @@
     </div>
 
 
-    <div class="alert alert-warning" role="alert">
-        公告：
-
-        上传图片请不要超过 宽1100px
+    <div class="row">
+        <h3 class="sub-header">公告</h3>
+        {cxuu:volist table="notice" keyname="did" value="2" status="1" limit="2"}
+        <div class="panel panel-default">
+            <div class="panel-heading">{$vo.title}</div>
+            <div class="panel-body">
+                <?php echo htmlspecialchars_decode($vo['content']);?>
+                <br>发布人：{$vo.publisher}
+                <br>发布时间：{$vo.created_date|date='Y-m-d H:i'}
+            </div>
+        </div>
+        {/cxuu:volist}
     </div>
 
     <div class="row">

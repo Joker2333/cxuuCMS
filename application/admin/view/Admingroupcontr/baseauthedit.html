@@ -271,6 +271,26 @@
                          <input type="checkbox" name="baseauth[]"  value="Ondutycontr_Del" <?php if(@in_array("Ondutycontr_Del",$info)){ echo "checked"; } ?>> 删除值班员
                         </label>
                     </div>
+                    <blockquote>
+                        <p>前后台公告</p>
+                </blockquote>
+                    <div class="checkbox input-md">
+                        <label class="checkbox-inline">
+                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_index"   <?php if(@in_array("Noticecontr_index",$info)){ echo "checked"; } ?> > 前后台公告列表
+                        </label>
+                        <label class="checkbox-inline">
+                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_addedit" <?php if(@in_array("Noticecontr_addedit",$info)){ echo "checked"; } ?>> 添加编辑公告
+                        </label>
+                        <label class="checkbox-inline">
+                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_addAction" <?php if(@in_array("Noticecontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
+                        </label>
+                        <label class="checkbox-inline">
+                         <input type="checkbox" name="baseauth[]"  value="Noticecontr_editAction" <?php if(@in_array("Noticecontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
+                        </label>
+                        <label class="checkbox-inline">
+                         <input type="checkbox" name="baseauth[]"  value="Noticecontr_Del" <?php if(@in_array("Noticecontr_Del",$info)){ echo "checked"; } ?>> 删除公告
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

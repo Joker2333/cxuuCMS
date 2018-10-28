@@ -17,10 +17,10 @@ class Onduty extends Validate
         'duty' => 'max:100|min:2',
     ];
     protected $message = [
-        'username.require' => '值班员姓名不能为空！',
-        'username.max' => '值班员姓名最多不能超过50个字符',
-        'username.min' => '值班员姓名最多不能小于2个字符',
-        'nicename.min' => '值班员职务不能小于2个字',
+        'name.require' => '值班员姓名不能为空！',
+        'name.max' => '值班员姓名最多不能超过50个字符',
+        'duty.max' => '值班员职务最多不能小于100个字符',
+        'duty.min' => '值班员职务不能小于2个字',
     ];
 
 }

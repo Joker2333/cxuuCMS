@@ -39,8 +39,8 @@ class Contentcontr extends \think\Controller {
 				//->where('image','=', 'not null')
                 ->paginate(20, false, ['query' => $searchInfo]);
         $page = $list->render();
-        $channeltree = Channel::getCTree();
-        $this->assign('channeltree', $channeltree);
+        $channelTree = Channel::getCTree();
+        $this->assign('channeltree', $channelTree);
         $this->assign('channelId', $channelId);
         $this->assign('list', $list);
         $this->assign('page', $page);
@@ -49,13 +49,13 @@ class Contentcontr extends \think\Controller {
 
     public function addedit() {
         $getInfo = $this->request->param();
-        $channellist = Channel::select();
-        $channeltree = Channel::getCTree();
-		$userinfo = getCxuuCookie();
+        $channelList = Channel::select();
+        $channelTree = Channel::getCTree();
+		$userInfo = getCxuuCookie();
         $this->assign('contr', $this->request->controller() . '/' . $this->request->action()); //传递给上传器 控制器及方法名称
-        $this->assign('channellist', $channellist);
-        $this->assign('userinfo', $userinfo);
-        $this->assign('channeltree', $channeltree);
+        $this->assign('channellist', $channelList);
+        $this->assign('userinfo', $userInfo);
+        $this->assign('channeltree', $channelTree);
         if (empty($getInfo['id'])) {
             error_reporting(E_ALL & ~E_NOTICE); //屏蔽未定义变量错误提示
             $this->assign('constname', "添加");
@@ -64,7 +64,7 @@ class Contentcontr extends \think\Controller {
             return $this->fetch('content');
         } else {
             error_reporting(E_ALL & ~E_NOTICE); //屏蔽未定义变量错误提示
-			if($userinfo['group_id'] == 1){
+			if($userInfo['group_id'] == 1){
 				//超级管理员不受限制
 				$find = Content::where('id', $getInfo['id'])->find();
 			}else{
@@ -83,17 +83,17 @@ class Contentcontr extends \think\Controller {
     }
 
     public function addAction() {
-        $addpost = $this->request->post();
+        $addPost = $this->request->post();
         $validate = new \app\admin\validate\Content;
-        if (!$validate->check($addpost)) {
+        if (!$validate->check($addPost)) {
             return ajax_Jsonreport($validate->getError(), 0);
         }
-        $addpost['created_date'] = time();
-		$userinfo = getCxuuCookie();// 实例化 用户信息模型
-        $addpost['user_id'] = $userinfo['user_id'];
-        $addpost['usergroupname'] = $userinfo['groupname'];
-        $add = new Content;
-        if ($add->save($addpost)) {
+        $addPost['created_date'] = time();
+		$userInfo = getCxuuCookie();// 实例化 用户信息模型
+        $addPost['user_id'] = $userInfo['user_id'];
+        $addPost['usergroupname'] = $userInfo['groupname'];
+        $add = Content::create($addPost);
+        if ($add) {
             return ajax_Jsonreport("添加成功", 1, "/admin/contentcontr");
         } else {
             return ajax_Jsonreport("添加失败", 0);
@@ -103,22 +103,21 @@ class Contentcontr extends \think\Controller {
     public function editAction() {
         $id = $this->request->post('id');
         if ($id) {
-            $editpost = $this->request->post();
-            $editpost['edited_date'] = time();
-			if(empty($editpost['position_a'])){
-				$editpost['position_a'] = 0;
+            $editPost = $this->request->post();
+            $editPost['edited_date'] = time();
+			if(empty($editPost['position_a'])){
+                $editPost['position_a'] = 0;
 			}
-			if(empty($editpost['position_b'])){
-				$editpost['position_b'] = 0;
+			if(empty($editPost['position_b'])){
+                $editPost['position_b'] = 0;
 			}
-			if(empty($editpost['position_c'])){
-				$editpost['position_c'] = 0;
+			if(empty($editPost['position_c'])){
+                $editPost['position_c'] = 0;
 			}
 
-            //$editpost['user_id'] = '';
             $user = new Content;
             // save方法第二个参数为更新条件
-            if ($user->save($editpost, ['id' => $id])) {
+            if ($user->save($editPost, ['id' => $id])) {
                 return ajax_Jsonreport("修改成功", 1, "/admin/contentcontr");
             } else {
                 return ajax_Jsonreport("修改失败", 0);
@@ -128,12 +127,12 @@ class Contentcontr extends \think\Controller {
 
     public function Delete() {
         $id = $this->request->get('id');
-		$userinfo = getCxuuCookie();
-		if($userinfo['group_id'] == 1){
+		$userInfo = getCxuuCookie();
+		if($userInfo['group_id'] == 1){
 			//超级管理员不受限制
 			$del = Content::where('id', $id)->delete();
 		}else{
-			$del = Content::where('id', $id)->where('user_id', getCxuuUserId())->delete();
+			$del = Content::where('id', $id)->where('user_id', $userInfo['user_id'])->delete();
 		}
         if ($del) {
             return ajax_Jsonreport("删除成功", 1);
