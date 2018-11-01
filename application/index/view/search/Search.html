@@ -30,29 +30,15 @@
 		<div class="list" >
 			{volist name="list" id="vo"} 
 			<li><span>{$vo.created_date|date='Y-m-d H:i'}</span>
-			[<b class="search-url"><a  href="/channel/{$vo.cid}.html">{$vo.channel.name}</a></b>] 
+			[<b class="search-url"><a  href="/channel/{$vo.cid}.html">{$vo.channel.name}</a></b>]
 			<a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,38}</a></li>
 			{if $i %5==0}<div class="hr"><hr></div>{/if} 
 			{/volist}
 		</div>
 		{$page|raw}
 	</div>
+
 	
-	<div class="rightlist" >
-	<div class="toptitle" ><div class="bar"></div>热点推荐</div>
-		<div class="list" >
-		{cxuu:contentlist cid="5" limit="8" order="hits"}
-			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,14}</a></li>
-		{/cxuu:contentlist} 
-		</div>
-		
-	<div class="toptitle" ><div class="bar"></div>最新推荐</div>
-		<div class="list" >
-		{cxuu:contentlist cid="4" limit="8"}
-			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,14}</a></li>
-		{/cxuu:contentlist} 
-		</div>
-	</div>
 	
 	
 </div>

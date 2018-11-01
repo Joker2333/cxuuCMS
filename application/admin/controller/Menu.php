@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\Channel;
 class Menu extends \think\Controller {
 
     // protected $middleware = ['Auth'];
@@ -11,6 +12,8 @@ class Menu extends \think\Controller {
     }
 
     public function content() {
+        $treeData=Channel::getZTree();
+        $this->assign('treeData', $treeData);
         return $this->fetch();
     }
 

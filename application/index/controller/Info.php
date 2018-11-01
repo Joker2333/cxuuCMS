@@ -5,39 +5,52 @@
  * Date: 2018/10/28
  * Time: 12:34
  */
+
 namespace app\index\controller;
 
 use app\index\model\Content;
-//use app\index\model\Comment;
+use app\index\model\ContentContent;
 use app\index\model\Channel;
 use think\facade\Cache;
 
-class Info extends \think\Controller {
+class Info extends \think\Controller
+{
 
-    public function _empty() {
-            return error404();
+    public function _empty()
+    {
+        return error404();
     }
 
-    public function index() {
+    public function index()
+    {
         $id = request()->route('id');
-        if(empty($id)){
-             return error404();
+        if (empty($id)) {
+            return error404();
         }
-		
-		if (Cache::get("findOnContent".$id)) {
-			$cache = cache("findOnContent".$id);
-		} else {
-			$cache = Content::where('id', $id)->where('status',1)->find();
-			Cache::set("findOnContent".$id, $cache,20);
-		}
-       
-        Content::where('id', $id)->field('hits')->setInc('hits'); //阅读量递增
-		
-		$channelpath = Channel::getUrlTree($cache['cid']);
-		$this->assign('channelpath', $channelpath);//获取栏目 树
-		
-        $this->assign('info', $cache);
-        return $this->fetch('content');
+
+        if (Cache::get("findOnContent" . $id)) {
+            $cache = cache("findOnContent" . $id);
+            //$cachecontent = cache("findOnContentContent".$id);
+        } else {
+            $cache = Content::where('id', $id)->find();
+            if (empty($cache)) {
+                return validateError("内容不存在，请勿非法操作");
+            }
+
+            $cache['content'] = ContentContent::where('aid', $id)->find();
+            Cache::set("findOnContent" . $id, $cache, 20);
+            //Cache::set("findOnContentContent".$id, $cachecontent,20);
+        }
+
+            Content::where('id', $id)->field('hits')->setInc('hits'); //阅读量递增
+
+            $channelpath = Channel::getUrlTree($cache['cid']);
+            $this->assign('channelpath', $channelpath);//获取栏目 树
+
+            $this->assign('info', $cache);
+            $this->assign('content', $cache['content']);
+            return $this->fetch('content');
+
     }
 
 }

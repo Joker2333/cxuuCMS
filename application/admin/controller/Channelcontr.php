@@ -83,10 +83,11 @@ class Channelcontr extends \think\Controller {
         return ajax_Jsonreport("删除失败", 0);
     }
 
-//菜单显示JS数据调用方法
+//菜单显示JS数据调用方法 内容页列表
     public function getJsTree() {
         $data = Channel::getJsTree();
         return json_encode($data);
     }
+
 
 }

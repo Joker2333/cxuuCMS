@@ -11,7 +11,6 @@ class Settingcontr extends \think\Controller {
         if ($this->request->post('site_title')) {
             $model = new Settings;
             $settings = $model->getSiteSetting();
-            /*             * 获取 POST数据 */
             $data = $this->request->post();
             $updata = array_merge($settings, $data); //合并数组
             if ($model->saveSiteSettings($updata)) {

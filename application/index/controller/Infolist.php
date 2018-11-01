@@ -27,14 +27,15 @@ class Infolist extends \think\Controller
             $channel = Channel::where('urlname', $getVal)->find(); //获取当前栏目
         }
 
-        $cache = Content::where('cid', $channel['id'])->where('status', 1)->order('id desc')->paginate($channel['DisplayNum']);
+        //$count = Content::count('id');->where('id','>',200200)
+        $cache = Content::where('cid', $channel['id'])->field('id,title,created_date')->order('id desc')->paginate($channel['DisplayNum']);
 
-        /*        if (Cache::get("channellist" . $channel['id'])) {
-                    $cache = cache("channellist" . $channel['id']);
-                } else {
-                    $cache = Content::where('cid', $channel['id'])->where('status', 1)->order('id desc')->paginate($channel['DisplayNum']);
-                    Cache::set("channellist" . $channel['id'], $cache, 200);
-                }*/
+ /*       if (Cache::get("channellist" . $channel['id'])) {
+            $cache = cache("channellist" . $channel['id']);
+        } else {
+            $cache = Content::where('cid', $channel['id'])->where('status', 1)->field('id,title,created_date')->order('id desc')->paginate($channel['DisplayNum']);
+            Cache::set("channellist" . $channel['id'], $cache, 200);
+        }*/
 
         $page = $cache->render();
 

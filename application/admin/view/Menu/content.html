@@ -1,15 +1,40 @@
-    <div id="leftmenua">
-        <h3>
-            <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/index')"><button type="button" class="btn btn-info">全部列表</button></a>
-			
-            {if getCxuuBaseAuth("Contentcontr_addedit")}
-			<a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit')"><button type="button" class="btn btn-info">添加信息</button></a>
-			{/if}
-        </h3>
-        <div id="treeview"></div>
-    </div>
+<!--<link rel="stylesheet" href="/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="/static/ztree/js/jquery.ztree.core.min.js"></script>-->
+<div id="leftmenua">
+   <!-- <div id="ztree" class="ztree" style="width:200px; overflow:auto;"></div>-->
+    <h3>
+        <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/index')">
+            <button type="button" class="btn btn-info">全部列表</button>
+        </a>
+
+        {if getCxuuBaseAuth("Contentcontr_addedit")}
+        <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit')">
+            <button type="button" class="btn btn-info">添加信息</button>
+        </a>
+        {/if}
+    </h3>
+    <div id="treeview"></div>
+</div>
+
+<!--<SCRIPT type="text/javascript">
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+        zTreeNodes = [
+            <?php //echo htmlspecialchars_decode($treeData);?>
+        ];
+
+    $(document).ready(function () {
+        zTreeObj = $.fn.zTree.init($("#ztree"), setting, zTreeNodes);
+    });
+</SCRIPT>-->
+
 <script type="text/javascript">
-//栏目列表树
+    //栏目列表树
     $(function () {
         $.getJSON('/admin/channelcontr/getJsTree', {}, function (data) {
             //console.log('getJsTree', data);

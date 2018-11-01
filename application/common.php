@@ -17,7 +17,7 @@ function error404()
 function validateError($words)
 {
     header('Content-type: text/html; charset=UTF-8');
-    echo '<center>' . $words . '请返回重新操作！</center>';
+    echo '<center>' . $words . '请返回！</center>';
     exit;
 }
 

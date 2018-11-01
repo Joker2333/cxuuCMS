@@ -105,6 +105,7 @@ function uploader(config, success, contr)
         var config = {
             btnId: config, /*上传按钮ID*/
             maxcount: 1, /*最大上传文件数量*/
+			fileNumLimit: 1, 
             multiple: false, /*是否为多文件上传*/
             extensions: 'jpg,png,gif,doc', /**/
             success: success

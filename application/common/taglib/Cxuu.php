@@ -54,19 +54,16 @@ class Cxuu extends Taglib {
 		$limit    = isset($tag['limit']) ? $tag['limit'] : '10';//查询条数 limit="10" 与 limit="2,6"  2为偏移，6为几条
 		$pic      = isset($tag['pic']) ? $tag['pic'] : '';//图片内容判断
 		$position = isset($tag['position']) ? $tag['position'] : '';//内容属性 头条
-		$order    = isset($tag['order']) ? $tag['order'] : 'id desc';//排序id  created_date  hits   asc  desc
+		$order    = isset($tag['order']) ? $tag['order'] : 'id DESC';//排序id  created_date  hits   asc  desc
 		$cacheid  = isset($tag['cacheid']) ? $tag['cacheid'] : '';//缓存ID
-		
+
         $name     = ":model('Content')"; //对应当前应用下的 model 方法
         $name     .= "->where('cid','in','".$cid."')";
-		
+        $name     .= "->field('id,cid,title,image,created_date')";
  		if($pic == 'true'){
-			$name .= "->where('image','<>','')";//图片//查询图片内容不为空
+			$name .= "->where('imageBL',1)";//如果有图片，则判断字段为1,利于SQL优化  索引字段
 		}
-/* 		if($pic == 'flase'){
-			$name .= "->whereNull('image')";
-		} */
-		
+
 		if($position == 'a'){
 			$name .= "->where('position_a',1)";
 		}
@@ -76,49 +73,45 @@ class Cxuu extends Taglib {
 		if($position == 'c'){
 			$name .= "->where('position_c',1)";
 		}
-		$name     .= "->where('status',1)";
+		//$name     .= "->where('status',1)";  // 定义全局的查询范围
         $name     .= "->order('".$order."')";
         $name     .= "->limit(".$limit.")";
         $name     .= "->select()";
-		
+
         $vo       = isset($tag['vo']) ? $tag['vo'] : 'vo';//识别标签
         $empty    = isset($tag['empty']) ? $tag['empty'] : ''; //为空时显示内容  empty="没有内容"
-        $key      = !empty($tag['key']) ? $tag['key'] : 'i'; //键序号
-        $mod      = isset($tag['mod']) ? $tag['mod'] : '2'; //控制显示，具体参考官方手册
 
         $parseStr = '<?php ';
 		$name = $this->autoBuildVar($name); //获取变量用于SQL条件
-        //$parseStr .= '$_result=' . $name . ';';
+
+        //随机缓存时间 1--800秒
+        $randtime = rand(10,200)."0";
+
 		/*增加缓存规则*/
 		if(!empty($cacheid)){
 			$parseStr .= 'if(Cache::get("Contentlist'.$cacheid.'")):$_result = Cache::get("Contentlist'.$cacheid.'");';//缓存数据
 			$parseStr .= 'else: ';
 			$parseStr .= '$_result=' . $name . ';';
-			$parseStr .= 'Cache::set("Contentlist'.$cacheid.'", $_result, 600);endif;';//缓存数据600秒
+			$parseStr .= 'Cache::set("Contentlist'.$cacheid.'", $_result,'.$randtime.');endif;';//缓存数据600秒
 		}else{
 			$parseStr .= '$_result=' . $name . ';';
 		}/*增加缓存规则 END*/
-		
+        //$parseStr .= '$_result=' . $name . ';';
         $name = '$_result';
-       // print_r($name);
-/*        $contentId= '$name[\'id\']';
-        $name['url'] = "/content/'.$contentId.'.html";*/
-        $parseStr .= 'if(is_array(' . $name . ') || ' . $name . ' instanceof \think\Collection || ' . $name . ' instanceof \think\Paginator): $' . $key . ' = 0;';
 		$parseStr .= ' $__LIST__ = ' . $name . ';';
         $parseStr .= 'if( count($__LIST__)==0 ) : echo "' . $empty . '" ;';
         $parseStr .= 'else: ';
         $parseStr .= 'foreach($__LIST__ as $key=>$' . $vo . '): ';
-        $parseStr .= '$mod = ($' . $key . ' % ' . $mod . ' );';
-        $parseStr .= '++$' . $key . ';?>';
+        $parseStr .= '?>';
         $parseStr .= $content;
-        $parseStr .= '<?php endforeach; endif; else: echo "' . $empty . '" ;endif; ?>';
+        $parseStr .= '<?php endforeach; endif;?>';
         if (!empty($parseStr)) {
             return $parseStr;
         }
         return;
     }
-	
-	
+
+
 		/**
      * Cxuu:volist标签解析 通用循环输出数据集
      * 格式：
@@ -140,7 +133,7 @@ class Cxuu extends Taglib {
 		$status    = isset($tag['status']) ? $tag['status'] : '';//对应表中 status 值 1 0
 		$order    = isset($tag['order']) ? $tag['order'] : 'id desc';//排序id  created_date  hits   asc  desc
 		$cacheid    = isset($tag['cacheid']) ? $tag['cacheid'] : '';//缓存ID
-		
+
         $name     = ":model('".$table."')";
 		if(!empty($keyname)||!empty($value)){
 			$name     .= "->where('".$keyname."','".$value."')";
@@ -155,16 +148,16 @@ class Cxuu extends Taglib {
         $vo       = isset($tag['vo']) ? $tag['vo'] : 'vo';//识别标签
         $empty    = isset($tag['empty']) ? $tag['empty'] : ''; //为空时显示内容  empty="没有内容"
         $key      = !empty($tag['key']) ? $tag['key'] : 'i'; //键序号
-		
+
         $parseStr = '<?php ';
 		$name = $this->autoBuildVar($name); //获取变量用于SQL条件
-		
+
 		/*增加缓存规则*/
 		if(!empty($cacheid)){
 			$parseStr .= 'if(Cache::get("volist'.$cacheid.'")):$_result = Cache::get("volist'.$cacheid.'");';//缓存数据
 			$parseStr .= 'else: ';
 			$parseStr .= '$_result=' . $name . ';';
-			$parseStr .= 'Cache::set("volist'.$cacheid.'", $_result, 600);endif;';//缓存数据600秒
+			$parseStr .= 'Cache::set("volist'.$cacheid.'", $_result, 6000);endif;';//缓存数据6000秒
 		}else{
 			$parseStr .= '$_result=' . $name . ';';
 		}/*增加缓存规则 END*/

@@ -15,11 +15,6 @@ class Channel extends Model
 
     protected $pk = 'id';
 
-    // 模型初始化
-    protected static function init()
-    {
-
-    }
 
 
     /**

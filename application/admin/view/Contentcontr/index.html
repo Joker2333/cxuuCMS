@@ -21,9 +21,6 @@
                     <input type="text" name="title" class="form-control" placeholder="标题">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="content" class="form-control" placeholder="内容">
-                </div>
-                <div class="form-group">
                     <select class="form-control" name="cid">
                         <option value="">所有栏目</option>
                         {foreach $channeltree as $vo}
@@ -65,7 +62,7 @@
 					{if ($vo['position_a'] == 1) } <span class='label label-danger'>头条</span>{/if}
 					{if ($vo['position_b'] == 1) } <span class='label label-danger'>小头条</span>{/if}
 					{if ($vo['position_c'] == 1) } <span class='label label-danger'>轮换</span>{/if}
-					{notempty name="$vo['urlname']"}<br><small><b style="color:red;">审核说明：</b>{$vo.urlname}</small>{/notempty}
+					{notempty name="$vo['auditstate']"}<br><small><b style="color:red;">审核说明：</b>{$vo.auditstate}</small>{/notempty}
 					</td>
                     <td><a href="/index/infolist/index/channelval/{$vo.cid}" target="_blank">{$vo.channel.name}</a></td>
                     <td>{if ($vo['status'] == 1) } 已审{else /} <span style="color: #CC5522;">未审</b>{/if}</td>

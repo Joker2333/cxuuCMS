@@ -15,7 +15,6 @@ class Contentcontr extends \think\Controller {
         $channelId = $searchInfo['cid'];
 		$status = $searchInfo['status'];
         $title = $searchInfo['title'];
-        $content = $searchInfo['content'];
         $query = [];
 		if(getCxuuGroupId() != 1){
 			array_push($query, ['user_id', '=', getCxuuUserId()]);
@@ -26,16 +25,12 @@ class Contentcontr extends \think\Controller {
 		if (!empty($title)) {
             array_push($query, ['title', 'like', '%' . $title . '%']);
         }
-        if (!empty($content)) {
-            array_push($query, ['content', 'like', '%' . $content . '%']);
-        }
         if (!empty($channelId)) {
             array_push($query, ['cid', '=', $channelId]);
         }
         //根据条件列表
         $list = Content::where($query)
                 ->order('id', 'desc')
-                ->field('content',true)
 				//->where('image','=', 'not null')
                 ->paginate(20, false, ['query' => $searchInfo]);
         $page = $list->render();
@@ -89,10 +84,23 @@ class Contentcontr extends \think\Controller {
             return ajax_Jsonreport($validate->getError(), 0);
         }
         $addPost['created_date'] = time();
+        if($addPost['image'] != ''){
+            $addPost['imageBL'] = 1; //如果有图片，则判断字段为1,利于SQL优化
+        }
 		$userInfo = getCxuuCookie();// 实例化 用户信息模型
         $addPost['user_id'] = $userInfo['user_id'];
         $addPost['usergroupname'] = $userInfo['groupname'];
+        /*   $a=1;
+          while ($a<50000){
+             $add = Content::create($addPost);
+            $add->ContentContent()->save(['content' => $addPost['content']]);//关联写入
+           $a++;
+          }
+  /*        for($i=1;$i<100000;+){
+              Content::create($addPost);
+          }*/
         $add = Content::create($addPost);
+        $add->ContentContent()->save(['content' => $addPost['content']]);//关联写入
         if ($add) {
             return ajax_Jsonreport("添加成功", 1, "/admin/contentcontr");
         } else {
@@ -114,10 +122,17 @@ class Contentcontr extends \think\Controller {
 			if(empty($editPost['position_c'])){
                 $editPost['position_c'] = 0;
 			}
-
-            $user = new Content;
-            // save方法第二个参数为更新条件
-            if ($user->save($editPost, ['id' => $id])) {
+            if($editPost['image'] != ''){
+                $editPost['imageBL'] = 1; //如果有图片，则判断字段为1,利于SQL优化
+            }else{
+                $editPost['imageBL'] = 0;
+            }
+            $edit = new Content;
+            $edit->save($editPost, ['id' => $id]);
+            $edit->ContentContent()->save([
+                'content' => $editPost['content'],   //关联写入
+            ]);
+            if ($edit) {
                 return ajax_Jsonreport("修改成功", 1, "/admin/contentcontr");
             } else {
                 return ajax_Jsonreport("修改失败", 0);

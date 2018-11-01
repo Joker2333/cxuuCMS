@@ -24,8 +24,9 @@ class Search extends \think\Controller {
 			validateError($validate->getError());
         }		
         $list = Content::where('title', 'like', '%'.$keywords.'%')
-						->where('status', 1)
+                        ->order('id desc')
 						->paginate(20, false, ['query' => $keywordsArry]);
+        //$list = Db::query("SELECT * FROM `cxuu_content` WHERE `title` LIKE '%{$keywords}%' order by id desc limit 0,20");
         $page = $list->render();
         $this->assign('list', $list);
         $this->assign('keywords', $keywords);

@@ -1,6 +1,3 @@
-<link href="/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
-<script src="/static/webuploader/webuploader.js"></script>
-
 <div id="pagelist">
 <h3 class="page-header">{$constname}</h3>
 <form role="form" id="form1" class="form-horizontal" name="form1"  enctype="multipart/form-data"  method="post" action="#">
@@ -87,7 +84,7 @@
         <div class="col-xs-12">
 			<label class="col-sm-2 control-label contenttab">内容</label>
             <div class="col-xs-11">
-			<textarea id="summernote" class="summernote" name="content">{$info.content|raw}</textarea>
+			<textarea id="summernote" class="summernote" name="content">{$info.ContentContent.content|raw}</textarea>
             </div>
         </div>
     </div>
@@ -114,7 +111,7 @@
         <div class="col-xs-9">
             <label class="col-sm-2 control-label contenttab">审核说明</label>
             <div class="col-sm-6 col-xs-4">
-                <input type="text" name="urlname" class="form-control" value="{$info.urlname}">
+                <input type="text" name="auditstate" class="form-control" value="{$info.auditstate}">
             </div>
         </div>
     </div>	
@@ -184,15 +181,33 @@ $(document).ready(function() {
 });
 </script>
 {include file='Contentcontr/content_js'/}
+
+<link href="/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
+<script src="/static/webuploader/webuploader.js"></script>
+
+
 <script type="text/javascript">
     $(function () {
 
         ajaxPost('/admin/contentcontr/', '{$actionname}');
 
-        uploader('uploadFileBtn', function (file, response, uploader) {
-            var imageUrl = response.url;
-            console.log('URL：', imageUrl);
+    var uploader = WebUploader.create({
+        auto: true,
+        pick: '#uploadFileBtn',
+        compress: false, //图片在上传前不进行压缩
+        threads: 1, //上传并发数
+        fileNumLimit: 1,
+        server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}'||'',
+        swf: '/static/webuploader/Uploader.swf',
+        fileVal: 'image',
+        accept: {title: '请选择文件', extensions: 'jpg,png,gif,doc', multiple:false},
+    });
+
+    uploader.on("uploadSuccess", function (file, response) {
+         var imageUrl = response.url;
+            console.log('URL：', response._raw);
+			alert(imageUrl);
             $('input[name=image]').val(imageUrl);
-        }, '{$contr}');
+    });
     });
 </script>

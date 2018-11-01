@@ -12,10 +12,10 @@ class Admingroupcontr extends \think\Controller
 
     public function index()
     {
-        $list = Admingroup::order('group_id ASC')->paginate(10);
-        $page = $list->render();
+        $list = Admingroup::order('group_id ASC')->all();
+        //$page = $list->render();
         $this->assign('list', $list);
-        $this->assign('page', $page);
+       // $this->assign('page', $page);
         return $this->fetch();
     }
 
