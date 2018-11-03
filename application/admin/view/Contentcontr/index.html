@@ -58,7 +58,7 @@
                     <td><input name="items" type="checkbox" id="{$vo.id}"/></td>
                     <td>{$vo.id}</td>
                     <td><a href="/index/info/index/id/{$vo.id}" target="_blank">{$vo.title}</a>
-					{php} echo empty($vo['image']) ? '':  "<span class='label label-danger'>图</span>";{/php} 
+					{if ($vo['imageBL'] == 1) }<span class='label label-danger'>图</span>{/if} 
 					{if ($vo['position_a'] == 1) } <span class='label label-danger'>头条</span>{/if}
 					{if ($vo['position_b'] == 1) } <span class='label label-danger'>小头条</span>{/if}
 					{if ($vo['position_c'] == 1) } <span class='label label-danger'>轮换</span>{/if}

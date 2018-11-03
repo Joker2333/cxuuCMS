@@ -9,6 +9,14 @@ use think\Model;
 class Jumail extends Model {
 
     protected $pk = 'id';
+	
+	// 定义全局的查询范围
+    protected $globalScope = ['status'];
+    public function scopeStatus($query)
+    {
+        $query->where('status',1);
+    }
+	
     public function Juleader() {
         return $this->hasOne('Juleader', 'id', 'uid');
     }

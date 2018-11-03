@@ -18,7 +18,7 @@ class Jumailcontr extends \think\Controller {
     public function index() {
 		$getuid = $this->request->param('uid');
 		if(!empty($getuid)){
-			$list = Jumail::where('uid',$getuid)->where('status',1)->order('id DESC')->paginate(20);
+			$list = Jumail::where('uid',$getuid)->order('id DESC')->paginate(20);
 			$ldname = Juleader::get($getuid);
 		}else{
 			return error404();
