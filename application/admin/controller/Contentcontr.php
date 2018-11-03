@@ -19,7 +19,7 @@ class Contentcontr extends \think\Controller {
 		if(getCxuuGroupId() != 1){
 			array_push($query, ['user_id', '=', getCxuuUserId()]);
 		}
-        if (!empty($status)) {
+        if ($status != '') {
             array_push($query, ['status', '=', $status]);
         }
 		if (!empty($title)) {
@@ -31,7 +31,6 @@ class Contentcontr extends \think\Controller {
         //根据条件列表
         $list = Content::where($query)
                 ->order('id', 'desc')
-				//->where('image','=', 'not null')
                 ->paginate(20, false, ['query' => $searchInfo]);
         $page = $list->render();
         $channelTree = Channel::getCTree();

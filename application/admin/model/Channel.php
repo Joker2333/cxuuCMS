@@ -64,9 +64,12 @@ class Channel extends Model
                 $obj = array();
                 $obj['id'] = $value['id'];
                 $obj['text'] = $value['name'];
+                //$obj['selectedIcon'] = "glyphicon glyphicon-stop";
                 if ($value['attribute'] != 0) {
                     $obj['href'] = 'javascript:targetmain("/admin/contentcontr/?cid=' . $obj['id'] . '");';
-                }
+                }else{
+					$obj['selectable'] =  false;					
+				}
                 $obj['nodes'] = self::jsTree($data, $value['id']);
                 array_push($jsTreeList, $obj);
             }

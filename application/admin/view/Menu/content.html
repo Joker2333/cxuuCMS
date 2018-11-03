@@ -40,8 +40,16 @@
             //console.log('getJsTree', data);
             var options = {
                 bootstrap2: false,
-                showTags: true,
+                showTags: false,
                 enableLinks: true,
+				//nodeIcon: "glyphicon glyphicon-star-empty",
+				collapseIcon:"glyphicon glyphicon-folder-open",
+				emptyIcon:"",
+				selectedIcon:"glyphicon glyphicon-ok",
+				expandIcon:"glyphicon glyphicon-folder-close",
+				//showIcon:false,
+				//showBorder:false,
+				highlightSelected:true,
                 levels: 5,
                 data: data
             };

@@ -6,3 +6,5 @@
 
 
 使用Redis 缓存  管理软件treeNMS-1.7.3
+
+	V5.1.28 LTS

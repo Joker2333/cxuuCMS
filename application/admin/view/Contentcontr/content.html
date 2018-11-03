@@ -184,12 +184,10 @@ $(document).ready(function() {
 
 <link href="/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
 <script src="/static/webuploader/webuploader.js"></script>
-
-
 <script type="text/javascript">
     $(function () {
 
-        ajaxPost('/admin/contentcontr/', '{$actionname}');
+    ajaxPost('/admin/contentcontr/', '{$actionname}');
 
     var uploader = WebUploader.create({
         auto: true,
@@ -205,8 +203,8 @@ $(document).ready(function() {
 
     uploader.on("uploadSuccess", function (file, response) {
          var imageUrl = response.url;
-            console.log('URL：', response._raw);
-			alert(imageUrl);
+            //console.log('URL：', response._raw);
+			//alert(imageUrl);
             $('input[name=image]').val(imageUrl);
     });
     });

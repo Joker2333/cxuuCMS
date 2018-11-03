@@ -11,7 +11,7 @@ class Admin extends Validate {
         'nicename' => 'chs|max:50|min:2',
         'password' => 'require|min:5',
         'password_f' => 'confirm:password',
-        'email' => 'email',
+        'email' => 'mobile',
     ];
     protected $message = [
         'username.require' => '用户名不能为空！',
@@ -22,7 +22,7 @@ class Admin extends Validate {
         'password.require' => '密码不能为空',
         'password.min' => '密码不能小于5个字符',
         'password_f' => '两次输入密码不一致！',
-        'email' => '邮件格式不对！',
+        'email' => '电话格式不对！',
     ];
 
     

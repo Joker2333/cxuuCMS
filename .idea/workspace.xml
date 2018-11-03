@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ca5c909-852f-4186-a984-eae83816a7d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/admin/Validate/Notice.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/admin/model/ContentContent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/index/model/Comment.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/index/model/ContentContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/Validate/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/Validate/Content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Admingroupcontr.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Admingroupcontr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Channelcontr.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Channelcontr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Contentcontr.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Contentcontr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/controller/Settingcontr.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/controller/Settingcontr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/model/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/model/Channel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/model/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/model/Content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/Admingroupcontr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/Admingroupcontr/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/Contentcontr/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/Contentcontr/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/Contentcontr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/Contentcontr/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/Menu/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/Menu/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin/view/settingcontr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/settingcontr/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/common/taglib/Cxuu.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/common/taglib/Cxuu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Info.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Infolist.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Infolist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Search.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/controller/Search.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/model/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/model/Channel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/model/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/model/Content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/view/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/view/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/view/info/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/view/info/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/index/view/search/Search.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/index/view/search/Search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-    </list>
+    <list default="true" id="5ca5c909-852f-4186-a984-eae83816a7d7" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,15 +93,16 @@
     <session id="821024078">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="20" />
+          <entry key="project.closed" value="21" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="3" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="7" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -164,7 +135,7 @@
           <entry key="html" value="662" />
           <entry key="js" value="7" />
           <entry key="php" value="2222" />
-          <entry key="txt" value="14" />
+          <entry key="txt" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -172,13 +143,13 @@
           <entry key="HTML" value="662" />
           <entry key="JavaScript" value="7" />
           <entry key="PHP" value="2222" />
-          <entry key="PLAIN_TEXT" value="24" />
+          <entry key="PLAIN_TEXT" value="37" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -307,6 +278,7 @@
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
@@ -314,6 +286,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,19 +298,6 @@
               <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
@@ -378,7 +338,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,6 +396,7 @@
       <workItem from="1541035504354" duration="8834000" />
       <workItem from="1541047964232" duration="7582000" />
       <workItem from="1541057996681" duration="1782000" />
+      <workItem from="1541063847850" duration="287000" />
     </task>
     <task id="LOCAL-00001" summary="测试GIT">
       <created>1540528967324</created>
@@ -487,16 +447,30 @@
       <option name="project" value="LOCAL" />
       <updated>1540784000188</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="进一步优化程序和数据表">
+      <created>1541063923207</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541063923207</updated>
+    </task>
+    <task id="LOCAL-00009" summary="进一步优化程序和数据表">
+      <created>1541064099242</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1541064099242</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87555000" />
+    <option name="totallyTimeSpent" value="87842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13219616" />
+      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13326226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -531,7 +505,8 @@
     <MESSAGE value="优化" />
     <MESSAGE value="优化sql" />
     <MESSAGE value="增加前后台公告功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加前后台公告功能" />
+    <MESSAGE value="进一步优化程序和数据表" />
+    <option name="LAST_COMMIT_MESSAGE" value="进一步优化程序和数据表" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application/admin/view/Noticecontr/index.html">

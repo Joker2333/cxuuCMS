@@ -3,9 +3,9 @@
 namespace app\admin\controller;
 
 use app\admin\model\Content;
-use app\admin\model\Channel;
+//use app\admin\model\Channel;
 use app\admin\model\Admin;
-use app\admin\model\Attachments;
+use app\admin\model\Jumail;
 
 use Tree;
 
@@ -25,18 +25,20 @@ class Index extends \think\Controller {
         $usergroup = getCxuuCookie();
         $this->assign('usergroup', $usergroup);
 
-        $contentCount = Content::count();
-        $channelCount = Channel::count();
+        $contentCount = Content::where('status',0)->count();
+        $content = Content::count();
+        //$channelCount = Channel::count();
         $adminCount = Admin::count();
-        $attachmentsCount = Attachments::count();
+        $jumailCount = Jumail::whereNull('reply')->count();
 		
 		$ip = $this->request->ip();
 
         $this->assign('ip', $ip);
+        $this->assign('content', $content);
         $this->assign('contentCount', $contentCount);
-        $this->assign('channelCount', $channelCount);
+        //$this->assign('channelCount', $channelCount);
         $this->assign('adminCount', $adminCount);
-        $this->assign('attachmentsCount', $attachmentsCount);
+        $this->assign('jumailCount', $jumailCount);
         return $this->fetch('home');
     }
 

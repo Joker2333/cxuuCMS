@@ -1,13 +1,15 @@
 <div id="pagelist">
-<h3 class="page-header">用户列表</h3>
+<h3 class="page-header">管理员列表</h3>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>管理组</th>
+                <th>ID</th>                
+                <th>用户名</th>
                 <th>姓名</th>
-                <th>昵称</th>
+				<th>管理组</th>
+				<th>联系电话</th>
+                <th>状态</th>
                 <th>最后登录时间</th>
                 <th>最后登录IP</th>
                 <th>管理操作</th>
@@ -17,10 +19,12 @@
         <tbody>	  
             {foreach $list as $vo} 
             <tr id="usertr{$vo.user_id}">
-                <td>{$vo.user_id}</td>
-                <td>{$vo.admingroup.groupname}</td>
+                <td>{$vo.user_id}</td>                
                 <td>{$vo.username}</td>
                 <td>{$vo.nicename}</td>
+				<td>{$vo.admingroup.groupname}</td>
+                <td>{$vo.email}</td>
+                <td>{if $vo['stauts']==1}启用{else}禁用{/if}</td>
                 <td>{$vo.last_login_time}</td>
                 <td>{$vo.last_login_ip}</td>
                 <td width=120>
