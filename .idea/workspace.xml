@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ca5c909-852f-4186-a984-eae83816a7d7" name="Default Changelist" comment="" />
+    <list default="true" id="5ca5c909-852f-4186-a984-eae83816a7d7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/cxuucms.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cxuucms.sql" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,11 +100,11 @@
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="3" />
+          <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="7" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -135,7 +137,7 @@
           <entry key="html" value="662" />
           <entry key="js" value="7" />
           <entry key="php" value="2222" />
-          <entry key="txt" value="27" />
+          <entry key="txt" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -143,7 +145,7 @@
           <entry key="HTML" value="662" />
           <entry key="JavaScript" value="7" />
           <entry key="PHP" value="2222" />
-          <entry key="PLAIN_TEXT" value="37" />
+          <entry key="PLAIN_TEXT" value="46" />
         </counts>
       </usages-collector>
     </session>
@@ -294,46 +296,6 @@
               <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="info" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -397,6 +359,7 @@
       <workItem from="1541047964232" duration="7582000" />
       <workItem from="1541057996681" duration="1782000" />
       <workItem from="1541063847850" duration="287000" />
+      <workItem from="1541219596264" duration="269000" />
     </task>
     <task id="LOCAL-00001" summary="测试GIT">
       <created>1540528967324</created>
@@ -461,16 +424,23 @@
       <option name="project" value="LOCAL" />
       <updated>1541064099242</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="更新框架至5.28">
+      <created>1541219711500</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1541219711500</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87842000" />
+    <option name="totallyTimeSpent" value="88111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13326226" />
+      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13432837" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -506,7 +476,8 @@
     <MESSAGE value="优化sql" />
     <MESSAGE value="增加前后台公告功能" />
     <MESSAGE value="进一步优化程序和数据表" />
-    <option name="LAST_COMMIT_MESSAGE" value="进一步优化程序和数据表" />
+    <MESSAGE value="更新框架至5.28" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新框架至5.28" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application/admin/view/Noticecontr/index.html">

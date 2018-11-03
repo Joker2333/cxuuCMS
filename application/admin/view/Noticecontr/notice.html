@@ -1,0 +1,100 @@
+<div id="pagelist">
+    <h3 class="page-header">{$constname}公告</h3>
+    <form role="form"  class="form-horizontal" id="form1" name="form1" method="post" action="">
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-3 control-label contenttab">公告类别</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="did">
+                        <option value="1" {$info['did'] == 1 ? 'selected = selected':''}}>前台</option>
+                        <option value="2" {$info['did'] == 2 ? 'selected = selected':''}}>后台</option>
+                        <!---->
+                    </select>
+
+                </div><small>调用 value=1 前台 value=2 后台</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-3 control-label contenttab">标题</label>
+                <div class="col-sm-4">
+                    <input type="text" name="title" class="form-control" value="{$info.title}" data-validate="required:必填" placeholder="标题">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-3 control-label contenttab">内容</label>
+                <div class="col-sm-9">
+                    <textarea id="summernote" name="content">{$info.content|raw}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-3 control-label contenttab">发布人</label>
+                <div class="col-sm-4">
+                    <input type="text" name="publisher" class="form-control" value="{$info.publisher}" data-validate="required:必填" placeholder="发布人">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-3 control-label contenttab">是否显示</label>
+                <div class="col-sm-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0" id="optionsRadios1" {$info.status ? "":"checked"}>不显示
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="1" id="optionsRadios1" {$info.status ? "checked":""}>显示
+                    </label>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <div class="col-sm-3">
+                    <input  type="hidden" name="id" value="{$info.id}" >
+                    <button type="submit"  name="submit" class="btn btn-primary btn-md">{$constname}</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<link href="/static/summernote/summernote.css" rel="stylesheet">
+<script src="/static/summernote/summernote.js"></script>
+<script src="/static/summernote/lang/summernote-zh-CN.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var $summernote = $('#summernote').summernote({
+            height: 300,
+            popover:{},// set popover 禁用，否则BUG很烦
+            toolbar: [
+                ['Misc', ['codeview','undo','redo','fullscreen']],
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize','fontname']],
+                ['color', ['color']],
+                ['height', ['height']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['Insert', ['link','table','hr','help']],
+            ],
+            fontNames:['Arial', '仿宋_GB2312', '仿宋', '黑体','微软雅黑', '宋体'],
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            lang: 'zh-CN',
+            dialogsFade : true,// Add fade effect on dialogs
+            dialogsInBody : true,// Dialogs can be placed in body, not in
+            disableDragAndDrop : false,
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        ajaxPost('/admin/Noticecontr/', '{$actionname}');
+    });
+</script>

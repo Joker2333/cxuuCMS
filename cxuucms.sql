@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2018-11-01 17:20:54
+-- 生成日期： 2018-11-03 12:36:33
 -- 服务器版本： 10.2.18-MariaDB
 -- PHP 版本： 7.2.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `cxuu_admin` (
 --
 
 INSERT INTO `cxuu_admin` (`user_id`, `group_id`, `username`, `password`, `nicename`, `email`, `stauts`, `level`, `reg_time`, `last_login_time`, `last_login_ip`) VALUES
-(1, 1, 'cbkhwx', 'e77d78e3d7e2c581440dc451aff5b165', '邓中华', '111@aa.ee', 1, 0, 0, 1541043647, '127.0.0.1'),
+(1, 1, 'cbkhwx', 'e77d78e3d7e2c581440dc451aff5b165', '邓中华', '13889991111', 1, 0, 0, 1541130506, '127.0.0.1'),
 (2, 1, 'shannan', '0659c7992e268962384eb17fafe88364', '山南公安总帐号', 'aa@aa.aa', 1, 0, 0, 1539567696, '89.30.0.3'),
 (3, 3, 'admin2', '96e79218965eb72c92a549dd5a330112', '汪琴', 'aa@aa.com', 1, NULL, NULL, 1540820316, '127.0.0.1'),
 (4, 5, 'test1', '96e79218965eb72c92a549dd5a330112', '张三', '11@qq.com', 1, NULL, NULL, 1539451963, '89.10.19.30');
@@ -74,7 +74,7 @@ INSERT INTO `cxuu_admin_group` (`group_id`, `groupname`, `base_purview`, `channe
 (1, '超级管理员', 'a:11:{i:0;s:11:\"Index_index\";i:1;s:18:\"Settingcontr_index\";i:2;s:20:\"Adminusercontr_index\";i:3;s:21:\"Admingroupcontr_index\";i:4;s:18:\"Channelcontr_index\";i:5;s:18:\"Contentcontr_index\";i:6;s:21:\"Admingroupcontr_index\";i:7;s:23:\"Admingroupcontr_addedit\";i:8;s:24:\"Admingroupcontr_baseAuth\";i:9;s:19:\"Admingroupcontr_del\";i:10;s:20:\"Admingroupcontr_auth\";}', 'a:1:{i:0;s:1:\"1\";}', 1),
 (2, '管理员', 'a:9:{i:0;s:11:\"index_index\";i:1;s:14:\"index_leftmenu\";i:2;s:10:\"index_home\";i:3;s:16:\"Menu_contentMenu\";i:4;s:22:\"Channelcontr_getJsTree\";i:5;s:18:\"Contentcontr_index\";i:6;s:20:\"Contentcontr_addedit\";i:7;s:22:\"Contentcontr_addAction\";i:8;s:23:\"Contentcontr_editAction\";}', 'a:4:{i:0;s:1:\"1\";i:1;s:1:\"4\";i:2;s:1:\"2\";i:3;s:1:\"3\";}', 1),
 (3, '局办公室', 'a:14:{i:0;s:11:\"index_index\";i:1;s:14:\"index_leftmenu\";i:2;s:10:\"index_home\";i:3;s:16:\"Menu_contentMenu\";i:4;s:24:\"Upload_uploadWebuploader\";i:5;s:23:\"Upload_uploadSummernote\";i:6;s:17:\"Adminusercontr_pw\";i:7;s:21:\"Adminusercontr_pwedit\";i:8;s:18:\"Contentcontr_index\";i:9;s:22:\"Channelcontr_getJsTree\";i:10;s:20:\"Contentcontr_addedit\";i:11;s:22:\"Contentcontr_addAction\";i:12;s:23:\"Contentcontr_editAction\";i:13;s:20:\"Contentcontr_Publish\";}', 'a:6:{i:0;s:1:\"1\";i:1;s:1:\"4\";i:2;s:1:\"5\";i:3;s:1:\"2\";i:4;s:1:\"3\";i:5;s:1:\"7\";}', 1),
-(4, '局政治部', 'a:4:{i:0;s:13:\"upload_upload\";i:1;s:22:\"Attachmentscontr_index\";i:2;s:17:\"Adminusercontr_pw\";i:3;s:21:\"Adminusercontr_pwedit\";}', 'a:1:{i:0;s:1:\"3\";}', 1),
+(4, '局政治部', 'a:2:{i:0;s:17:\"Adminusercontr_pw\";i:1;s:21:\"Adminusercontr_pwedit\";}', 'a:1:{i:0;s:1:\"3\";}', 1),
 (5, '隆子县公安局', 'a:13:{i:0;s:11:\"index_index\";i:1;s:14:\"index_leftmenu\";i:2;s:10:\"index_home\";i:3;s:16:\"Menu_contentMenu\";i:4;s:23:\"Upload_uploadSummernote\";i:5;s:17:\"Adminusercontr_pw\";i:6;s:21:\"Adminusercontr_pwedit\";i:7;s:18:\"Contentcontr_index\";i:8;s:22:\"Channelcontr_getJsTree\";i:9;s:20:\"Contentcontr_addedit\";i:10;s:22:\"Contentcontr_addAction\";i:11;s:23:\"Contentcontr_editAction\";i:12;s:20:\"Contentcontr_Publish\";}', 'a:3:{i:0;s:1:\"1\";i:1;s:2:\"11\";i:2;s:2:\"13\";}', 1),
 (6, '乃东区公安局', NULL, NULL, 1),
 (7, '桑日县公安局', NULL, NULL, 1),
@@ -103,17 +103,7 @@ CREATE TABLE `cxuu_admin_log` (
 --
 
 INSERT INTO `cxuu_admin_log` (`log_id`, `username`, `time`, `ip`, `app`, `content`) VALUES
-(1, 'admin', 1538896784, '89.10.19.30', '/Admin/Login/loginAction', '登录操作'),
-(2, 'admin', 1538897025, '89.10.19.30', '/Admin/Login/loginAction', '登录操作'),
-(49, 'cbkhwx', 1540533333, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(50, 'cbkhwx', 1540537599, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(51, 'admin2', 1540563614, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(52, 'cbkhwx', 1540652307, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(53, 'cbkhwx', 1540807647, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(54, 'admin2', 1540820316, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(55, 'cbkhwx', 1540949741, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(56, 'cbkhwx', 1541036177, '127.0.0.1', '/Admin/Login/loginAction', '登录操作'),
-(57, 'cbkhwx', 1541043647, '127.0.0.1', '/Admin/Login/loginAction', '登录操作');
+(1, 'cbkhwx', 1541130507, '127.0.0.1', '/Admin/Login/loginAction', '登录操作');
 
 -- --------------------------------------------------------
 
@@ -201,7 +191,7 @@ INSERT INTO `cxuu_comment` (`id`, `aid`, `content`, `status`) VALUES
 CREATE TABLE `cxuu_content` (
   `id` int(20) NOT NULL,
   `cid` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
+  `title` varchar(100) NOT NULL,
   `position_a` tinyint(1) DEFAULT NULL COMMENT '头条',
   `position_b` tinyint(1) DEFAULT NULL COMMENT '小头条',
   `position_c` tinyint(1) DEFAULT NULL COMMENT '轮换',
@@ -220,6 +210,13 @@ CREATE TABLE `cxuu_content` (
   `status` tinyint(1) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `cxuu_content`
+--
+
+INSERT INTO `cxuu_content` (`id`, `cid`, `title`, `position_a`, `position_b`, `position_c`, `image`, `imageBL`, `auther`, `examine`, `publish`, `usergroupname`, `auditstate`, `description`, `created_date`, `edited_date`, `user_id`, `hits`, `status`) VALUES
+(1, 18, 'ddddddddddddddddddddd', NULL, 1, NULL, '', 0, '龙啸轩', '邓中华', '邓中华', '超级管理员', '', '', 1541084458, NULL, 1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -231,6 +228,13 @@ CREATE TABLE `cxuu_content_content` (
   `aid` int(50) NOT NULL COMMENT '文章ID',
   `content` mediumtext DEFAULT NULL COMMENT '内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `cxuu_content_content`
+--
+
+INSERT INTO `cxuu_content_content` (`id`, `aid`, `content`) VALUES
+(1, 1, '&lt;p&gt;11&lt;/p&gt;');
 
 -- --------------------------------------------------------
 
@@ -507,7 +511,7 @@ ALTER TABLE `cxuu_admin_group`
 -- 使用表AUTO_INCREMENT `cxuu_admin_log`
 --
 ALTER TABLE `cxuu_admin_log`
-  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_attachments`
@@ -525,13 +529,13 @@ ALTER TABLE `cxuu_channel`
 -- 使用表AUTO_INCREMENT `cxuu_content`
 --
 ALTER TABLE `cxuu_content`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_content_content`
 --
 ALTER TABLE `cxuu_content_content`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `cxuu_juleader`

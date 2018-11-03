@@ -1,0 +1,90 @@
+<div id="pagelist">
+    <h3 class="page-header">前后台公告</h3>
+    {if getCxuuBaseAuth("Noticecontr_addedit")}
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="javascript:;" onclick="targetmain('/admin/Noticecontr/addedit')"><button type="button" class="btn btn-info">添加公告</button></a>
+        </div>
+    </div>
+    {/if}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>显示类别</th>
+                <th>标题</th>
+                <th>添加时间</th>
+                <th>发布人</th>
+                <th>是否显示</th>
+                <th>管理操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $list as $vo}
+            <tr id="Noticetr{$vo.id}">
+                <td>{$vo.id}</td>
+                <td>{if $vo['did'] ==1}前台{else/}后台{/if}</td>
+                <td>{$vo.title}</td>
+                <td>{$vo.created_date|date='Y-m-d H:i'}</td>
+                <td>{$vo.publisher}</td>
+                <td>{if ($vo['status']!=1)}不显示{else/}显示{/if}</td>
+                <td width="120">
+                    {if getCxuuBaseAuth("Noticecontr_addedit")}
+                    <a href="javascript:;" onclick="targetmain('/admin/Noticecontr/addedit/?id={$vo.id}')">
+                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                    </a>
+                    {/if}
+                    {if getCxuuBaseAuth("Noticecontr_Del")}
+                    <a href="javascript:Noticetr('{$vo.id}','{$vo.title}');" id="delNoticetr" >
+                        <button type="button" class="btn btn-danger btn-sm">删除</button>
+                    </a>
+                    {/if}
+                </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+        {$page}<!--分页-->
+    </div>
+</div>
+
+<script>
+    function Noticetr(id, username) {
+        layer.confirm('确定要删除  ' + username + '  领导信息吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Noticecontr/del/?id=" + id, {id: id}, function (data) {
+                console.log(data.msg);
+                if (data.result == 1) {
+                    $("#Noticetr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+
+    //无刷新分页 邓中华 20181009
+    $(function ()
+    {
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            $("#pagelist").html(result);
+        });
+    }
+</script>
+
+
+
