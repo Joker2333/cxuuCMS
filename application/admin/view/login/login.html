@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="container">
-		<div class="alert alert-warning" role="alert"> 
+		<div id="dvshow" class="alert alert-warning" role="alert">
 			登录后台，本系统采用H5后台前端技术构建，请使用IE10以上版本或微软Edge浏览器，推荐使用chrome 45以上的google浏览器。否则很多功能无法使用。
 			（<a href="/software/71.0.3559.6_chrome_installer.exe">点击下载安装chrome浏览器</a>）
 		</div>
@@ -34,6 +34,16 @@
         </div>
 
         <script type="text/javascript">
+            $("#dvshow").hide();
+            $("#form1").hide();
+            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+            if (userAgent.indexOf("Chrome") > -1){
+                $("#form1").show();
+            } else {
+                $("#dvshow").show();
+            }
+
+
             $(function () {
                 $(":submit").click(function () {
                     var options = {

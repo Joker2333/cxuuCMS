@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ca5c909-852f-4186-a984-eae83816a7d7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cxuucms.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cxuucms.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin/view/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin/view/login/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,23 +96,23 @@
     <session id="821024078">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="4" />
+          <entry key="project.open.time.6" value="5" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="7" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="5" />
           <entry key="htaccess" value="1" />
-          <entry key="html" value="61" />
+          <entry key="html" value="62" />
           <entry key="js" value="2" />
           <entry key="json" value="1" />
           <entry key="php" value="105" />
@@ -121,7 +122,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="61" />
+          <entry key="HTML" value="62" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="105" />
@@ -134,7 +135,7 @@
         <counts>
           <entry key="dummy" value="9" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="662" />
+          <entry key="html" value="684" />
           <entry key="js" value="7" />
           <entry key="php" value="2222" />
           <entry key="txt" value="36" />
@@ -142,7 +143,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="662" />
+          <entry key="HTML" value="684" />
           <entry key="JavaScript" value="7" />
           <entry key="PHP" value="2222" />
           <entry key="PLAIN_TEXT" value="46" />
@@ -151,7 +152,17 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/admin/view/login/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="15" column="60" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -182,7 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/admin/common.php" />
         <option value="$PROJECT_DIR$/application/admin/controller/Upload.php" />
         <option value="$PROJECT_DIR$/application/admin/model/ContentHits.php" />
         <option value="$PROJECT_DIR$/application/admin/view/Contentcontr/index.html" />
@@ -233,6 +243,7 @@
         <option value="$PROJECT_DIR$/application/common.php" />
         <option value="$PROJECT_DIR$/application/index/model/Content.php" />
         <option value="$PROJECT_DIR$/application/index/controller/Info.php" />
+        <option value="$PROJECT_DIR$/application/admin/view/login/login.html" />
       </list>
     </option>
   </component>
@@ -288,7 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,10 +306,37 @@
               <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cxuuCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cxuuCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,7 +396,8 @@
       <workItem from="1541047964232" duration="7582000" />
       <workItem from="1541057996681" duration="1782000" />
       <workItem from="1541063847850" duration="287000" />
-      <workItem from="1541219596264" duration="269000" />
+      <workItem from="1541219596264" duration="442000" />
+      <workItem from="1541220210240" duration="1181000" />
     </task>
     <task id="LOCAL-00001" summary="测试GIT">
       <created>1540528967324</created>
@@ -435,12 +473,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88111000" />
+    <option name="totallyTimeSpent" value="89465000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13432837" />
+      <window_info active="true" content_ui="combo" x="771" y="71" width="378" height="897" id="Project" order="0" visible="true" weight="0.13539445" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -480,13 +519,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="更新框架至5.28" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/admin/view/Noticecontr/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/view/Menu/application.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -814,6 +846,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="984">
           <caret line="121" column="47" lean-forward="true" selection-start-line="121" selection-start-column="47" selection-end-line="121" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="60" />
         </state>
       </provider>
     </entry>
