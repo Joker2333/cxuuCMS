@@ -198,7 +198,7 @@ $(document).ready(function() {
         server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}'||'',
         swf: '/static/webuploader/Uploader.swf',
         fileVal: 'image',
-        accept: {title: '请选择文件', extensions: 'jpg,png,gif,doc', multiple:false},
+        accept: {title: '请选择文件', extensions: 'jpg,png,gif', multiple:false},
     });
 
     uploader.on("uploadSuccess", function (file, response) {
