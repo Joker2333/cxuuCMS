@@ -4,7 +4,7 @@
         <div class="col-sm-6"> 
 		{if getCxuuBaseAuth("Contentcontr_addedit")}
             <a href="javascript:;" onclick="targetmain('/admin/Contentcontr/addedit/?cid={$channelId}')">
-                <button type="button" class="btn btn-info">添加信息</button>
+                <button type="button" class="btn btn-info">添加内容</button>
             </a>
         {/if}
 		</div>		
@@ -44,9 +44,9 @@
                     <th>ID</th>
                     <th>标题</th>
                     <th>栏目</th>
-                    <th>审核</th>
+                    <th width = 60>审核</th>
                     <th>部门</th>
-                    <th>发布人</th>
+                    <th>发布</th>
                     <th width = 60>录入</th>
                     <th width = 60>修改</th>
                     <th width = 120>操作</th>
@@ -57,14 +57,14 @@
                 <tr id="infotr{$vo.id}">
                     <td><input name="items" type="checkbox" id="{$vo.id}"/></td>
                     <td>{$vo.id}</td>
-                    <td><a href="/index/info/index/id/{$vo.id}" target="_blank">{$vo.title}</a>
+                    <td><a href="/index/info/index/id/{$vo.id}.html" target="_blank">{$vo.title}</a>
 					{if ($vo['imageBL'] == 1) }<span class='label label-danger'>图</span>{/if} 
 					{if ($vo['position_a'] == 1) } <span class='label label-danger'>头条</span>{/if}
 					{if ($vo['position_b'] == 1) } <span class='label label-danger'>小头条</span>{/if}
 					{if ($vo['position_c'] == 1) } <span class='label label-danger'>轮换</span>{/if}
 					{notempty name="$vo['auditstate']"}<br><small><b style="color:red;">审核说明：</b>{$vo.auditstate}</small>{/notempty}
 					</td>
-                    <td><a href="/index/infolist/index/channelval/{$vo.cid}" target="_blank">{$vo.channel.name}</a></td>
+                    <td><a href="/index/infolist/index/channelval/{$vo.cid}.html" target="_blank">{$vo.channel.name}</a></td>
                     <td>{if ($vo['status'] == 1) } 已审{else /} <span style="color: #CC5522;">未审</b>{/if}</td>
                     <td width=90>{$vo.usergroupname}</td>
                     <td>{$vo.publish}</td>
@@ -75,7 +75,7 @@
                             <button type="button" class="btn btn-primary btn-sm">编辑</button>
                         </a>
                         {if getCxuuBaseAuth("Contentcontr_Delete")}
-                        <a href="javascript:delinfo('{$vo.id}','{$vo.title}');" id="deluser" >
+                         <a href="javascript:delinfo('{$vo.id}','{$vo.title}');" id="deluser" >
                             <button type="button" class="btn btn-danger btn-sm">删除</button>
                         </a>
                         {/if}

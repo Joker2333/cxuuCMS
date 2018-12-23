@@ -1,309 +1,547 @@
 <div id="pagelist">
-<h3 class="page-header">用户组系统操作权限分配</h3>
-<h4 class="page-header">ID：{$getid}</h4>
-<form role="form" id="form1" name="form1" method="post" action="">
-    <div class="row">
-        <div class="col-sm-12 col-lg-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>系统</h4>
-                </div>
-                <div class="panel-body">
-                    <blockquote>
-                        <p>主菜单</p>
-                    </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="index_index" <?php if(@in_array("index_index",$info)){ echo "checked"; } ?>> 后台主页
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="index_leftmenu" <?php if(@in_array("index_leftmenu",$info)){ echo "checked"; } ?>> 左侧菜单
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="index_home" <?php if(@in_array("index_home",$info)){ echo "checked"; } ?>> 主页Home页
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Menu_contentMenu" <?php if(@in_array("Menu_contentMenu",$info)){ echo "checked"; } ?>> 内容管理
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Menu_channelMenu" <?php if(@in_array("Menu_channelMenu",$info)){ echo "checked"; } ?>> 栏目管理
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Menu_adminMenu" <?php if(@in_array("Menu_adminMenu",$info)){ echo "checked"; } ?>> 管理员管理
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Menu_settingMenu" <?php if(@in_array("Menu_settingMenu",$info)){ echo "checked"; } ?>> 系统设置
-                        </label>
-						<label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Menu_applicationMenu" <?php if(@in_array("Menu_applicationMenu",$info)){ echo "checked"; } ?>> 应用功能
-                        </label>
+    <h3 class="page-header">用户组系统操作权限分配</h3>
+    <h4 class="page-header">ID：{$getid}</h4>
+    <form role="form" id="form1" name="form1" method="post" action="">
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>系统</h4>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote>
+                            <p>主菜单</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="index_index" <?php if(@in_array("index_index",$info)){ echo "checked"; } ?>
+                                > 后台主页
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="index_leftmenu" <?php if(@in_array("index_leftmenu",$info)){ echo "checked"; } ?>
+                                > 左侧菜单
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="index_home" <?php if(@in_array("index_home",$info)){ echo "checked"; } ?>>
+                                主页Home页
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_contentMenu" <?php if(@in_array("Menu_contentMenu",$info)){ echo "checked"; } ?>
+                                > 内容管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_documentsMenu" <?php if(@in_array("Menu_documentsMenu",$info)){ echo "checked"; } ?>
+                                > 文件发签
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_channelMenu" <?php if(@in_array("Menu_channelMenu",$info)){ echo "checked"; } ?>
+                                > 栏目管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_adminMenu" <?php if(@in_array("Menu_adminMenu",$info)){ echo "checked"; } ?>
+                                > 管理员管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_settingMenu" <?php if(@in_array("Menu_settingMenu",$info)){ echo "checked"; } ?>
+                                > 系统设置
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Menu_applicationMenu" <?php if(@in_array("Menu_applicationMenu",$info)){ echo "checked"; } ?>
+                                > 应用功能
+                            </label>
 
-                    </div>
-                    <blockquote>
-                        <p>系统配置</p>
-                    </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"    value="Settingcontr_index" <?php if(@in_array("Settingcontr_index",$info)){ echo "checked"; } ?>> 网站设置
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"    value="Upload_uploadWebuploader" <?php if(@in_array("Upload_uploadWebuploader",$info)){ echo "checked"; } ?>> webuploader上传附件
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"    value="Upload_uploadSummernote" <?php if(@in_array("Upload_uploadSummernote",$info)){ echo "checked"; } ?>> Summernote上传附件
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"    value="Attachmentscontr_index" <?php if(@in_array("Attachmentscontr_index",$info)){ echo "checked"; } ?>> 附件管理
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"    value="Attachmentscontr_del" <?php if(@in_array("Attachmentscontr_del",$info)){ echo "checked"; } ?>> 附件删除
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_pw" <?php if(@in_array("Adminusercontr_pw",$info)){ echo "checked"; } ?>> 修改密码
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_pwedit" <?php if(@in_array("Adminusercontr_pwedit",$info)){ echo "checked"; } ?>> 修改密码Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Cachecontr_index" <?php if(@in_array("Cachecontr_index",$info)){ echo "checked"; } ?>> 缓存查看
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Cachecontr_del" <?php if(@in_array("Cachecontr_del",$info)){ echo "checked"; } ?>> 缓存删除
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-lg-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>用户管理</h4>
-                </div>
-                <div class="panel-body">
-                    <blockquote>
-                        <p>用户</p>
-                    </blockquote>
-                    <div class="checkbox input-md">                        
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_index" <?php if(@in_array("Adminusercontr_index",$info)){ echo "checked"; } ?>> 用户列表
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_addedit" <?php if(@in_array("Adminusercontr_addedit",$info)){ echo "checked"; } ?>> 添加和编辑
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_addaction" <?php if(@in_array("Adminusercontr_index",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_editaction" <?php if(@in_array("Adminusercontr_editaction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>                        
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Adminusercontr_del" <?php if(@in_array("Adminusercontr_del",$info)){ echo "checked"; } ?>> 删除用户
-                        </label>
-                    </div>
-                    <blockquote>
-                        <p>用户组</p>
-                    </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_index" <?php if(@in_array("Admingroupcontr_index",$info)){ echo "checked"; } ?>> 查看列表
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_addedit" <?php if(@in_array("Admingroupcontr_addedit",$info)){ echo "checked"; } ?>> 添加和编辑管理组
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_addAction" <?php if(@in_array("Admingroupcontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_editAction" <?php if(@in_array("Admingroupcontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_baseAuth" <?php if(@in_array("Admingroupcontr_baseAuth",$info)){ echo "checked"; } ?>> 编辑操作权限
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_baseAuthAction" <?php if(@in_array("Admingroupcontr_baseAuth",$info)){ echo "checked"; } ?>> 编辑操作权限Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_del" <?php if(@in_array("Admingroupcontr_del",$info)){ echo "checked"; } ?>> 删除管理组
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Admingroupcontr_menuAuth" <?php if(@in_array("Admingroupcontr_menuAuth",$info)){ echo "checked"; } ?>> 编辑菜单权限
-                        </label>
+                        </div>
+                        <blockquote>
+                            <p>系统配置</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Settingcontr_index" <?php if(@in_array("Settingcontr_index",$info)){ echo "checked"; } ?>
+                                > 网站设置
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Upload_uploadWebuploader" <?php if(@in_array("Upload_uploadWebuploader",$info)){ echo "checked"; } ?>
+                                > webuploader上传附件
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Upload_uploadSummernote" <?php if(@in_array("Upload_uploadSummernote",$info)){ echo "checked"; } ?>
+                                > Summernote上传附件
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Attachmentscontr_index" <?php if(@in_array("Attachmentscontr_index",$info)){ echo "checked"; } ?>
+                                > 附件管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Attachmentscontr_del" <?php if(@in_array("Attachmentscontr_del",$info)){ echo "checked"; } ?>
+                                > 附件删除
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_pw" <?php if(@in_array("Adminusercontr_pw",$info)){ echo "checked"; } ?>
+                                > 修改密码
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_pwedit" <?php if(@in_array("Adminusercontr_pwedit",$info)){ echo "checked"; } ?>
+                                > 修改密码Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Cachecontr_index" <?php if(@in_array("Cachecontr_index",$info)){ echo "checked"; } ?>
+                                > 缓存查看
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Cachecontr_del" <?php if(@in_array("Cachecontr_del",$info)){ echo "checked"; } ?>
+                                > 缓存删除
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    <div class="row">
-        <div class="col-sm-12 col-lg-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>栏目管理</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_index" <?php if(@in_array("Channelcontr_index",$info)){ echo "checked"; } ?>> 查看列表
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_addEdit" <?php if(@in_array("Channelcontr_addEdit",$info)){ echo "checked"; } ?>> 添加编辑栏目
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_addAction" <?php if(@in_array("Channelcontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_editAction" <?php if(@in_array("Channelcontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_Delete" <?php if(@in_array("Channelcontr_Delete",$info)){ echo "checked"; } ?>> 删除栏目
-                        </label>                        
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>用户管理</h4>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote>
+                            <p>用户</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_index" <?php if(@in_array("Adminusercontr_index",$info)){ echo "checked"; } ?>
+                                > 用户列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_addedit" <?php if(@in_array("Adminusercontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加和编辑
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_addaction" <?php if(@in_array("Adminusercontr_index",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_editaction" <?php if(@in_array("Adminusercontr_editaction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Adminusercontr_del" <?php if(@in_array("Adminusercontr_del",$info)){ echo "checked"; } ?>
+                                > 删除用户
+                            </label>
+                        </div>
+                        <blockquote>
+                            <p>用户组</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_index" <?php if(@in_array("Admingroupcontr_index",$info)){ echo "checked"; } ?>
+                                > 查看列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_addedit" <?php if(@in_array("Admingroupcontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加和编辑管理组
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_addAction" <?php if(@in_array("Admingroupcontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_editAction" <?php if(@in_array("Admingroupcontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_baseAuth" <?php if(@in_array("Admingroupcontr_baseAuth",$info)){ echo "checked"; } ?>
+                                > 编辑操作权限
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_baseAuthAction" <?php if(@in_array("Admingroupcontr_baseAuth",$info)){ echo "checked"; } ?>
+                                > 编辑操作权限Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_del" <?php if(@in_array("Admingroupcontr_del",$info)){ echo "checked"; } ?>
+                                > 删除管理组
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Admingroupcontr_menuAuth" <?php if(@in_array("Admingroupcontr_menuAuth",$info)){ echo "checked"; } ?>
+                                > 编辑菜单权限
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-	<div class="row">
-        <div class="col-sm-12 col-lg-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>内容管理</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_index"   <?php if(@in_array("Contentcontr_index",$info)){ echo "checked"; } ?> > 内容列表
-                        </label>
-						<label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Channelcontr_getJsTree" <?php if(@in_array("Channelcontr_getJsTree",$info)){ echo "checked"; } ?>> Js树形显示
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_addedit" <?php if(@in_array("Contentcontr_addedit",$info)){ echo "checked"; } ?>> 添加编辑内容
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_addAction" <?php if(@in_array("Contentcontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_editAction" <?php if(@in_array("Contentcontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_Delete" <?php if(@in_array("Contentcontr_Delete",$info)){ echo "checked"; } ?>> 删除内容
-                        </label>
-						<label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_Publish" <?php if(@in_array("Contentcontr_Publish",$info)){ echo "checked"; } ?>> 发布内容
-                        </label>
-						
-						<label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_Position" <?php if(@in_array("Contentcontr_Position",$info)){ echo "checked"; } ?>> 内容属性
-                        </label>
-						
-						<label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Contentcontr_batchOperation" <?php if(@in_array("Contentcontr_batchOperation",$info)){ echo "checked"; } ?>> 批量操作
-                        </label>
-						
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>栏目管理</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_index" <?php if(@in_array("Channelcontr_index",$info)){ echo "checked"; } ?>
+                                > 查看列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_addEdit" <?php if(@in_array("Channelcontr_addEdit",$info)){ echo "checked"; } ?>
+                                > 添加编辑栏目
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_addAction" <?php if(@in_array("Channelcontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_editAction" <?php if(@in_array("Channelcontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_Delete" <?php if(@in_array("Channelcontr_Delete",$info)){ echo "checked"; } ?>
+                                > 删除栏目
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-	<div class="row">
-        <div class="col-sm-12 col-lg-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>应用功能</h4>
-                </div>
-                <div class="panel-body">
-				<blockquote>
-                        <p>领导信息</p>
-                </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Juleadercontr_index"   <?php if(@in_array("Juleadercontr_index",$info)){ echo "checked"; } ?> > 领导信息列表
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Juleadercontr_addedit" <?php if(@in_array("Juleadercontr_addedit",$info)){ echo "checked"; } ?>> 添加编辑
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Juleadercontr_addAction" <?php if(@in_array("Juleadercontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Juleadercontr_editAction" <?php if(@in_array("Juleadercontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Juleadercontr_Del" <?php if(@in_array("Juleadercontr_Del",$info)){ echo "checked"; } ?>> 删除领导信息
-                        </label>
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>内容管理</h4>
                     </div>
-					
-				<blockquote>
-                        <p>领导邮箱</p>
-                </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Jumailcontr_index"   <?php if(@in_array("Jumailcontr_index",$info)){ echo "checked"; } ?> > 领导邮箱列表
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Jumailcontr_addedit" <?php if(@in_array("Jumailcontr_addedit",$info)){ echo "checked"; } ?>> 回复邮件
-                        </label>                        
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Jumailcontr_editAction" <?php if(@in_array("Jumailcontr_editAction",$info)){ echo "checked"; } ?>> 回复Action
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="baseauth[]"  value="Jumailcontr_Del" <?php if(@in_array("Jumailcontr_Del",$info)){ echo "checked"; } ?>> 删除信件
-                        </label>
-                    </div>
-					
-				<blockquote>
-                        <p>值班安排</p>
-                </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Ondutycontr_index"   <?php if(@in_array("Ondutycontr_index",$info)){ echo "checked"; } ?> > 值班安排列表
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Ondutycontr_addedit" <?php if(@in_array("Ondutycontr_addedit",$info)){ echo "checked"; } ?>> 添加编辑值班员
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Ondutycontr_addAction" <?php if(@in_array("Ondutycontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                         <input type="checkbox" name="baseauth[]"  value="Ondutycontr_editAction" <?php if(@in_array("Ondutycontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                         <input type="checkbox" name="baseauth[]"  value="Ondutycontr_Del" <?php if(@in_array("Ondutycontr_Del",$info)){ echo "checked"; } ?>> 删除值班员
-                        </label>
-                    </div>
-                    <blockquote>
-                        <p>前后台公告</p>
-                </blockquote>
-                    <div class="checkbox input-md">
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_index"   <?php if(@in_array("Noticecontr_index",$info)){ echo "checked"; } ?> > 前后台公告列表
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_addedit" <?php if(@in_array("Noticecontr_addedit",$info)){ echo "checked"; } ?>> 添加编辑公告
-                        </label>
-                        <label class="checkbox-inline">
-                        <input type="checkbox" name="baseauth[]"  value="Noticecontr_addAction" <?php if(@in_array("Noticecontr_addAction",$info)){ echo "checked"; } ?>> 添加Action
-                        </label>
-                        <label class="checkbox-inline">
-                         <input type="checkbox" name="baseauth[]"  value="Noticecontr_editAction" <?php if(@in_array("Noticecontr_editAction",$info)){ echo "checked"; } ?>> 编辑Action
-                        </label>
-                        <label class="checkbox-inline">
-                         <input type="checkbox" name="baseauth[]"  value="Noticecontr_Del" <?php if(@in_array("Noticecontr_Del",$info)){ echo "checked"; } ?>> 删除公告
-                        </label>
+                    <div class="panel-body">
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_index"   <?php if(@in_array("Contentcontr_index",$info)){ echo "checked"; } ?>
+                                > 内容列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Channelcontr_getJsTree" <?php if(@in_array("Channelcontr_getJsTree",$info)){ echo "checked"; } ?>
+                                > Js树形显示
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_addedit" <?php if(@in_array("Contentcontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加编辑内容
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_addAction" <?php if(@in_array("Contentcontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_editAction" <?php if(@in_array("Contentcontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_Delete" <?php if(@in_array("Contentcontr_Delete",$info)){ echo "checked"; } ?>
+                                > 删除内容
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_Publish" <?php if(@in_array("Contentcontr_Publish",$info)){ echo "checked"; } ?>
+                                > 发布内容
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_Position" <?php if(@in_array("Contentcontr_Position",$info)){ echo "checked"; } ?>
+                                > 内容属性
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Contentcontr_batchOperation" <?php if(@in_array("Contentcontr_batchOperation",$info)){ echo "checked"; } ?>
+                                > 批量操作
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Content_examine" <?php if(@in_array("Content_examine",$info)){ echo "checked"; } ?>
+                                > 同级内容审查
+                            </label>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <input type="hidden" name="id" value="{$getid}">
-    <button type="submit"  name="submit" class="btn btn-primary btn-lg">提交</button>
-</form>
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>文件发签管理</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_index"   <?php if(@in_array("Documentscontr_index",$info)){ echo "checked"; } ?>
+                                > 文件发签列表
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_addEdit" <?php if(@in_array("Documentscontr_addEdit",$info)){ echo "checked"; } ?>
+                                > 添加编辑
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_addAction" <?php if(@in_array("Documentscontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_editAction" <?php if(@in_array("Documentscontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_Delete" <?php if(@in_array("Documentscontr_Delete",$info)){ echo "checked"; } ?>
+                                > 删除文件发签
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_Publish" <?php if(@in_array("Documentscontr_Publish",$info)){ echo "checked"; } ?>
+                                > 发布文件发签
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Documentscontr_batchOperation" <?php if(@in_array("Documentscontr_batchOperation",$info)){ echo "checked"; } ?>
+                                > 批量操作
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>在线音乐管理</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_index"   <?php if(@in_array("Onlinemusiccontr_index",$info)){ echo "checked"; } ?>
+                                > 在线音乐列表
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_addEdit" <?php if(@in_array("Onlinemusiccontr_addEdit",$info)){ echo "checked"; } ?>
+                                > 添加编辑
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_addAction" <?php if(@in_array("Onlinemusiccontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_editAction" <?php if(@in_array("Onlinemusiccontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_Delete" <?php if(@in_array("Onlinemusiccontr_Delete",$info)){ echo "checked"; } ?>
+                                > 删除在线音乐
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_Publish" <?php if(@in_array("Onlinemusiccontr_Publish",$info)){ echo "checked"; } ?>
+                                > 发布在线音乐
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Onlinemusiccontr_batchOperation" <?php if(@in_array("Onlinemusiccontr_batchOperation",$info)){ echo "checked"; } ?>
+                                > 批量操作
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>应用功能</h4>
+                    </div>
+                    <div class="panel-body">
+                        <blockquote>
+                            <p>领导信息</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Juleadercontr_index"   <?php if(@in_array("Juleadercontr_index",$info)){ echo "checked"; } ?>
+                                > 领导信息列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Juleadercontr_addedit" <?php if(@in_array("Juleadercontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加编辑
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Juleadercontr_addAction" <?php if(@in_array("Juleadercontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Juleadercontr_editAction" <?php if(@in_array("Juleadercontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Juleadercontr_Del" <?php if(@in_array("Juleadercontr_Del",$info)){ echo "checked"; } ?>
+                                > 删除领导信息
+                            </label>
+                        </div>
+
+                        <blockquote>
+                            <p>领导邮箱</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Jumailcontr_index"   <?php if(@in_array("Jumailcontr_index",$info)){ echo "checked"; } ?>
+                                > 领导邮箱列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Jumailcontr_addedit" <?php if(@in_array("Jumailcontr_addedit",$info)){ echo "checked"; } ?>
+                                > 回复邮件
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Jumailcontr_editAction" <?php if(@in_array("Jumailcontr_editAction",$info)){ echo "checked"; } ?>
+                                > 回复Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Jumailcontr_Del" <?php if(@in_array("Jumailcontr_Del",$info)){ echo "checked"; } ?>
+                                > 删除信件
+                            </label>
+                        </div>
+
+                        <blockquote>
+                            <p>值班安排</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Ondutycontr_index"   <?php if(@in_array("Ondutycontr_index",$info)){ echo "checked"; } ?>
+                                > 值班安排列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Ondutycontr_addedit" <?php if(@in_array("Ondutycontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加编辑值班员
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Ondutycontr_addAction" <?php if(@in_array("Ondutycontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Ondutycontr_editAction" <?php if(@in_array("Ondutycontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Ondutycontr_Del" <?php if(@in_array("Ondutycontr_Del",$info)){ echo "checked"; } ?>
+                                > 删除值班员
+                            </label>
+                        </div>
+                        <blockquote>
+                            <p>前后台公告</p>
+                        </blockquote>
+                        <div class="checkbox input-md">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Noticecontr_index"   <?php if(@in_array("Noticecontr_index",$info)){ echo "checked"; } ?>
+                                > 前后台公告列表
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Noticecontr_addedit" <?php if(@in_array("Noticecontr_addedit",$info)){ echo "checked"; } ?>
+                                > 添加编辑公告
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Noticecontr_addAction" <?php if(@in_array("Noticecontr_addAction",$info)){ echo "checked"; } ?>
+                                > 添加Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Noticecontr_editAction" <?php if(@in_array("Noticecontr_editAction",$info)){ echo "checked"; } ?>
+                                > 编辑Action
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="baseauth[]"
+                                       value="Noticecontr_Del" <?php if(@in_array("Noticecontr_Del",$info)){ echo "checked"; } ?>
+                                > 删除公告
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$getid}">
+        <button type="submit" name="submit" class="btn btn-primary btn-lg">提交</button>
+    </form>
 </div>
 <script type="text/javascript">
     $(function () {
         ajaxPost('/admin/Admingroupcontr/baseAuthAction/?groupid={$getid}');
         /**
-        $(":submit").click(function () {
+         $(":submit").click(function () {
             var options = {
                 url: "/admin/Admingroupcontr/baseAuthAction/?groupid=" + {$getid},
                 dataType: "json",
@@ -319,6 +557,6 @@
             };
             $("#form1").ajaxForm(options);
         });
-*/
+         */
     });
 </script>

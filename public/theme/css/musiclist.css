@@ -1,0 +1,10 @@
+@charset "utf-8";
+* { margin:0px auto; padding:0px; }
+a { text-decoration:none; color:#000000; cursor:pointer; font-family:"微软雅黑","黑体";}
+a:hover { color:#900; }
+body {
+background-color:#dedede;
+}
+
+/* 主内容 */
+.container{margin-top:10px;width:1200px;height:960px;background-color:#fff;}

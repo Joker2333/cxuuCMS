@@ -14,41 +14,43 @@ class Login extends \think\Controller {
     }
 
     public function loginAction() {
-        $loginpost = $this->request->post();
-//        print_r($loginpost);
-//        return;
+        $loginPost = $this->request->post();
+        $model = new AdminLog;
+        $ip = $this->request->ip();
         $validate = new \app\admin\validate\Login;
-        if (!$validate->check($loginpost)) {
+        if (!$validate->check($loginPost)) {
             return ajax_Jsonreport($validate->getError(), 0);
         }
-        $userinfo = Admin::where('username', $loginpost['username'])->find();
-        if (empty($userinfo) || $userinfo['password'] != md5($loginpost['password'])) {
+        $userInfo = Admin::where('username', $loginPost['username'])->find();
+        if (empty($userInfo) || $userInfo['password'] != md5($loginPost['password'])) {
+            //写入日志
+            $model->addData(time(), $loginPost['username'], $ip, $this->request->url(), "登录操作-用户名密码错误！");
             return ajax_Jsonreport("用户名密码错误！", 0);
         }
-        if (!$userinfo['stauts'] || !$userinfo['group_id']) {
+        if (!$userInfo['stauts'] || !$userInfo['group_id']) {
+            //写入日志
+            $model->addData(time(), $loginPost['username'], $ip, $this->request->url(), "登录操作-用户状态异常！");
             return ajax_Jsonreport("用户状态异常，请联系管理员", 0);
         }
 
         // 更新登录信息,写入记录
-        $ip = $this->request->ip();
         $data = [
             'last_login_time' => time(),
             'last_login_ip' => $ip
         ];
-        if (!Admin::where('user_id', $userinfo['user_id'])->update($data)) {
+        if (!Admin::where('user_id', $userInfo['user_id'])->update($data)) {
             return ajax_Jsonreport("写入数据库错误！", 0);
         }
         //写入COOKIE
-        if (in_array("remember-me", $loginpost)) {
+        if (in_array("remember-me", $loginPost)) {
             $cookieTime = 86400; //秒，一天
         } else {
             $cookieTime = 3600; //一小时
         }
-        $this->adminuserInfo($userinfo, $cookieTime);
+        $this->adminuserInfo($userInfo, $cookieTime);
 
         //写入日志
-        $model = new AdminLog;
-        $model->addData(time(), $userinfo['username'], $ip, $this->request->url(), "登录操作");
+        $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "登录操作-登录成功");
         return ajax_Jsonreport("登录成功！", 1);
     }
 
@@ -56,16 +58,16 @@ class Login extends \think\Controller {
      * 将用户信息及所在组信息写入cookie  并加密
      * 传入userinfo 值  array
      * * */
-    public function adminuserInfo($userinfo, $cookieTime) {
-        $admingroupinfo = Admingroup::get($userinfo['group_id']);
+    public function adminuserInfo($userInfo, $cookieTime) {
+        $admingroupinfo = Admingroup::get($userInfo['group_id']);
         //设置cookie
         $adminuserinfo = array(
-            'user_id' => $userinfo['user_id'],
-            'group_id' => $userinfo['group_id'],
-            'username' => $userinfo['username'],
-            'nicename' => $userinfo['nicename'],
-            'last_login_time' => $userinfo['last_login_time'],
-            'last_login_ip' => $userinfo['last_login_ip'],
+            'user_id' => $userInfo['user_id'],
+            'group_id' => $userInfo['group_id'],
+            'username' => $userInfo['username'],
+            'nicename' => $userInfo['nicename'],
+            'last_login_time' => $userInfo['last_login_time'],
+            'last_login_ip' => $userInfo['last_login_ip'],
             'groupname' => $admingroupinfo['groupname'],
             'base_purview' => $admingroupinfo['base_purview'],
             'channel_purview' => $admingroupinfo['channel_purview'],

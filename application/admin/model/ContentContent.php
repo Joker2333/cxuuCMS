@@ -12,7 +12,7 @@ use think\Model;
 
 class ContentContent extends Model {
 
-    protected $pk = 'id';
+    protected $pk = 'aid';
 
 
 }

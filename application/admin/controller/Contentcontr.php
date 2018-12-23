@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use app\admin\model\Content;
 use app\admin\model\ContentContent;
 use app\admin\model\Channel;
+use app\admin\model\AdminLog;
 
 class Contentcontr extends \think\Controller
 {
@@ -19,8 +20,12 @@ class Contentcontr extends \think\Controller
         $status = $searchInfo['status'];
         $title = $searchInfo['title'];
         $query = [];
-        if (getCxuuGroupId() != 1) {
+        //增加同级审核 的审看权限 不受用户ID限制
+        if (getCxuuGroupId() != 1 && empty(getCxuuBaseAuth("Content_examine"))) {
             array_push($query, ['user_id', '=', getCxuuUserId()]);
+        }
+        if (getCxuuGroupId() != 1 && !empty(getCxuuBaseAuth("Content_examine")) && empty($channelId)) {
+            array_push($query, ['cid', 'in', getCxuuChannelAuth()]);
         }
         if ($status != '') {
             array_push($query, ['status', '=', $status]);
@@ -62,10 +67,10 @@ class Contentcontr extends \think\Controller
             return $this->fetch('content');
         } else {
             error_reporting(E_ALL & ~E_NOTICE); //屏蔽未定义变量错误提示
-            if ($userInfo['group_id'] == 1) {
-                //超级管理员不受限制
+            if ($userInfo['group_id'] == 1 || !empty(getCxuuBaseAuth("Content_examine"))) {
+                //超级管理员和有审查权限的用户组 不受限制
                 $find = Content::where('id', $getInfo['id'])->find();
-            } else {
+            }else {
                 $find = Content::where('id', $getInfo['id'])->where('user_id', getCxuuUserId())->find();
             }
             if ($find) {
@@ -97,6 +102,10 @@ class Contentcontr extends \think\Controller
         $add = Content::create($addPost);
         $add->ContentContent()->save(['content' => $addPost['content']]);//关联写入
         if ($add) {
+            //写入日志
+            $ip = $this->request->ip();
+            $model = new AdminLog;
+            $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "添加内容 ID为 " . $add->id);
             return ajax_Jsonreport("添加成功", 1, "/admin/contentcontr");
         } else {
             return ajax_Jsonreport("添加失败", 0);
@@ -125,10 +134,13 @@ class Contentcontr extends \think\Controller
             }
             $edit = Content::get($id);
             $edit->save($editPost, ['id' => $id]);
-            $edit->ContentContent()->save([
-                'content' => $editPost['content'],   //关联写入
-            ]);
+            $edit->ContentContent->save(['content' => $editPost['content']]);//关联更新
             if ($edit) {
+                //写入日志
+                $ip = $this->request->ip();
+                $userInfo = getCxuuCookie();// 实例化 用户信息模型
+                $model = new AdminLog;
+                $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "修改内容 ID为 " . $id);
                 return ajax_Jsonreport("修改成功", 1, "/admin/contentcontr");
             } else {
                 return ajax_Jsonreport("修改失败", 0);
@@ -140,7 +152,6 @@ class Contentcontr extends \think\Controller
     {
         $id = $this->request->get('id');
         $userInfo = getCxuuCookie();
-
         if ($userInfo['group_id'] == 1) {
             //超级管理员不受限制
             $del = Content::where('id', $id)->delete();
@@ -148,16 +159,19 @@ class Contentcontr extends \think\Controller
         } else {
             $del = Content::where('id', $id)->where('user_id', $userInfo['user_id'])->delete();
             if ($del) {
-                $delcontent = ContentContent::where('aid', $id)->delete();
+                $delcontent = ContentContent::where('aid', $id)->where('user_id', $userInfo['user_id'])->delete();
             } else {
                 return ajax_Jsonreport("你不能删除不属于你的内容", 0);
             }
         }
-
-        if ($del || $delcontent) {
+        if ($del && $delcontent) {
+            //写入日志
+            $ip = $this->request->ip();
+            $model = new AdminLog;
+            $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "删除内容 ID为 " . $id);
             return ajax_Jsonreport("删除成功", 1);
         } else {
-            return ajax_Jsonreport("删除失败或数据库错误", 0);
+            return ajax_Jsonreport("删除失败或你不能删除不属于你的内容", 0);
         }
     }
 
@@ -165,6 +179,9 @@ class Contentcontr extends \think\Controller
     public function batchOperation()
     {
         $content = $this->request->param();
+        $ip = $this->request->ip();
+        $userInfo = getCxuuCookie();// 实例化 用户信息模型
+        $model = new AdminLog;
         $status = $content["status"];
         $id = $content["id"];
         $cid = $content["cid"];
@@ -177,6 +194,8 @@ class Contentcontr extends \think\Controller
                     $Operation->cid = $cid;
                     $Operation->save();
                 }
+                //写入日志
+                $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "转移栏目 ID为 " . $id);
                 return ajax_Jsonreport("转移成功", 1);
                 break;
             case 2:
@@ -186,6 +205,8 @@ class Contentcontr extends \think\Controller
                     $Operation->status = 1;
                     $Operation->save();
                 }
+                //写入日志
+                $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "批量审核 ID为 " . $id);
                 return ajax_Jsonreport("批量审核成功", 1);
                 break;
             case 3:
@@ -195,12 +216,17 @@ class Contentcontr extends \think\Controller
                     $Operation->status = 0;
                     $Operation->save();
                 }
+                //写入日志
+                $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "批量取消审核 ID为 " . $id);
                 return ajax_Jsonreport("批量取消审核成功", 1);
                 break;
             case 4:
                 //删除
                 $Operation = Content::destroy($id);
-                if ($Operation) {
+                $OperationContent = ContentContent::destroy($id);
+                if ($Operation && $OperationContent) {
+                    //写入日志
+                    $model->addData(time(), $userInfo['username'], $ip, $this->request->url(), "批量删除 ID为 " . $id);
                     return ajax_Jsonreport("批量删除成功", 1);
                 } else {
                     return ajax_Jsonreport("批量删除失败", 0);

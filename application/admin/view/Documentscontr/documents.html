@@ -1,0 +1,218 @@
+<div id="pagelist">
+    <h3 class="page-header">{$constname} 文件发签</h3>
+    <form role="form" id="form1" class="form-horizontal" name="form1" enctype="multipart/form-data" method="post"
+          action="#">
+        <div class="form-group">
+
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">类别</label>
+                <div class="col-md-2 selectlist">
+                    <select class="form-control" name="cid" required>
+                        <option value="">选择类别</option>
+                        <option value="1" {$info['cid'] == 1 ? 'selected = selected':''}}>通知</option>
+                        <option value="2" {$info['cid'] == 2 ? 'selected = selected':''}}>普通文件</option>
+                        <option value="3" {$info['cid'] == 3 ? 'selected = selected':''}}>党委文件</option>
+                        <option value="4" {$info['cid'] == 4 ? 'selected = selected':''}}>市局文件</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- 容器 -->
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">标题</label>
+                <div class="col-sm-8 col-xs-6">
+                    <input type="text" name="title" class="form-control" value="{$info.title}" placeholder="标题"
+                           required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- 容器 -->
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">文号</label>
+                <div class="col-sm-8 col-xs-6">
+                    <input type="text" name="docnumber" class="form-control" value="{$info.docnumber}"
+                           placeholder="文件文号" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2  control-label contenttab">公开</label>
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="public" value="1" id="publicRadios" {$info['public']==1 ?
+                        "checked":""}>公开
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="public" value="0" id="publicRadios" {$info['public']==0 ?
+                        "checked":""}>不公开
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">签发人</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="examine" class="form-control" value="{$info.examine}" placeholder="签发人"
+                           required>
+                </div>
+                <small>该文件的签发人</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">拟稿人</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="auther" class="form-control" value="{$info.auther}" placeholder="拟稿人"
+                           required>
+                </div>
+                <small>必须填写真实姓名</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">发布人</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="publish" class="form-control" value="{$info.publish}" placeholder="发布人"
+                           required>
+                </div>
+                <small>必须填写真实姓名，责任到人</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">缩略图</label>
+                <div class="col-sm-5">
+                    <input type="text" name="image" id="image" value="{$info.image}" class="form-control"
+                           id="uploadinfo">
+                </div>
+                {if getCxuuBaseAuth("Upload_uploadWebuploader")}
+                <div class="col-sm-4 contentuploadbt">
+                    <botton id="uploadFileBtn">选择上传</botton>
+                </div>
+                {/if}
+                <div class="col-sm-2 contentuploadbt"><input type="button" onclick="javascript:get_one_pic()"
+                                                             class="btn btn-primary btn-md" value="提取第一张图"/></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label class="col-sm-2 control-label contenttab">内容</label>
+                <div class="col-xs-11">
+                    <textarea id="summernote" class="summernote"
+                              name="content">{$info.DocumentsContent.content|raw}</textarea>
+                </div>
+            </div>
+        </div>
+
+        {if getCxuuBaseAuth("Documentscontr_Publish")}
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">审核说明</label>
+                <div class="col-sm-6 col-xs-4">
+                    <input type="text" name="auditstate" class="form-control" value="{$info.auditstate}">
+                </div>
+            </div>
+        </div>
+        {/if}
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2  control-label contenttab">状态</label>
+                <div class="col-sm-4">
+                    {if getCxuuBaseAuth("Contentcontr_Publish")}
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="1" id="optionsRadios2" {$info['status']==1 ?
+                        "checked":""}>发布
+                    </label>
+                    {/if}
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0" id="optionsRadios2" {$info['status']==0 ?
+                        "checked":""}>投稿
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2  control-label contenttab"> </label>
+                <input type="hidden" name="id" value="{$info.id}">
+                <button type="submit" name="submit" class="btn btn-primary btn-lg">{$constname}</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!-- include summernote css/js 邓中华 20181009 因flash问题 弃用KINDeditor-->
+<link href="/static/summernote/summernote.css" rel="stylesheet">
+<script src="/static/summernote/summernote.js"></script>
+<script src="/static/summernote/lang/summernote-zh-CN.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $summernote = $('#summernote').summernote({
+            height: 400,//set editor height
+            popover: {},// set popover 禁用，否则BUG很烦
+            toolbar: [
+                ['Misc', ['codeview', 'undo', 'redo', 'fullscreen']],
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize', 'fontname']],
+                ['color', ['color']],
+                ['height', ['height']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['Insert', ['picture', 'link', 'table', 'hr']],
+            ],
+            fontNames: ['Arial', '仿宋_GB2312', '仿宋', '黑体', '微软雅黑', '宋体'],
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            lang: 'zh-CN',
+            dialogsFade: true,// Add fade effect on dialogs
+            dialogsInBody: true,// Dialogs can be placed in body, not in
+            disableDragAndDrop: false,
+            //调用图片上传
+            callbacks: {
+                onImageUpload: function (files) {
+                    //循环多图上传 20181009
+                    for (var k = 0, length = files.length; k < length; k++) {
+                        sendFile($summernote, files[k]);
+                    }
+                },
+            },
+        });
+
+    });
+</script>
+{include file='Documentscontr/documents_js'/}
+
+<link href="/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
+<script src="/static/webuploader/webuploader.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        ajaxPost('/admin/Documentscontr/', '{$actionname}');
+
+        var uploader = WebUploader.create({
+            auto: true,
+            pick: '#uploadFileBtn',
+            compress: false, //图片在上传前不进行压缩
+            threads: 1, //上传并发数
+            fileNumLimit: 1,
+            server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}' || '',
+            swf: '/static/webuploader/Uploader.swf',
+            fileVal: 'image',
+            accept: {title: '请选择文件', extensions: 'jpg,png,gif,doc', multiple: false},
+        });
+
+        uploader.on("uploadSuccess", function (file, response) {
+            var imageUrl = response.url;
+            //console.log('URL：', response._raw);
+            //alert(imageUrl);
+            $('input[name=image]').val(imageUrl);
+        });
+    });
+</script>

@@ -21,7 +21,7 @@ background-color:#dedede;
 .contentlist hr{float:left;width:740px;height:0px;border-top:1px dashed #cdcdcd;}
 
 
-.rightlist{float:right;margin-left:20px;width:360px;height:900px;background-color:#e7f5ff;}
+.rightlist{float:right;margin-left:20px;width:360px;height:898px;background-color:#e7f5ff;}
 
 .rightlist .toptitle{float:left;width:340px;height:40px;line-height:40px;background-color:#a4d7ff;padding:10px;font-size:18px;}
 .rightlist .toptitle .bar{float:left;width:20px;height:40px;line-height:40px;border-left:4px solid #0364dd;}

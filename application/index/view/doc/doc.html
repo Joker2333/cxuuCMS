@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$info.title}-{cxuu:site name="site_title"}</title>
+    <meta name="keywords" content=" "/>
+    <meta name="description" content=" "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/static/layer/layer.js"></script>
+    <link href="/theme/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/theme/css/doc.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+<div id="article_content_page">
+    <div id="page_content">
+        <!--== S 正文内容 -->
+        <div id="article_box">
+            <div id="article_title">{$info.title}</div>
+
+            <div id="article_info">
+                <span>{$info.docnumber}</span> <span>签发人：{$info.examine}</span>
+            </div>
+
+            <div class="article_content">
+                <p> <?php echo htmlspecialchars_decode($content['content']);?> </p>
+            </div>
+
+
+            <div id="article_info">
+                <span>发布单位：{$info.usergroupname}</span>
+                <span>拟稿：{$info.auther}</span>
+                <span>发布：{$info.publish}</span>
+                <span>浏览：{$info.hits} 次<!-- 浏览views 次 --></span>
+                <span>{$info.created_date|date="Y-m-d"}</span>
+            </div>
+        </div>
+        <!--== E 正文内容 -->
+    </div>
+
+
+
+</div>
+
+{if ($userStatus == 1)}
+<div id="docsignin">
+    <div class="docsignin">
+        <div class="dctext">{if ($docSign ==1)}
+            <script> var sign = 1;</script>
+            已签收{else/}签收
+            <script> var sign = 0;</script>
+            {/if}
+        </div>
+        <span class="dc_a1"></span>
+    </div>
+</div>
+{else/}
+<div id="docsignin">
+    <div class="dsignin">
+        <div class="dtext">如需签收本文件，请登录管理后台，刷新此页！</div>
+    </div>
+</div>
+{/if}
+
+<!--<div id="content_topinfo">
+    <div class="topsearch">
+        <form class="navbar-form navbar-right" role="form" id="form1" name="form1" method="" action="/index/search">
+      <span class="span1">
+      <input name="keywords" type="text" class="search-keyword" id="search-keyword"/>
+      </span>
+            <input type="submit" value="搜索文件" class="span2"/>
+        </form>
+    </div>
+</div>-->
+<div id="docsigninList">
+
+<div class="title">签收列表</div>
+<div class="list">
+
+    <li class="b"><span>签收部门</span><span>签收人</span><span>签收时间</span></li>
+    <li class="b"><span>签收部门</span><span>签收人</span><span>签收时间</span></li>
+    {volist name="signList" id="vo"}
+    <li><span>{$vo.groupname}</span><span>{$vo.signinname}</span><span>{$vo.time|format_time="2"}</span></li>
+    {/volist}
+
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    //文头背景自动更换
+    {if ($info['cid'] == 1)}
+        var bgJpg="index_logo";
+    {/if}
+    {if ($info['cid'] == 2)}
+        var bgJpg="ad_banner";
+    {/if}
+    {if ($info['cid'] == 3)}
+        var bgJpg="ad_banner";
+    {/if}
+    {if ($info['cid'] == 4)}
+        var bgJpg="ad_banner";
+    {/if}
+    var bg='url(/theme/image/index/'+bgJpg+'.jpg)';
+    $("#article_content_page").css("background-image",bg);
+
+//签收文件动作
+    $(".docsignin").click(function () {
+        if (sign == 1) {
+            layer.msg('你的部门已经签收了此文件', {time: 6000, icon: 1});
+        } else {
+            docsignin(1);
+        }
+    });
+
+    function docsignin(signIn) {
+        $.post("/index/doc/signInAction/",
+            {signIn: signIn, id: {$info.id}
+    },function (data) {
+            if (data.result == 1) {
+                sign = 1;
+                layer.msg(data.msg, {time: 6000, icon: 1});
+                $('.dctext').text('已签收');
+                $(".list").append("<li><span>{$userInfo['groupname']}</span><span>{$userInfo['nicename']}</span><span>刚刚</span></li>");
+            } else {
+                layer.msg(data.msg, {time: 6000, icon: 1});
+            }
+        },"json");
+    }
+
+</script>
+
+{include file='footer'/}
+</body>
+</html>

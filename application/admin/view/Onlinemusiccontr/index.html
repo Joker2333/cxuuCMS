@@ -1,0 +1,180 @@
+<div id="pagelist">
+    <h3 class="page-header">在线音乐列表</h3>
+    <div class="row">		
+        <div class="col-sm-6"> 
+		{if getCxuuBaseAuth("Documentscontr_addedit")}
+            <a href="javascript:;" onclick="targetmain('/admin/Onlinemusiccontr/addEdit/')">
+                <button type="button" class="btn btn-info">添加在线音乐</button>
+            </a>
+        {/if}
+		</div>		
+        <div class="col-sm-6 text-right">
+            <form class="form-inline" role="form" id="form1" name="form1"  method="" action="">
+				<div class="form-group">
+					<select class="form-control" name="status">
+                        <option value="">审核</option>
+                        <option value="1">已审</option>
+                        <option value="0">未审</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="音乐标题">
+                </div>
+                <button type="button"  name="submit" class="btn btn-default btn-search">搜索</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width = 50><input type="checkbox" id="allAndNotAll" /></th>
+                    <th>ID</th>
+                    <th>音乐名</th>
+                    <th>艺术家/演唱/歌手</th>
+                    <th>类别</th>
+                    <th>录入时间</th>
+                    <th width = 120>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $list as $vo} 
+                <tr id="infotr{$vo.id}">
+                    <td><input name="items" type="checkbox" id="{$vo.id}"/></td>
+                    <td>{$vo.id}</td>
+                    <td><a href="/index/music/index/id/{$vo.id}.html" target="_blank">{$vo.title}</a>
+                        {if ($vo['imageBL'] == 1) }<span class='label label-danger'>图</span>{/if}
+                    </td>
+                    <td>{$vo['auther']}</td>
+                    <td>
+                        {if($vo['cid'] == 1)}流行{/if}
+                        {if($vo['cid'] == 2)}古典{/if}
+                        {if($vo['cid'] == 3)}红色{/if}
+                        {if($vo['cid'] == 4)}轻音乐{/if}
+                    </td>
+                    <td>{$vo.created_date|date="m-d"}</td>
+                    <td class="text-right">
+                        <a href="javascript:;" onclick="targetmain('/admin/Onlinemusiccontr/addEdit/?id={$vo.id}')">
+                            <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                        </a>
+                        {if getCxuuBaseAuth("Onlinemusiccontr_Delete")}
+                         <a href="javascript:delinfo('{$vo.id}','{$vo.title}');" id="deluser" >
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a>
+                        {/if}
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        
+    </div>
+	
+	<div class="row">
+	{if getCxuuBaseAuth("Onlinemusiccontr_batchOperation")}
+		<div class="col-sm-6 text-left batchOperation">
+				<div class="col-md-8">
+				{if getCxuuBaseAuth("Onlinemusiccontr_Publish")}
+                <input type="button" onclick="javascript:batchOperation(2);" value="审核" class="btn btn-primary btn-sm"/>				
+                <input type="button" onclick="javascript:batchOperation(3);" value="取消审核" class="btn btn-primary btn-sm"/>
+				{/if}
+				{if getCxuuBaseAuth("Onlinemusiccontr_Delete")}
+                <input type="button" onclick="javascript:batchOperation(4);" value="批量删除" class="btn btn-primary btn-sm"/>
+				{/if}
+				</div>
+		</div>
+		{/if}
+		<div class="col-sm-6 text-right">
+		{$page|raw}<!--分页-->
+		</div>
+    </div>
+	
+	
+</div>
+
+<!--JS-->
+<script type="text/javascript">
+//选择
+    $("#allAndNotAll").click(function () {
+        var flag = this.checked;
+        $(":checkbox[name='items']").prop('checked', flag);
+    });
+
+    $(":checkbox[name='items']").click(function () {
+        $("#allAndNotAll").prop('checked',
+                $(":checkbox[name='items']").length == $(":checkbox[name='items']:checked").length);
+    });	
+	
+	
+//批量操作
+function batchOperation(status){
+	var ids=[];
+	$("input[name='items']:checked").each(function () {
+            ids.push($(this).attr("id"));
+        });
+    var contentIds = ids.join(",");
+
+	layer.confirm('确定要批量操作选中内容吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Onlinemusiccontr/batchOperation", {status: status, id:contentIds}, function (data) {
+                if (data.result == 1) {
+					layer.msg(data.msg);
+                    $("#main").load("/admin/Onlinemusiccontr/");
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+}
+
+//删除信息
+    function delinfo(id, title) {
+        layer.confirm('确定要删除 ' + title + ' 信息吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.post("/admin/Onlinemusiccontr/Delete/?id=" + id, {id: id}, function (data) {
+                //console.log(data.msg);
+                if (data.result == 1) {
+                    $("#infotr" + id).hide();
+                    layer.msg(data.msg);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }, "json");
+        }, function () {
+            layer.close();
+        });
+    }
+    
+
+
+
+//搜索信息
+    $(function () {
+        searchGet('/admin/Onlinemusiccontr');
+    });
+//无刷新分页
+    $(function ()
+    {
+        //绑定pagination a  Click事件
+        // $(".pagination a").on("click", function() {
+        //Click另外一种绑定写法，两种写法的区别可以另外一篇文章《jquery on click绑定事件的区别》
+        $(".pagination a").on("click", function () {
+            var page = $(this).attr("href");
+            getPage(page);
+            //禁止A标签跳转
+            return false;
+        });
+    });
+    function getPage(url)
+    {
+        $.get(url, function (result) {
+            //使用jquery html 加载URL
+            $("#pagelist").html(result);
+        });
+    }
+</script>

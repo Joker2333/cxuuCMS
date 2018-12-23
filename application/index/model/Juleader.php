@@ -10,8 +10,7 @@ class Juleader extends Model {
 
     protected $pk = 'id';
 	
-	// 定义全局的查询范围
-    protected $globalScope = ['status'];
+	protected $globalScope = ['status'];
     public function scopeStatus($query)
     {
         $query->where('status',1);

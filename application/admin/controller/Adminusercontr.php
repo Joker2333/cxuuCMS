@@ -15,10 +15,8 @@ class Adminusercontr extends \think\Controller
 
     public function index()
     {
-        $list = Admin::order('user_id ASC')->paginate(10);
-        $page = $list->render();
+        $list = Admin::order('user_id ASC')->all();
         $this->assign('list', $list);
-        $this->assign('page', $page);
         return $this->fetch();
     }
 
@@ -120,7 +118,7 @@ class Adminusercontr extends \think\Controller
         ];
         $update = new Admin;
         if ($update->allowField(['password'])->save($data, ['user_id' => $editpost['user_id']])) {
-            return ajax_Jsonreport("修改成功", 1, "/admin/Adminusercontr");
+            return ajax_Jsonreport("修改成功", 1, "/admin/Adminusercontr/pw");
         }
         return ajax_Jsonreport("修改失败", 0);
     }

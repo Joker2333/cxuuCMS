@@ -1,0 +1,12 @@
+<ul id="leftmenub" class="nav nav-sidebar">
+    <li class="active"><a href="#"><h4>文件发签</h4></a></li>
+    {if getCxuuBaseAuth("Documentscontr_addEdit")}
+    <li><a href="javascript:;" onclick="targetmain('/admin/documentscontr/addEdit')"><span
+            class="glyphicon glyphicon-modal-window"></span>添加文件</a></li>
+    {/if}
+    {if getCxuuBaseAuth("Documentscontr_index")}
+    <li><a href="javascript:;" onclick="targetmain('/admin/documentscontr')"><span
+            class="glyphicon glyphicon-menu-hamburger"></span>文件列表</a></li>
+    {/if}
+</ul>
+  

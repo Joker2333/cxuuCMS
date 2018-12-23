@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{cxuu:site name="site_title"}--在线音乐</title>
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+		<link href="/theme/css/musiclist.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/static/skPlayer/skPlayer.min.js"></script>
+    </head>
+<body>
+
+<div id="skPlayer"></div>
+
+<script>
+    var player = new skPlayer({
+        autoplay: false,
+        //可选项,自动播放,默认为false,true/false
+        listshow: true,
+        //可选项,列表显示,默认为true,true/false
+        mode: 'listloop',
+        //可选项,循环模式,默认为'listloop'
+        //'listloop',列表循环
+        //'singleloop',单曲循环
+            music: {
+        //必需项,音乐配置
+        type: 'file',
+            //必需项,自配置文件方式指定填'file'
+            source: [
+			 {volist name="list" id="vo"}
+            {
+            name: '{$vo.title|mbStr=0,44}',
+			author: '{$vo.auther}',
+       		src: '{$vo.musicurl}',
+        	cover: '{$vo.image}'
+            },
+			{/volist}
+        ]
+    }
+    });
+</script>
+
+</body>
+</html>

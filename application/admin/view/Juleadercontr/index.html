@@ -16,7 +16,6 @@
                 <th>姓名</th>
                 <th>照片</th>
                 <th>职务</th>
-                <th>分管工作</th>
                 <th>电话</th>                
                 <th>是否显示</th>
 				<th>管理操作</th>
@@ -29,9 +28,8 @@
                 <td width=50>{$vo.id}</td>
 				<td width=50>{$vo.sort}</td>
                 <td width=120>{$vo.name}</td>
-                <td width=80>{if empty($vo['image'])}无照片{else/}<div class="thumbnail"><img src="{$vo.image}" height=80 width=60></div>{/if}</td>
+                <td width=120>{if empty($vo['image'])}无照片{else/}<div class="thumbnail"><img src="{$vo.image}" height=160 width=90></div>{/if}</td>
                 <td>{$vo.duty}</td>
-                <td>{$vo.division}</td>
                 <td>{$vo.phone}</td>                
                 <td>{if ($vo['status']!=1)}不显示{else/}<span class='label label-danger'>显示</span>{/if}</td>
                 <td width=120>

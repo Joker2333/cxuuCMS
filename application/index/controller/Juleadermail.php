@@ -18,7 +18,7 @@ class Juleadermail extends \think\Controller {
 		} else {
 			$cache = Juleader::all()->order('sort','asc');
 			//dump($cache);
-			Cache::set("Juleadermailindex", $cache,500); //没有缓存则链接数据表获取数据并写入缓存 
+			Cache::set("Juleadermailindex", $cache,6000); //没有缓存则链接数据表获取数据并写入缓存 
 		}
 		
         $this->assign('list', $cache);

@@ -6,8 +6,8 @@
         {$usergroup.groupname} {$usergroup.nicename} ({$usergroup.username}) 您上次登录IP：{$usergroup.last_login_ip}
         上次登录时间：{$usergroup.last_login_time|date='Y-m-d H:i'}
     </div>
+{if getCxuuBaseAuth("Menu_settingMenu")}
     <div class="row placeholders">
-
         <div class="col-xs-6 col-sm-3 placeholder">
             <span class="glyphicon    glyphicon-list home_ico" aria-hidden="true"></span>
             <h3>{$contentCount}</h3>
@@ -30,8 +30,7 @@
             <h4>管理员数</h4>
         </div>
     </div>
-
-
+{/if}
     <div class="row">
         <h3 class="sub-header">公告</h3>
         {cxuu:volist table="notice" keyname="did" value="2" status="1" limit="2"}
@@ -39,8 +38,7 @@
             <div class="panel-heading">{$vo.title}</div>
             <div class="panel-body">
                 <?php echo htmlspecialchars_decode($vo['content']);?>
-                <br>发布人：{$vo.publisher}
-                <br>发布时间：{$vo.created_date|date='Y-m-d H:i'}
+                <br>发布人：{$vo.publisher} 时间：{$vo.created_date|date='Y-m-d H:i'}
             </div>
         </div>
         {/cxuu:volist}
@@ -59,7 +57,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>服务器端口</td>
+                        <td>服务器IP及端口</td>
                         <td><?php echo $_SERVER["SERVER_ADDR"].":".$_SERVER["SERVER_PORT"];?></td>
                     </tr>
                     <tr>
@@ -71,12 +69,12 @@
                         <td><?php echo Env::get('app_path');?></td>
                     </tr>
                     <tr>
-                        <td>WEB服务器版本</td>
+                        <td>WEB服务器</td>
                         <td><?php echo $_SERVER['SERVER_SOFTWARE'];?></td>
                     </tr>
                     <tr>
                         <td>程序版本</td>
-                        <td>V2.25.20181015/最后更新20181015</td>
+                        <td><?php echo CXUUCMSVER;?></td>
                     </tr>
                     <tr>
                         <td>ThinkPHP</td>

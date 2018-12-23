@@ -30,6 +30,7 @@ class Upload extends \think\Controller
         $siteSettings = new Settings();
         $siteInfo = $siteSettings->getSiteSetting();
         $upload_size = $siteInfo['upload_size'] * 1024;
+        $upload_media_size = $siteInfo['upload_media_size'] * 1024;
         $temp_arr = explode(".", $filename);
         $file_ext = strtolower(trim(array_pop($temp_arr))); //获取上传文件的 尾缀
         if (in_array($file_ext, self::$ext_arr['image'])) {
@@ -38,7 +39,7 @@ class Upload extends \think\Controller
             $extimg = 1;
         } elseif (in_array($file_ext, self::$ext_arr['media'])) {
             $upname = self::$uploadsname . 'media/';
-            $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['media']])->move($upname);
+            $info = $file->validate(['size' => $upload_media_size, 'ext' => self::$ext_arr['media']])->move($upname);
         } elseif (in_array($file_ext, self::$ext_arr['officefile'])) {
             $upname = self::$uploadsname . 'officefile/';
             $info = $file->validate(['size' => $upload_size, 'ext' => self::$ext_arr['officefile']])->move($upname);
@@ -81,8 +82,8 @@ class Upload extends \think\Controller
 
     public function uploadWebuploader()
     {
-        $file = request()->file("image");
-        $filename = $_FILES['image']['name'];
+        $file = request()->file("file");
+        $filename = $_FILES['file']['name'];
         $url = $this->upload($file, $filename);
         if ($url) {
             echo json_encode(array("url" => $url['url']));

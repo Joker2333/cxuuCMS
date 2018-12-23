@@ -3,7 +3,7 @@
  * url  提交方法
  * */
 function ajaxPost(url, act) {
-    var actionname = act||'';
+    var actionname = act || '';
     $(":submit").click(function () {
         var options = {
             url: url + actionname,
@@ -30,12 +30,11 @@ function searchGet(url) {
         var data = $('#form1').serializeObject();
         var parm = '';
         //console.log(data);
-        for (var name in data)
-        {
+        for (var name in data) {
             var value = data[name];
             !(typeof value == 'undefined') && (parm += name + '=' + encodeURI(value) + '&');
         }
-        parm && (parm = parm.substring(0,parm.length -1));
+        parm && (parm = parm.substring(0, parm.length - 1));
         $("#main").load(url + '?' + parm);
     });
 }
@@ -97,15 +96,13 @@ $.fn.reload = function (url, data, callback) {
 };
 
 /*上传组件 方法*/
-function uploader(config, success, contr)
-{
-    var upcontr = contr||'';//上传控制器名
-    if (!config.btnId)
-    {
+function uploader(config, success, contr) {
+    var upcontr = contr || '';//上传控制器名
+    if (!config.btnId) {
         var config = {
             btnId: config, /*上传按钮ID*/
             maxcount: 1, /*最大上传文件数量*/
-			fileNumLimit: 1, 
+            fileNumLimit: 1,
             multiple: false, /*是否为多文件上传*/
             extensions: 'jpg,png,gif,doc', /**/
             success: success

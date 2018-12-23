@@ -24,7 +24,7 @@ background-color:#dedede;
 
 
 /*回信*/
-.ldmail-title {text-align:left;padding:20px;font-size:22px;font-weight:bold;font-family:"黑体";line-height:30px;height:30px;width:1160px;background:#fff;}
+.ldmail-title {text-align:left;padding-bottom:20px;font-size:22px;font-weight:bold;font-family:"黑体";line-height:30px;height:30px;width:1160px;background:#fff;}
 
 .maillist {padding:20px;background:#fff;}
 .maillist .list {margin-bottom:40px;background:#e6f5ff;padding:10px;}

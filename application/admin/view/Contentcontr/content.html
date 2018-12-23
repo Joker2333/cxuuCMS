@@ -195,10 +195,12 @@ $(document).ready(function() {
         compress: false, //图片在上传前不进行压缩
         threads: 1, //上传并发数
         fileNumLimit: 1,
+        fileSizeLimit:2000000,
+        fileSingleSizeLimit:2000000,//单个文件大小限制 字节
         server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}'||'',
         swf: '/static/webuploader/Uploader.swf',
         fileVal: 'image',
-        accept: {title: '请选择文件', extensions: 'jpg,png,gif', multiple:false},
+        accept: {title: '请选择文件', extensions: 'jpg,png,gif,doc', multiple:false},
     });
 
     uploader.on("uploadSuccess", function (file, response) {
@@ -206,6 +208,16 @@ $(document).ready(function() {
             //console.log('URL：', response._raw);
 			//alert(imageUrl);
             $('input[name=image]').val(imageUrl);
+        layer.msg("上传成功");
+    });
+    uploader.on("error", function (type) {
+        if(type=="Q_TYPE_DENIED"){
+            layer.msg("只能上传jpg,png,gif,doc文件！");
+        }else if(type=="Q_EXCEED_SIZE_LIMIT"){
+            layer.msg("上传的文件不能超过2M");
+        }else{
+            layer.msg("上传出错！请检查后重新上传！错误代码"+type);
+        }
     });
     });
 </script>

@@ -14,7 +14,7 @@
 	<div class="timeinfo2">
 		<strong><a href="/">首页</a> </strong> // 
 	    {foreach $channelpath as $vo}
-			<a href="/channel/{$vo.id}.html" >{$vo.name|raw}</a> /
+			<a href="{:url('/channel/'.$vo.id)}" >{$vo.name|raw}</a> /
 		{/foreach}
 	</div>
 <div class="topsearch">
@@ -32,7 +32,7 @@
 	<div class="contentlist" >
 		<div class="list" >
 			{volist name="list" id="vo"} 
-			<li><span>{$vo.created_date|date='Y-m-d'}</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,44}</a></li>
+			<li><span>{$vo.created_date|date='Y-m-d'}</span><a href="{:url('/content/'.$vo.id)}" target="_blank">{$vo.title|mbStr=0,44}</a></li>
 			{if $i %5==0}<div class="hr"><hr></div>{/if} 
 			{/volist}
 		</div>
@@ -45,14 +45,14 @@
 	<div class="toptitle" ><div class="bar"></div>热点推荐</div>
 		<div class="list" >
 		{cxuu:contentlist cid="5" limit="8" order="hits"}
-			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,14}</a></li>
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="{:url('/content/'.$vo.id)}" target="_blank">{$vo.title|mbStr=0,14}</a></li>
 		{/cxuu:contentlist} 
 		</div>
 		
 	<div class="toptitle" ><div class="bar"></div>最新推荐</div>
 		<div class="list" >
 		{cxuu:contentlist cid="4" limit="8"}
-			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}" target="_blank">{$vo.title|mbStr=0,14}</a></li>
+			<li><span>[{$vo.created_date|date='m-d'}]</span><a href="/content/{$vo.id}.html" target="_blank">{$vo.title|mbStr=0,14}</a></li>
 		{/cxuu:contentlist} 
 		</div>
 	</div>

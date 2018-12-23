@@ -1,0 +1,198 @@
+<div id="pagelist">
+    <h3 class="page-header">{$constname} 在线音乐</h3>
+    <form role="form" id="form1" class="form-horizontal" name="form1" enctype="multipart/form-data" method="post"
+          action="#">
+        <div class="form-group">
+
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">类别</label>
+                <div class="col-md-2 selectlist">
+                    <select class="form-control" name="cid" required>
+                        <option value="1" {$info['cid'] == 1 ? 'selected = selected':''}}>流行</option>
+                        <option value="2" {$info['cid'] == 2 ? 'selected = selected':''}}>古典</option>
+                        <option value="3" {$info['cid'] == 3 ? 'selected = selected':''}}>红色</option>
+                        <option value="4" {$info['cid'] == 4 ? 'selected = selected':''}}>轻音乐</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- 容器 -->
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">音乐名</label>
+                <div class="col-sm-8 col-xs-6">
+                    <input type="text" name="title" class="form-control" value="{$info.title}" placeholder="音乐标题"
+                           required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">音乐来源</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="examine" class="form-control" value="{$info.examine}" placeholder="音乐来源"
+                           required>
+                </div>
+                <small>注明音乐来源如：互联网 公安内网</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">艺术家/演唱/歌手</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="auther" class="form-control" value="{$info.auther}" placeholder="艺术家/演唱/歌手"
+                           required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">发布人</label>
+                <div class="col-sm-3 col-xs-2">
+                    <input type="text" name="publish" class="form-control" value="{$info.publish}" placeholder="发布人"
+                           required>
+                </div>
+                <small>必须填写真实姓名，责任到人</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">缩略图</label>
+                <div class="col-sm-5">
+                    <input type="text" name="image" id="image" value="{$info.image}" class="form-control"
+                           id="uploadinfo">
+                </div>
+                {if getCxuuBaseAuth("Upload_uploadWebuploader")}
+                <div class="col-sm-4 contentuploadbt">
+                    <botton id="uploadFileBtn">上传</botton>
+                </div>
+                {/if}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- 容器 -->
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">音乐简介</label>
+                <div class="col-sm-8 col-xs-6">
+                    <textarea class="form-control" rows="4" name="docnumber" id="docnumber">{$info.docnumber}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2 control-label contenttab">音乐地址</label>
+                <div class="col-sm-6 col-xs-4">
+                    <input type="text" name="musicurl" class="form-control" value="{$info.musicurl}">
+                </div>
+                {if getCxuuBaseAuth("Upload_uploadWebuploader")}
+                <div class="col-sm-4 contentuploadbt">
+                    <botton id="uploadMusicBtn">选择上传</botton>
+                </div>
+                {/if}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2  control-label contenttab">状态</label>
+                <div class="col-sm-4">
+                    {if getCxuuBaseAuth("Onlinemusiccontr_Publish")}
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="1" id="optionsRadios2" {$info['status']==1 ?
+                        "checked":""}>发布
+                    </label>
+                    {/if}
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0" id="optionsRadios2" {$info['status']==0 ?
+                        "checked":""}>投稿
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-9">
+                <label class="col-sm-2  control-label contenttab"> </label>
+                <input type="hidden" name="id" value="{$info.id}">
+                <button type="submit" name="submit" class="btn btn-primary btn-lg">{$constname}</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<link href="/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
+<script src="/static/webuploader/webuploader.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        ajaxPost('/admin/Onlinemusiccontr/', '{$actionname}');
+
+        var uploader = WebUploader.create({
+            auto: true,
+            pick: '#uploadFileBtn',
+            compress: false, //图片在上传前不进行压缩
+            threads: 1, //上传并发数
+            fileNumLimit: 1,
+            fileSizeLimit:2000000,
+            fileSingleSizeLimit:2000000,//单个文件大小限制 字节
+            server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}' || '',
+            swf: '/static/webuploader/Uploader.swf',
+            fileVal: 'file',
+            accept: {title: '请选择文件', extensions: 'jpg,png,gif,doc', multiple: false},
+        });
+
+        uploader.on("uploadSuccess", function (file, response) {
+            var imageUrl = response.url;
+            //console.log('URL：', response._raw);
+            //alert(imageUrl);
+            $('input[name=image]').val(imageUrl);
+            layer.msg("上传成功");
+        });
+        uploader.on("error", function (type) {
+            if(type=="Q_TYPE_DENIED"){
+                layer.msg("只能上传jpg,png,gif,doc文件！");
+            }else if(type=="Q_EXCEED_SIZE_LIMIT"){
+                layer.msg("上传的文件不能超过2M");
+            }else{
+                layer.msg("上传出错！请检查后重新上传！错误代码"+type);
+            }
+        });
+
+
+        var uploadermusic = WebUploader.create({
+            auto: true,
+            pick: '#uploadMusicBtn',
+            compress: false, //图片在上传前不进行压缩
+            threads: 1, //上传并发数
+            fileNumLimit: 1,
+            fileSizeLimit:9000000,
+            fileSingleSizeLimit:9000000,//单个文件大小限制 字节
+            server: '/admin/upload/uploadWebuploader?upcontr=' + '{$contr}' || '',
+            swf: '/static/webuploader/Uploader.swf',
+            fileVal: 'file',
+            accept: {title: '请选择音乐', extensions: 'mp3', multiple: false},
+        });
+
+        uploadermusic.on("uploadSuccess", function (file, response) {
+            var musicUrl = response.url;
+            $('input[name=musicurl]').val(musicUrl);
+            layer.msg("上传成功");
+        });
+
+        uploadermusic.on("error", function (type) {
+           if(type=="Q_TYPE_DENIED"){
+               layer.msg("只能上传MP3文件！");
+           }else if(type=="Q_EXCEED_SIZE_LIMIT"){
+               layer.msg("上传的文件不能超过8M");
+           }else{
+               layer.msg("上传出错！请检查后重新上传！错误代码"+type);
+           }
+        });
+
+    });
+</script>

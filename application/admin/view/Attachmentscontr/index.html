@@ -20,12 +20,11 @@
                     <td>{$vo.id}</td>
                     <td>{$vo.filename}</td>
 					<td width=80><div class="thumbnail"><img src="{$vo.fileurl}" height=60 width=80></div></td>
-                    <td><?php
-                    if(file_exists(".".$vo['fileurl'])){
-                      echo "文件存在 ";
-                    }
+                    <td width=120><?php
+                    //if(file_exists(".".$vo['fileurl'])){
+                    //  echo "文件存在 ";
+                    //}
                     ?>
-                    
                     {$vo.fileurl}
                     </td>
                     

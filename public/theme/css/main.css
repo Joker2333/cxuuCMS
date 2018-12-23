@@ -12,8 +12,6 @@ img { border:0px; }
 #main { width:1200px; margin:auto;margin-top:10px;}
 
 
-/*广告栏*/
-.ad_banner { width:1200px; height:150px;background:url("../image/public/xjg_ad.jpg") no-repeat;}
 
 
 /*头导航栏*/
@@ -25,7 +23,7 @@ img { border:0px; }
 #menu ul li a:hover {color:#9eecff;font-size:20px;font-family:"微软雅黑","黑体";}
 
 /* 头部下方信息栏 */
-#content_topinfo {width:1200px; margin:auto; height:70px;margin-top:0px;background:#fff;}
+#content_topinfo {width:1200px; margin:auto; height:50px;margin-top:0px;background:#fff;}
 #content_topinfo .notes{margin-left:5px; float:left;line-height:50px;height:50px; width:840px; padding-left:10px; font-size:22px;color:#e80026;font-family:"黑体";font-weight:bold;}
 #content_topinfo .timeinfo2 {margin-left:15px; float:left;line-height:50px; width:400px;font-size:14px;}
 
@@ -35,10 +33,7 @@ img { border:0px; }
 #content_topinfo .topsearch input{height:20px; line-height:20px; }
 
 
-
-
-
-/* 页脚 background-image: url(imgv2/foot_bg.jpg); background-repeat:no-repeat; background-position:center;*/
+/* 页脚 */
 #foot { margin: auto; text-align:center; line-height:30px; border-bottom:solid 1px #e6e6e6;}
 .foot_div { margin: auto; width: 1007px; }
 .foot_div ul { margin-top: 20px; width: 941px; }
